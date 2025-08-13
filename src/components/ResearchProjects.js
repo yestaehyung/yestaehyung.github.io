@@ -9,7 +9,7 @@ const ResearchProjects = () => {
         <div className="project">
           <div className="project-media">
             <img
-              src="https://via.placeholder.com/400x280/667eea/ffffff?text=AI+Research"
+              src="public/images/triple_overall.jpg"
               alt="AI Research Project"
             />
           </div>
