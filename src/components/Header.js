@@ -8,10 +8,9 @@ const Header = () => {
         <h1>Taehyeong Noh</h1>
         <nav>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Research</a></li>
-            <li><a href="#">Publications</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#about-me">About Me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#publications">Publications</a></li>
           </ul>
         </nav>
       </div>

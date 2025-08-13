@@ -3,7 +3,7 @@ import "../styles/Publications.css";
 
 const Publications = () => {
   return (
-    <section className="publications">
+    <section id="publications" className="publications">
       <h2>Publications</h2>
       <div className="publications-list">
         <div className="publication">
