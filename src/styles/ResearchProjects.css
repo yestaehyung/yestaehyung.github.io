@@ -1,0 +1,60 @@
+.research-projects {
+  margin-bottom: 40px;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.project {
+  margin-bottom: 25px;
+}
+
+.project h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+}
+
+.project-status {
+  font-weight: normal;
+  font-style: italic;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.project .authors {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.project .authors strong {
+  font-weight: 600;
+}
+
+.project .conference {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.project .links {
+  display: flex;
+  gap: 15px;
+  margin-top: 8px;
+}
+
+.project .links a {
+  color: #0366d6;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.project .links a:hover {
+  text-decoration: underline;
+}
