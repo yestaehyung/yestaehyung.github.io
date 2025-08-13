@@ -30,15 +30,13 @@ const Profile = () => {
         >
           <i className="fab fa-github"></i> GitHub
         </a>
-      </div>
-
-      <div className="cv-link">
         <a
           href={`${process.env.PUBLIC_URL}/cv.pdf`}
+          className="social-link"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Curriculum Vitae (PDF)
+          <i className="fas fa-file-pdf"></i> Curriculum Vitae (PDF)
         </a>
       </div>
     </div>
