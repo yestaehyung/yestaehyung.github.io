@@ -1,0 +1,27 @@
+.news {
+  margin-bottom: 40px;
+}
+
+.news-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.news-list li {
+  margin-bottom: 12px;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+}
+
+.news-emoji {
+  margin-right: 8px;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.news-date {
+  font-weight: 500;
+  margin-right: 5px;
+  color: #555;
+}
