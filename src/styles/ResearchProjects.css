@@ -74,55 +74,80 @@
 .project-keywords {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 15px;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 .keyword {
-  background: white;
-  color: #000;
-  padding: 3px 8px;
-  border: 1px solid #000;
-  border-radius: 0;
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  transition: none;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: none;
+  transition: transform 0.2s ease;
 }
 
 .keyword:hover {
-  transform: none;
+  transform: scale(1.05);
+}
+
+/* 기술별 키워드 색상 */
+.keyword:nth-child(1) {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.keyword:nth-child(2) {
+  background: #e8f5e8;
+  color: #388e3c;
+}
+
+.keyword:nth-child(3) {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.keyword:nth-child(4) {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.keyword:nth-child(5) {
+  background: #fce4ec;
+  color: #c2185b;
 }
 
 .project-links {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-top: auto;
 }
 
 .project-links a {
-  color: #0066cc;
+  background: linear-gradient(135deg, #1976d2, #1565c0);
+  color: white;
   font-size: 0.85rem;
-  font-weight: 400;
+  font-weight: 500;
   text-decoration: none;
-  padding: 0;
+  padding: 8px 16px;
+  border-radius: 8px;
   border: none;
-  border-radius: 0;
-  transition: none;
+  transition: all 0.3s ease;
   align-self: flex-start;
+  box-shadow: 0 2px 4px rgba(25, 118, 210, 0.3);
 }
 
 .project-links a:before {
-  content: ">> ";
-  font-weight: 600;
+  content: "";
 }
 
 .project-links a:hover {
-  background: none;
-  color: #0066cc;
-  transform: none;
-  text-decoration: underline;
+  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(25, 118, 210, 0.4);
+  color: white;
+  text-decoration: none;
 }
 
 /* Responsive Design */
@@ -152,11 +177,12 @@
   }
   
   .keyword {
-    font-size: 0.7rem;
-    padding: 2px 6px;
+    font-size: 0.75rem;
+    padding: 4px 10px;
   }
   
   .project-links a {
     font-size: 0.8rem;
+    padding: 6px 12px;
   }
 }
