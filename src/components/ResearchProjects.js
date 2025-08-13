@@ -9,8 +9,8 @@ const ResearchProjects = () => {
         <div className="project">
           <div className="project-media">
             <img
-              src="public/images/triple_overall.jpg"
-              alt="AI Research Project"
+              src={`${process.env.PUBLIC_URL}/triple_overall.jpg`}
+              alt="TRIPLE Project"
             />
           </div>
           <div className="project-content">
