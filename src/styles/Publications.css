@@ -2,14 +2,60 @@
   margin-bottom: 40px;
 }
 
+.publication-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: flex-start;
+}
+
+.filter-button {
+  padding: 8px 16px;
+  border: 1px solid #d1d9e0;
+  background-color: #ffffff;
+  color: #6c757d;
+  font-size: 0.9rem;
+  font-weight: 400;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Google Sans', sans-serif;
+}
+
+.filter-button:hover {
+  border-color: #a8b3c1;
+  color: #495057;
+  background-color: #f8f9fa;
+}
+
+.filter-button.active {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border-color: #bbdefb;
+}
+
 .publications-list {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  transition: opacity 0.3s ease;
 }
 
 .publication {
   margin-bottom: 25px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.publication.fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.publication.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .publication h3 {

@@ -3,7 +3,6 @@ import './App.css';
 import Header from './components/Header';
 import Profile from './components/Profile';
 import Introduction from './components/Introduction';
-import News from './components/News';
 import ResearchProjects from './components/ResearchProjects';
 import Publications from './components/Publications';
 import Footer from './components/Footer';
@@ -19,7 +18,6 @@ function App() {
           </div>
           <div className="right-column">
             <Introduction />
-            <News />
           </div>
         </div>
         <div className="full-width-section">
