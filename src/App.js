@@ -20,8 +20,8 @@ function App() {
           <div className="right-column">
             <Introduction />
             <News />
-            <Publications />
             <ResearchProjects />
+            <Publications />
           </div>
         </div>
         <Footer />
