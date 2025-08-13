@@ -20,9 +20,13 @@ function App() {
           <div className="right-column">
             <Introduction />
             <News />
-            <ResearchProjects />
-            <Publications />
           </div>
+        </div>
+        <div className="full-width-section">
+          <ResearchProjects />
+        </div>
+        <div className="full-width-section">
+          <Publications />
         </div>
         <Footer />
       </div>
