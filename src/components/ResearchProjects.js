@@ -15,7 +15,7 @@ const ResearchProjects = () => {
           </div>
           <div className="project-content">
             <h3 className="project-title">
-              Project TRIPLE: Deepening Personalization with Psychological AI
+              TRIPLE: Deepening Personalization with Psychological LLM
             </h3>
             <p className="project-description">
               TRIPLE is a profiling technology that combines the Theory of

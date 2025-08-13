@@ -7,7 +7,7 @@ const Profile = () => {
       <div className="profile-image">
         <img src={`${process.env.PUBLIC_URL}/profile.jpg`} alt="프로필 사진" />
       </div>
-      <h1>Taehyeong Noh (노태형)</h1>
+      <h1>Taehyung Noh (노태형)</h1>
       <p className="position">Ph.D. Student @ Hanyang University</p>
 
       <div className="social-links">
