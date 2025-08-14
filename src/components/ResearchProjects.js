@@ -10,7 +10,7 @@ const ResearchProjects = () => {
       title: "KETI Industrial AI Data Preprocessing Platform",
       description:
         "Developing an AI data preprocessing platform for industrial applications. This project provides an integrated solution for efficiently processing and analyzing data across various industrial domains.",
-      role: "Lead Developer & AI Researcher",
+      role: "...",
       keywords: ["LLM", "Data Processing", "Platform"],
       image: `${process.env.PUBLIC_URL}/images/projects/triple_overall.jpg`,
       status: "ongoing",
@@ -26,7 +26,7 @@ const ResearchProjects = () => {
       title: "TRIPLE",
       description:
         "TRIPLE is a profiling technology that combines the Theory of Planned Behavior (TPB) with Large Language Models (LLMs). It uses LLMs to understand a user's psychological motivations and refines their profile by comparing predictions with actual behavior, dramatically improving personalization services.",
-      role: "Primary Researcher & First Author",
+      role: "First Author",
       keywords: ["LLM", "Personalization", "Psychology"],
       image: `${process.env.PUBLIC_URL}/images/projects/triple_overall.jpg`,
       status: "ongoing",
@@ -42,7 +42,7 @@ const ResearchProjects = () => {
       title: "Multi-Agent Personality Detection System (PADO)",
       description:
         "PADO is a multi-agent system that detects personality traits (OCEAN) from user-generated text. Multiple specialized agents collaborate to perform more accurate personality analysis, with each agent focusing on specific personality dimensions.",
-      role: "Co-Researcher & Second Author",
+      role: "Second Author",
       keywords: ["Multi-Agent", "Personality Detection", "OCEAN"],
       image: `${process.env.PUBLIC_URL}/images/projects/triple_overall.jpg`,
       status: "completed",
