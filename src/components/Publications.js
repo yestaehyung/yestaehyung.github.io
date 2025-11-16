@@ -3,6 +3,8 @@ import "../styles/Publications.css";
 
 const Publications = () => {
   const [filter, setFilter] = useState("all");
+  const [isChaos, setIsChaos] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
 
   const publicationsData = [
     {
@@ -15,7 +17,7 @@ const Publications = () => {
         { name: "Haein Yeo", isAuthor: false },
         { name: "Kyungsik Han", isAuthor: false },
       ],
-      venue: "AAAI 2026 Full(Oral)",
+      venue: "AAAI 2026 Full(Oral) - Completed",
       type: "conference",
       link: null,
     },
@@ -108,9 +110,28 @@ const Publications = () => {
       ? publicationsData
       : publicationsData.filter((pub) => pub.type === filter);
 
+  const handleTitleClick = () => {
+    const newCount = clickCount + 1;
+    setClickCount(newCount);
+
+    if (newCount === 3) {
+      setIsChaos(true);
+      setTimeout(() => {
+        setIsChaos(false);
+        setClickCount(0);
+      }, 3000);
+    }
+
+    setTimeout(() => {
+      if (clickCount < 2) setClickCount(0);
+    }, 1000);
+  };
+
   return (
     <section id="publications" className="publications">
-      <h2>Publications</h2>
+      <h2 onClick={handleTitleClick} style={{ cursor: 'pointer', userSelect: 'none' }}>
+        Publications
+      </h2>
 
       <div className="publication-filters">
         <button
@@ -133,9 +154,18 @@ const Publications = () => {
         </button>
       </div>
 
-      <div className="publications-list">
-        {filteredPublications.map((publication) => (
-          <div key={publication.id} className="publication">
+      <div className={`publications-list ${isChaos ? "chaos-mode" : ""}`}>
+        {filteredPublications.map((publication, index) => (
+          <div
+            key={publication.id}
+            className="publication"
+            style={isChaos ? {
+              animationDelay: `${index * 0.1}s`,
+              '--random-x': `${Math.random() * 2000 - 1000}px`,
+              '--random-y': `${Math.random() * 1000 + 500}px`,
+              '--random-rotate': `${Math.random() * 720 - 360}deg`
+            } : {}}
+          >
             <h3>{publication.title}</h3>
             <p className="authors">
               {publication.authors.map((author, index) => (

@@ -104,3 +104,22 @@
 .publication .links a:hover {
   text-decoration: underline;
 }
+
+/* Chaos Mode Animation */
+.publications-list.chaos-mode .publication {
+  animation: chaosfall 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes chaosfall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(-50px) translateX(0) rotate(5deg);
+  }
+  100% {
+    transform: translateY(var(--random-y)) translateX(var(--random-x)) rotate(var(--random-rotate));
+    opacity: 0;
+  }
+}
