@@ -31,7 +31,7 @@ const Profile = () => {
           <i className="fab fa-github"></i> GitHub
         </a>
         <a
-          href={`${process.env.PUBLIC_URL}/cv.pdf`}
+          href={`${process.env.PUBLIC_URL}/CV_Taehyung/main.pdf`}
           className="social-link"
           target="_blank"
           rel="noopener noreferrer"

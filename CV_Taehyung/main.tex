@@ -1,0 +1,579 @@
+%
+%Academic CV LaTeX Template
+% Author: Dubasi Pavan Kumar
+% LinkedIn: https://www.linkedin.com/in/im-pavankumar/
+% License: MIT
+%
+% For errors, suggestions, or improvements, please contact:
+% Email: pavankumard.pg19.ma@nitp.ac.in
+%
+
+
+
+\documentclass[a4paper,11pt]{article}
+
+% Package imports
+\usepackage{xcolor}
+\usepackage[empty]{fullpage}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,139}
+
+% Page layout
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Taehyung Noh}}
+\end{center}
+\vspace{-4mm}
+
+\begin{center}
+    \small{
+    \href{mailto:yestaehyung@hanyang.ac.kr}{yestaehyung@hanyang.ac.kr} | 
+    % \href{https://www.yourwebsite.com/}{yourwebsite.com}
+    }
+\end{center}
+\vspace{-4mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/taehyungnoh/}{taehyung-noh} | 
+    \socialicon{\faGithub} \href{https://github.com/yestaehyung}{yestaehyung} | 
+    % \ieeeicon{\includegraphics[height=1.3em]{ieee_collabratec_icon.png}} \href{https://ieee-collabratec.ieee.org/app/p/your-profile}{your-profile} |
+    % \socialicon{\faTwitter} \href{https://twitter.com/your-handle}{your-handle}
+    }
+\end{center}
+\vspace{-4mm}
+\begin{center}
+    \small{521, Fusion Technology Center, Hanyang University, Seoul, South Korea 04763}
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Research Interests}}
+\vspace{1mm}
+\small{
+My research interest lies in Human-AI Interaction, with a focus on developing trustworthy and personalized AI systems.}
+\vspace{-1mm}
+
+
+
+\section{\textbf{Experience}}
+\vspace{-0.4mm}
+  \resumeSubHeadingListStart
+  \resumeSubheading
+      {{Hanyang Human-Centered Computing Laboratory  [\href{http://hcc.hanyang.ac.kr/}{\faIcon{globe}}]}}{Seoul, Korea}
+      {Research Assistant}{Jan. 2022 - Present}
+      % \resumeItemListStart
+      %   \item Developed [specific achievement] achieving [specific metric] in [specific area]
+      %   \item Implemented [technology/method], enhancing [specific aspect] by [specific percentage]
+      %   \item Conducted analysis on [specific data], identifying [key findings]
+      %   \item Presented findings at [specific event], receiving [specific recognition]
+  \resumeSubHeadingListEnd
+\vspace{-0.4cm}
+
+  \resumeSubHeadingListStart
+  \resumeSubheading
+      {{Ajou Human-Computer-Interaction Lab at Dept. of Software}}{Suwon, Korea}
+      {Undergraduate Research Assistant}{Aug. 2020 - Dec. 2021}
+      % \resumeItemListStart
+      %   \item Developed [specific achievement] achieving [specific metric] in [specific area]
+      %   \item Implemented [technology/method], enhancing [specific aspect] by [specific percentage]
+      %   \item Conducted analysis on [specific data], identifying [key findings]
+      %   \item Presented findings at [specific event], receiving [specific recognition]
+      % \resumeItemListEnd 
+  \resumeSubHeadingListEnd
+\vspace{-3mm}
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Hanyang University}{Seoul, Korea}
+{M.S. \& Ph.D. Integrated Student, Department of Artificial Intelligence (Advisor: Kyungsik Han)}{Mar. 2022 - Present}
+% \resumeItemListStart
+% \item GPA: X.XX/4.00
+% \resumeItemListEnd
+
+\resumeSubheading
+{Ajou University}{Suwon, Korea}
+{Bachelor of Engineering, Department of Software}{Mar. 2018 - Feb. 2022}{}
+% \resumeItemListStart
+% \item Grade: XX.X\%
+% \resumeItemListEnd
+
+% \resumeSubheading
+% {Hongik University}{Sejong, Korea}
+% {Department of Advertising and Pubic Relations}{Mar. 2018 - Feb. 2020}
+
+\resumeSubHeadingListEnd
+\vspace{-3mm}
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {KETI Industrial AI Data Preprocessing Platform}
+  {}
+  {}
+  {Present}
+
+\resumeItemListStart
+  \item Developing an AI data preprocessing platform for industrial applications.
+  \item Providing an integrated solution for efficiently processing and analyzing data across various industrial domains.
+\resumeItemListEnd
+
+\resumeProject
+  {TRIPLE (AAAI)}
+  {First Author}
+  {}
+  {2025}
+
+\resumeItemListStart
+  \item TRIPLE (Theory-guided Reasoning for Intent and habIt Profiling with LLMs for pErsonalization) is a novel framework that integrates dual-process theory and the Theory of Planned Behavior (TPB) into LLM-based user modeling.
+  \item Constructs both habitual and intentional behavior profiles, then generates behavioral rationale that explains the interaction between these processes to predict user behavior.
+\resumeItemListEnd
+
+\resumeProject
+  {TRIPLE (CIKM)}
+  {First Author}
+  {}
+  {2025}
+
+\resumeItemListStart
+  \item TRIPLE is a profiling technology that combines the Theory of Planned Behavior (TPB) with Large Language Models (LLMs).
+  \item Uses LLMs to understand a user's psychological motivations and refines their profile by comparing predictions with actual behavior, dramatically improving personalization services.
+\resumeItemListEnd
+
+\resumeProject
+  {Red Teaming Attack Dataset Analysis}
+  {Project Leader}
+  {}
+  {2024}
+
+\resumeItemListStart
+  \item Analyzed real-world LLM vulnerabilities using attack data from the 2023 DEF CON 31 Generative AI Red Teaming Challenge.
+  \item Preprocessed and relabeled the dataset to identify which target categories are most susceptible to harmful-content attacks.
+  \item Classified victim groups and categorized prompt types to reveal systematic patterns in successful jailbreaks.
+\resumeItemListEnd
+
+\resumeProject
+  {Multi-Agent Personality Detection System (PADO)}
+  {Second Author}
+  {}
+  {2024}
+
+\resumeItemListStart
+  \item PADO is a multi-agent system that detects personality traits (OCEAN) from user-generated text.
+  \item Multiple specialized agents collaborate to perform more accurate personality analysis.
+\resumeItemListEnd
+
+\resumeProject
+  {Fashion-FINE}
+  {Third Author}
+  {}
+  {2024}
+
+\resumeItemListStart
+  \item Fashion-FINE is a Vision-Language Pre-training model for fine-grained fashion retrieval.
+  \item Introduces modality-agnostic adapter, hard negative mining with focal loss, and comprehensive cross-modal alignment.
+\resumeItemListEnd
+
+\resumeProject
+  {My Own Style (MOS)}
+  {First Author}
+  {}
+  {May. 2022 - Present}
+
+\resumeItemListStart
+  \item Investigated how domain expertise shapes user perception and satisfaction with fashion-recommendation outcomes.
+  \item Built MOS dashboard that analyzes outfit images and recommends similar/diverse fashion items.
+  \item Large-scale study with 166 participants showing fashion experts prefer highly similar recommendations while non-experts prefer diverse results.
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\vspace{-3mm}
+\section{\textbf{Publications}}
+
+\subsection*{\textbf{Conference Papers}}
+\vspace{-2mm}
+\small{
+\begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{C.1}]}, itemindent=0em, label={\textbf{[C.\arabic*]}}]
+
+\item \textbf{Taehyung Noh}, Seungwan Jin, Haein Yeo, Kyungsik Han (2026). TRIPLE: Theory-Driven Integration of Planned and Habitual Behaviors for LLM-based Personalization. The AAAI Conference on Artificial Intelligence (\textbf{AAAI 2026})
+
+\item \textbf{Taehyung Noh}, Seungwan Jin, Haein Yeo, Kyungsik Han (2025). \href{https://dl.acm.org/doi/10.1145/3746252.3760965}{Externalizing Social-Cognitive Structures for User Modeling: Toward Theory-Driven Profiling with LLMs}. The ACM International Conference on Information and Knowledge Management (\textbf{CIKM 2025 Short})
+
+\item Haein Yeo, \textbf{Taehyung Noh}, Seungwan Jin, Kyungsik Han (2025). \href{https://aclanthology.org/2025.coling-main.382/}{PADO: Personality-induced multi-Agents for Detecting OCEAN in human-generated texts}. The International Conference on Computational Linguistics (\textbf{COLING 2025})
+
+\item Seungwan Jin, Hoyoung Choi, \textbf{Taehyung Noh}, Kyungsik Han (2024). \href{https://link.springer.com/chapter/10.1007/978-3-031-73010-8_4}{Integration of global and local representations for fine-grained cross-modal alignment}. The European Conference on Computer Vision (\textbf{ECCV 2024})
+
+\item \textbf{Taehyung Noh}, Haein Yeo, Myungin Kim, Kyungsik Han (2023). \href{https://dl.acm.org/doi/abs/10.1145/3544549.3585641}{A study on user perception and experience differences in recommendation results by domain expertise: the case of fashion domains}. The ACM Conference on Human Factors in Computing Systems Late-Breaking Work (\textbf{CHI LBW 2023})
+
+\end{enumerate}
+}
+
+\subsection*{\textbf{Journal Papers}}
+\vspace{-2mm}
+\small{
+\begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{J.1}]}, itemindent=0em, label={\textbf{[J.\arabic*]}}]
+
+\item Haein Yeo, \textbf{Taehyung Noh}, Kyungsik Han (2025). LLM-Generated Content-Based Explanations for User Experience in Fashion Recommender Systems. \textbf{Fashion and Textiles}
+
+\end{enumerate}
+}
+
+\subsection*{\textbf{Technical Reports}}
+\vspace{-2mm}
+\small{
+\begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{R.1}]}, itemindent=0em, label={\textbf{[R.\arabic*]}}]
+
+\item Yeajin Shin, Kyungsik Han, \textbf{Taehyung Noh}, Mingon Jeong (2025). \href{https://astlyi.s3.ap-northeast-2.amazonaws.com/2025/TTA_LLM+\%E1\%84\%8B\%E1\%85\%B2\%E1\%84\%92\%E1\%85\%A2\%E1\%84\%89\%E1\%85\%A5\%E1\%86\%BC+\%E1\%84\%80\%E1\%85\%A9\%E1\%86\%BC\%E1\%84\%80\%E1\%85\%A7\%E1\%86\%A8+\%E1\%84\%8C\%E1\%85\%A5\%E1\%86\%AB\%E1\%84\%85\%E1\%85\%A3\%E1\%86\%A8\%E1\%84\%8B\%E1\%85\%A6+\%E1\%84\%83\%E1\%85\%A2\%E1\%84\%92\%E1\%85\%A1\%E1\%86\%AB+\%E1\%84\%89\%E1\%85\%B5\%E1\%86\%AF\%E1\%84\%8C\%E1\%85\%B3\%E1\%86\%BC\%E1\%84\%8C\%E1\%85\%A5\%E1\%86\%A8+\%E1\%84\%87\%E1\%85\%AE\%E1\%86\%AB\%E1\%84\%89\%E1\%85\%A5\%E1\%86\%A8.pdf}{LLM Attack Strategies}. \textbf{TTA Report}
+
+\end{enumerate}
+}
+\vspace{-3mm}
+
+\section{\textbf{Patents}}
+\vspace{0.2mm}
+\small{
+\begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{P.1}]}, itemindent=0em, label={\textbf{[P.\arabic*]}}]
+
+\item Seungwan Jin, Kyungsik Han, \textbf{Taehyung Noh}, Junghyun Kim (2025). Dynamic Persona-based Prediction System and Method for Personalized Long-term Mental Health Monitoring.
+
+\item Kyungsik Han, \textbf{Taehyung Noh} (2025). Method and Device for Generating User Profiles Using Artificial Intelligence.
+
+\item Bogoan Kim, Dayoung Jung, \textbf{Taehyung Noh}, Kyungsik Han (2023). Visualization Analysis Tool Equipped with VR Multimodal Sensor Data Processing Pipeline Collected from People with Autism Spectrum Disorder.
+
+\item Kyungsik Han, \textbf{Taehyung Noh}, Haein Yeo, Myungjin Kim (2023). Device and Method for Providing Dashboard Services on Fashion Image Analysis.
+
+\item Kyungsik Han, \textbf{Taehyung Noh}, Haein Yeo, Myungjin Kim (2023). Device and Method for Similar Image Recommendation Using Fashion Attributes and Image.
+
+\item Kanghwi Ahn, Junseok Ryu, Kyungsik Han, \textbf{Taehyung Noh} (2023). Method for Analyzing Image and Text-based Characteristics of Objects.
+
+\item Kyungsik Han, Seungwan Jin, Hoyoung Choi, \textbf{Taehyung Noh} (2022). Image-Text Retrieval Model Construction Method and Service Device.
+
+\end{enumerate}
+}
+\section{\textbf{Honors and Awards}}
+% \vspace{-0.4mm}
+% \begin{itemize}
+\textbf{Best Paper Award}, Korea Data Mining Society \hfill Nov. 2024 \\
+\textbf{Best Presentation Award}, Korea Software Congress (KSC 2023) \hfill Dec. 2023 \\
+\textbf{Best Inventor Award}, Seoul International Invention Fair \hfill Dec. 2022 \\
+\textbf{Participation Award}, mySUNI Creative Challenge  \hfill Dec. 2022 \\
+% \end{itemize}
+
+% \section{\textbf{Honors and Awards}}
+% \vspace{-0.4mm}
+% \resumeSubHeadingListStart
+%   {Best Paper Award}
+%   {Korea Data Mining Society}
+%   {Nov. 2024}
+% \resumeProject
+%   {Best Presentation Award}
+%   {Korea Software Congress (KSC 2023)}
+%   {Dec. 2023}
+% \resumeProject
+%   {Best Inventor Award}
+%   {Seoul International Invention Fair}
+%   {Dec. 2022}
+%   {{}[\href{https://award-link-a.com}{\textcolor{darkblue}{\faIcon{globe}}}]}
+% \resumeItemListStart
+%   \item Brief description of the award and its significance
+%   \item Impact or recognition associated with the award
+% \resumeItemListEnd
+% \resumeProject
+%   {Participation Award}
+%   {mySUNI Creative Challenge}
+%   {Dec. 2022}
+%   {{}[\href{https://award-link-b.com}{\textcolor{darkblue}{\faIcon{globe}}}]}
+% \resumeItemListStart
+%   \item Brief description of the award and its significance
+%   \item Impact or recognition associated with the award
+% \resumeItemListEnd
+
+% \resumeProject
+%   {Competition Achievement}
+%   {Competition Name, Organizing Body}
+%   {Month Year}
+%   {{}[\href{https://competition-link.com}{\textcolor{darkblue}{\faIcon{globe}}}]}
+% \resumeItemListStart
+%   \item Specific achievement or rank in the competition
+%   \item Skills or abilities demonstrated through this achievement
+% \resumeItemListEnd
+
+% \resumeSubHeadingListEnd
+
+% \section{\textbf{TEACHING EXPERIENCE}}
+% \vspace{-0.4mm}
+% \resumeSubHeadingListStart
+% \resumePOR{}{
+% \textbf{Co-lecturer}
+% }{}
+% \resumePOR{}{
+% \textbf{Co-lecturer}
+% }{}
+
+% \resumeSubHeadingListEnd
+
+\section{\textbf{TEACHING EXPERIENCE}}
+\textbf{Co-lecturer}
+\vspace{-0.7mm}
+\resumeItemListStart
+  \item ITE3062: Human-Computer Interaction (In English) \hfill Fall 2024 \\
+  % \item Skills or abilities demonstrated through this achievement
+\resumeItemListEnd
+\vspace{1.0mm}
+
+\textbf{Teaching Assistant (TA)}
+\vspace{-0.7mm}
+\resumeItemListStart
+  \item SOI3010: Laboratory practice of Intelligence Computing 2 \hfill Fall 2024 \\
+  % \item Skills or abilities demonstrated through this achievement
+\resumeItemListEnd
+
+
+
+% \section{\textbf{Skills}}
+% \vspace{-0.4mm}
+%  \resumeHeadingSkillStart
+%   \resumeSubItem{Programming Languages:}
+%     {Language 1, Language 2, Language 3, Language 4, Language 5}
+%   \resumeSubItem{Web Technologies:}
+%     {Technology 1, Technology 2, Technology 3, Technology 4, Technology 5}
+%  \resumeHeadingSkillEnd
+
+\section{\textbf{ACADEMIC SERVICES}}
+
+\textbf{Conference Reviewer}
+\vspace{-0.7mm}
+\resumeItemListStart
+  \item Conference on Empirical Methods in Natural Language Processing (EMNLP) \hfill 2024 \\
+  \item ACM Conference on Human Factors in Computing Systems (CHI) \hfill 2024 \\
+  \item ACM International Conference on Information and Knowledge Management (CIKM) \hfill 2023 \\
+\resumeItemListEnd
+\vspace{1.0mm}
+
+% \vspace{-0.4mm}
+% \begin{itemize}
+%   \item Conference on Empirical Methods in Natural Language Processing (EMNLP) \hfill 2024 \\
+%   \item ACM Conference on Human Factors in Computing Systems (CHI) \hfill 2024 \\
+%   \item ACM International Conference on Information and Knowledge Management (CIKM) \hfill 2023 \\
+% \end{itemize}
+
+
+% \section{\textbf{ACADEMIC SERVICES}}
+% \vspace{-0.4mm}
+% \resumeSubHeadingListStart
+% \resumeProject
+%   {Conference Reviewer}
+%   % {Organization Name}
+%   % {Month Year - Month Year}
+
+% \resumeItemListStart
+%   \item Conference on Empirical Methods in Natural Language Processing (EMNLP) \hfill 2024
+%   \item ACM Conference on Human Factors in Computing Systems (CHI) \hfill 2024
+%   \item ACM International Conference on Information and Knowledge Management (CIKM) \hfill 2023
+% \resumeItemListEnd
+
+% \resumeProject
+%   {Volunteer Role B}
+%   {Organization Name}
+%   {Month Year - Present}
+%   {{}[\href{https://volunteer-org-b-link.com}{\textcolor{darkblue}{\faIcon{globe}}}]}
+% \resumeItemListStart
+%   \item Key responsibility or contribution in this role
+%   \item Impact of your volunteer work
+%   \item Skills developed or applied during this experience
+% \resumeItemListEnd
+
+% \resumeSubHeadingListEnd
+% \vspace{-6mm}
+
+% \section{\textbf{Professional Memberships}}
+% \vspace{-0.4mm}
+% \resumeSubHeadingListStart
+% \resumePOR{Professional Organization A}
+%     {, Membership ID: XXXXXXXX}
+%     {Month Year - Present}
+% \resumePOR{Professional Organization B}
+%     {, \href{https://membership-certificate-link.com}{Membership ID: XXXXXXXX}}
+%     {Month Year - Present}
+% \resumePOR{Professional Organization C}
+%     {, \href{https://membership-certificate-link.com}{Membership ID: XXXXXXXX}}
+%     {Month Year - Present}
+
+% \resumeSubHeadingListEnd
+% \vspace{-6mm}
+
+% \section{\textbf{Certifications}}
+% \vspace{-0.2mm}
+% \resumeSubHeadingListStart
+% \resumePOR{}{\href{https://certification-link-a.com}{
+% \textbf{Certification A}
+% }}{Month Year}
+% \resumePOR{}{
+% \textbf{Certifying Body:} {{\href{https://certification-link-b.com}{Certification B}}}}{Month Year}
+% \resumePOR{}{
+% \textbf{Certifying Body:} {{\href{https://certification-link-c.com}{Certification C}}}}{Month Year}
+% \resumePOR{}{\href{https://certification-link-d.com}{
+% \textbf{Certification D}
+% }}{Month Year}
+
+% \resumeSubHeadingListEnd
+% \vspace{-6mm}
+
+% \section{\textbf{Additional Information}}
+% \vspace{-0.4mm}
+% \small{
+% \textbf{Languages:} Language A (Proficiency level), Language B (Proficiency level), Language C (Proficiency level)
+
+% \textbf{Interests:} Interest 1, Interest 2, Interest 3, Interest 4
+% }
+% \vspace{-4mm}
+
+
+\section{\textbf{References}}
+% \vspace{-0.2mm}
+% \small{
+\begin{enumerate}[leftmargin=*,labelsep=2mm]
+\item \textbf{Kyungsik Han}\\
+   Associate Professor, Hanyang University\\
+   Department of Artificial Intelligence\\
+   kyungsikhan@hanyang.ac.kr\\
+\end{enumerate}
+% }
+
+\end{document}
