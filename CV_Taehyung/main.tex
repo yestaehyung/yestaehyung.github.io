@@ -20,8 +20,13 @@
 \usepackage{geometry}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
-\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{graphicx}
 \usepackage{fontawesome5}
+\setmainfont{GoogleSans.ttf}[
+  Path = ./,
+  ItalicFont = GoogleSans-Italic.ttf,
+]
 
 % Color definitions
 \definecolor{darkblue}{RGB}{0,0,139}
@@ -44,22 +49,8 @@
     urlcolor=darkblue,
 }
 
-% Custom box settings
-\usepackage[most]{tcolorbox}
-\tcbset{
-    frame code={},
-    center title,
-    left=0pt,
-    right=0pt,
-    top=0pt,
-    bottom=0pt,
-    colback=gray!20,
-    colframe=white,
-    width=\dimexpr\textwidth\relax,
-    enlarge left by=-2mm,
-    boxsep=4pt,
-    arc=0pt,outer arc=0pt,
-}
+% Table coloring support
+\usepackage{colortbl}
 
 % URL style
 \urlstyle{same}
@@ -120,9 +111,7 @@
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
 \newcommand{\cvsection}[1]{%
 \vspace{2mm}
-\begin{tcolorbox}
-    \textbf{\large #1}
-\end{tcolorbox}
+\colorbox{blue!10}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\strut\textbf{\large #1}\strut}}
     \vspace{-4mm}
 }
 
@@ -147,7 +136,6 @@
 \newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
 
 \begin{document}
-\headerfontiii
 
 % Header
 \begin{center}
@@ -243,6 +231,17 @@ My research interest lies in Human-AI Interaction, with a focus on developing tr
 \resumeSubHeadingListStart
 
 \resumeProject
+  {LLM Deceptive Persuasion (CHI 2026)}
+  {Co-Author}
+  {}
+  {2026}
+
+\resumeItemListStart
+  \item Investigated whether LLMs can persuade humans using deceptive strategies through a large-scale empirical study.
+  \item Developed a taxonomy of deceptive persuasion strategies and analyzed how LLMs leverage these strategies in persuasive interactions.
+\resumeItemListEnd
+
+\resumeProject
   {KETI Industrial AI Data Preprocessing Platform}
   {}
   {}
@@ -330,6 +329,8 @@ My research interest lies in Human-AI Interaction, with a focus on developing tr
 \vspace{-2mm}
 \small{
 \begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{C.1}]}, itemindent=0em, label={\textbf{[C.\arabic*]}}]
+
+\item Haein Yeo, Seungwan Jin, \textbf{Taehyung Noh}, Yejin Shin, Sangyeon Kang, Sangwoo Heo, Jiwon Chung, Hwarim Hyun, Kyungsik Han (2026). \href{https://astlyi.s3.ap-northeast-2.amazonaws.com/2026/2026_CHI_Can_LLMs_Persuade_Humans_with_Deception.pdf}{``Can LLMs Persuade Humans with Deception?'': From a Deceptive Strategy Taxonomy to a Large-Scale Empirical Study}. The ACM Conference on Human Factors in Computing Systems (\textbf{CHI 2026})
 
 \item \textbf{Taehyung Noh}, Seungwan Jin, Haein Yeo, Kyungsik Han (2026). TRIPLE: Theory-Driven Integration of Planned and Habitual Behaviors for LLM-based Personalization. The AAAI Conference on Artificial Intelligence (\textbf{AAAI 2026})
 

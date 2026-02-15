@@ -1,5 +1,5 @@
-$pdflatex = 'pdflatex %O -shell-escape %S';
-$pdf_mode = 1;
+$xelatex = 'xelatex %O -shell-escape %S';
+$pdf_mode = 5;
 $pdf_previewer = 'start evince';
 
 $ENV{'TEXINPUTS'}='.//:' . $ENV{'TEXINPUTS'};
