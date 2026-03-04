@@ -109,7 +109,7 @@ const Blog = () => {
   const { postId } = useParams();
 
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/blog/posts.json`)
+    fetch(`${process.env.PUBLIC_URL}/blog/posts.json?v=${Date.now()}`)
       .then((res) => res.json())
       .then((data) => setPosts(data))
       .catch((err) => console.error("Failed to load posts:", err));
