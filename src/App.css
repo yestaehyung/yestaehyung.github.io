@@ -111,6 +111,11 @@ ul li {
   margin-bottom: 10px;
 }
 
+.blog-page-wrapper {
+  width: 100%;
+  max-width: none;
+}
+
 @media (max-width: 768px) {
   .main-content {
     flex-direction: column;

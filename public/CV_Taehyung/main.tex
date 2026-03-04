@@ -20,8 +20,12 @@
 \usepackage{geometry}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
-\usepackage[T1]{fontenc}
+\usepackage{fontspec}
 \usepackage{fontawesome5}
+\usepackage{graphicx}
+
+% Google Sans font setup
+\setmainfont{Google Sans}
 
 % Color definitions
 \definecolor{darkblue}{RGB}{0,0,139}
@@ -44,22 +48,8 @@
     urlcolor=darkblue,
 }
 
-% Custom box settings
-\usepackage[most]{tcolorbox}
-\tcbset{
-    frame code={},
-    center title,
-    left=0pt,
-    right=0pt,
-    top=0pt,
-    bottom=0pt,
-    colback=gray!20,
-    colframe=white,
-    width=\dimexpr\textwidth\relax,
-    enlarge left by=-2mm,
-    boxsep=4pt,
-    arc=0pt,outer arc=0pt,
-}
+% Custom box settings (using colorbox instead of tcolorbox for compatibility)
+\newsavebox{\sectionbox}
 
 % URL style
 \urlstyle{same}
@@ -120,9 +110,7 @@
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
 \newcommand{\cvsection}[1]{%
 \vspace{2mm}
-\begin{tcolorbox}
-    \textbf{\large #1}
-\end{tcolorbox}
+\noindent\hspace{-2mm}\colorbox{gray!20}{\makebox[\dimexpr\textwidth+2mm\relax][l]{\hspace{4pt}\textbf{\large #1}\hspace{4pt}}}%
     \vspace{-4mm}
 }
 
@@ -134,20 +122,9 @@
 \newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
 \newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
 
-% Font options
-\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
-\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
-\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
-\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
-\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
-\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
-\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
-\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
-\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
-\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+% Font is set via fontspec (Google Sans) above
 
 \begin{document}
-\headerfontiii
 
 % Header
 \begin{center}
@@ -254,6 +231,17 @@ My research interest lies in Human-AI Interaction, with a focus on developing tr
 \resumeItemListEnd
 
 \resumeProject
+  {LLM Deceptive Persuasion Study (CHI)}
+  {}
+  {}
+  {2026}
+
+\resumeItemListStart
+  \item Developed a taxonomy of LLM deceptive strategies and conducted a large-scale empirical study on whether LLMs can persuade humans through deception.
+  \item Investigated how different deceptive strategies affect human decision-making in human-AI interaction.
+\resumeItemListEnd
+
+\resumeProject
   {TRIPLE (AAAI)}
   {First Author}
   {}
@@ -331,15 +319,17 @@ My research interest lies in Human-AI Interaction, with a focus on developing tr
 \small{
 \begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{C.1}]}, itemindent=0em, label={\textbf{[C.\arabic*]}}]
 
-\item \textbf{Taehyung Noh}, Seungwan Jin, Haein Yeo, Kyungsik Han (2026). TRIPLE: Theory-Driven Integration of Planned and Habitual Behaviors for LLM-based Personalization. The AAAI Conference on Artificial Intelligence (\textbf{AAAI 2026})
+\item Haein Yeo, Seungwan Jin, \underline{\textbf{Taehyung Noh}}, Yejin Shin, Sangyeon Kang, Sangwoo Heo, Jiwon Chung, Hwarim Hyun, Kyungsik Han (2026). \href{https://astlyi.s3.ap-northeast-2.amazonaws.com/2026/2026_CHI_Can_LLMs_Persuade_Humans_with_Deception.pdf}{``Can LLMs Persuade Humans with Deception?'': From a Deceptive Strategy Taxonomy to a Large-Scale Empirical Study}. The ACM Conference on Human Factors in Computing Systems (\textbf{CHI 2026})
 
-\item \textbf{Taehyung Noh}, Seungwan Jin, Haein Yeo, Kyungsik Han (2025). \href{https://dl.acm.org/doi/10.1145/3746252.3760965}{Externalizing Social-Cognitive Structures for User Modeling: Toward Theory-Driven Profiling with LLMs}. The ACM International Conference on Information and Knowledge Management (\textbf{CIKM 2025 Short})
+\item \underline{\textbf{Taehyung Noh}}, Seungwan Jin, Haein Yeo, Kyungsik Han (2026). TRIPLE: Theory-Driven Integration of Planned and Habitual Behaviors for LLM-based Personalization. The AAAI Conference on Artificial Intelligence (\textbf{AAAI 2026}, Oral, Acceptance Rate: 17.6\%)
 
-\item Haein Yeo, \textbf{Taehyung Noh}, Seungwan Jin, Kyungsik Han (2025). \href{https://aclanthology.org/2025.coling-main.382/}{PADO: Personality-induced multi-Agents for Detecting OCEAN in human-generated texts}. The International Conference on Computational Linguistics (\textbf{COLING 2025})
+\item \underline{\textbf{Taehyung Noh}}, Seungwan Jin, Haein Yeo, Kyungsik Han (2025). \href{https://dl.acm.org/doi/10.1145/3746252.3760965}{Externalizing Social-Cognitive Structures for User Modeling: Toward Theory-Driven Profiling with LLMs}. The ACM International Conference on Information and Knowledge Management (\textbf{CIKM 2025 Short}, Acceptance Rate: 27.2\%)
 
-\item Seungwan Jin, Hoyoung Choi, \textbf{Taehyung Noh}, Kyungsik Han (2024). \href{https://link.springer.com/chapter/10.1007/978-3-031-73010-8_4}{Integration of global and local representations for fine-grained cross-modal alignment}. The European Conference on Computer Vision (\textbf{ECCV 2024})
+\item Haein Yeo, \underline{\textbf{Taehyung Noh}}, Seungwan Jin, Kyungsik Han (2025). \href{https://aclanthology.org/2025.coling-main.382/}{PADO: Personality-induced multi-Agents for Detecting OCEAN in human-generated texts}. The International Conference on Computational Linguistics (\textbf{COLING 2025})
 
-\item \textbf{Taehyung Noh}, Haein Yeo, Myungin Kim, Kyungsik Han (2023). \href{https://dl.acm.org/doi/abs/10.1145/3544549.3585641}{A study on user perception and experience differences in recommendation results by domain expertise: the case of fashion domains}. The ACM Conference on Human Factors in Computing Systems Late-Breaking Work (\textbf{CHI LBW 2023})
+\item Seungwan Jin, Hoyoung Choi, \underline{\textbf{Taehyung Noh}}, Kyungsik Han (2024). \href{https://link.springer.com/chapter/10.1007/978-3-031-73010-8_4}{Integration of global and local representations for fine-grained cross-modal alignment}. The European Conference on Computer Vision (\textbf{ECCV 2024})
+
+\item \underline{\textbf{Taehyung Noh}}, Haein Yeo, Myungin Kim, Kyungsik Han (2023). \href{https://dl.acm.org/doi/abs/10.1145/3544549.3585641}{A study on user perception and experience differences in recommendation results by domain expertise: the case of fashion domains}. The ACM Conference on Human Factors in Computing Systems Late-Breaking Work (\textbf{CHI LBW 2023}, Acceptance Rate: 36\%)
 
 \end{enumerate}
 }
@@ -349,7 +339,7 @@ My research interest lies in Human-AI Interaction, with a focus on developing tr
 \small{
 \begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{J.1}]}, itemindent=0em, label={\textbf{[J.\arabic*]}}]
 
-\item Haein Yeo, \textbf{Taehyung Noh}, Kyungsik Han (2025). LLM-Generated Content-Based Explanations for User Experience in Fashion Recommender Systems. \textbf{Fashion and Textiles}
+\item Haein Yeo, \underline{\textbf{Taehyung Noh}}, Kyungsik Han (2025). LLM-Generated Content-Based Explanations for User Experience in Fashion Recommender Systems. \textbf{Fashion and Textiles}
 
 \end{enumerate}
 }
@@ -359,7 +349,7 @@ My research interest lies in Human-AI Interaction, with a focus on developing tr
 \small{
 \begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{R.1}]}, itemindent=0em, label={\textbf{[R.\arabic*]}}]
 
-\item Yeajin Shin, Kyungsik Han, \textbf{Taehyung Noh}, Mingon Jeong (2025). \href{https://astlyi.s3.ap-northeast-2.amazonaws.com/2025/TTA_LLM+\%E1\%84\%8B\%E1\%85\%B2\%E1\%84\%92\%E1\%85\%A2\%E1\%84\%89\%E1\%85\%A5\%E1\%86\%BC+\%E1\%84\%80\%E1\%85\%A9\%E1\%86\%BC\%E1\%84\%80\%E1\%85\%A7\%E1\%86\%A8+\%E1\%84\%8C\%E1\%85\%A5\%E1\%86\%AB\%E1\%84\%85\%E1\%85\%A3\%E1\%86\%A8\%E1\%84\%8B\%E1\%85\%A6+\%E1\%84\%83\%E1\%85\%A2\%E1\%84\%92\%E1\%85\%A1\%E1\%86\%AB+\%E1\%84\%89\%E1\%85\%B5\%E1\%86\%AF\%E1\%84\%8C\%E1\%85\%B3\%E1\%86\%BC\%E1\%84\%8C\%E1\%85\%A5\%E1\%86\%A8+\%E1\%84\%87\%E1\%85\%AE\%E1\%86\%AB\%E1\%84\%89\%E1\%85\%A5\%E1\%86\%A8.pdf}{LLM Attack Strategies}. \textbf{TTA Report}
+\item Yeajin Shin, Kyungsik Han, \underline{\textbf{Taehyung Noh}}, Mingon Jeong (2025). \href{https://astlyi.s3.ap-northeast-2.amazonaws.com/2025/TTA_LLM+\%E1\%84\%8B\%E1\%85\%B2\%E1\%84\%92\%E1\%85\%A2\%E1\%84\%89\%E1\%85\%A5\%E1\%86\%BC+\%E1\%84\%80\%E1\%85\%A9\%E1\%86\%BC\%E1\%84\%80\%E1\%85\%A7\%E1\%86\%A8+\%E1\%84\%8C\%E1\%85\%A5\%E1\%86\%AB\%E1\%84\%85\%E1\%85\%A3\%E1\%86\%A8\%E1\%84\%8B\%E1\%85\%A6+\%E1\%84\%83\%E1\%85\%A2\%E1\%84\%92\%E1\%85\%A1\%E1\%86\%AB+\%E1\%84\%89\%E1\%85\%B5\%E1\%86\%AF\%E1\%84\%8C\%E1\%85\%B3\%E1\%86\%BC\%E1\%84\%8C\%E1\%85\%A5\%E1\%86\%A8+\%E1\%84\%87\%E1\%85\%AE\%E1\%86\%AB\%E1\%84\%89\%E1\%85\%A5\%E1\%86\%A8.pdf}{LLM Attack Strategies}. \textbf{TTA Report}
 
 \end{enumerate}
 }
@@ -370,22 +360,43 @@ My research interest lies in Human-AI Interaction, with a focus on developing tr
 \small{
 \begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{P.1}]}, itemindent=0em, label={\textbf{[P.\arabic*]}}]
 
-\item Seungwan Jin, Kyungsik Han, \textbf{Taehyung Noh}, Junghyun Kim (2025). Dynamic Persona-based Prediction System and Method for Personalized Long-term Mental Health Monitoring.
+\item Seungwan Jin, Kyungsik Han, \underline{\textbf{Taehyung Noh}}, Junghyun Kim (2025). Dynamic Persona-based Prediction System and Method for Personalized Long-term Mental Health Monitoring.
 
-\item Kyungsik Han, \textbf{Taehyung Noh} (2025). Method and Device for Generating User Profiles Using Artificial Intelligence.
+\item Kyungsik Han, \underline{\textbf{Taehyung Noh}} (2025). Method and Device for Generating User Profiles Using Artificial Intelligence.
 
-\item Bogoan Kim, Dayoung Jung, \textbf{Taehyung Noh}, Kyungsik Han (2023). Visualization Analysis Tool Equipped with VR Multimodal Sensor Data Processing Pipeline Collected from People with Autism Spectrum Disorder.
+\item Bogoan Kim, Dayoung Jung, \underline{\textbf{Taehyung Noh}}, Kyungsik Han (2023). Visualization Analysis Tool Equipped with VR Multimodal Sensor Data Processing Pipeline Collected from People with Autism Spectrum Disorder.
 
-\item Kyungsik Han, \textbf{Taehyung Noh}, Haein Yeo, Myungjin Kim (2023). Device and Method for Providing Dashboard Services on Fashion Image Analysis.
+\item Kyungsik Han, \underline{\textbf{Taehyung Noh}}, Haein Yeo, Myungjin Kim (2023). Device and Method for Providing Dashboard Services on Fashion Image Analysis.
 
-\item Kyungsik Han, \textbf{Taehyung Noh}, Haein Yeo, Myungjin Kim (2023). Device and Method for Similar Image Recommendation Using Fashion Attributes and Image.
+\item Kyungsik Han, \underline{\textbf{Taehyung Noh}}, Haein Yeo, Myungjin Kim (2023). Device and Method for Similar Image Recommendation Using Fashion Attributes and Image.
 
-\item Kanghwi Ahn, Junseok Ryu, Kyungsik Han, \textbf{Taehyung Noh} (2023). Method for Analyzing Image and Text-based Characteristics of Objects.
+\item Kanghwi Ahn, Junseok Ryu, Kyungsik Han, \underline{\textbf{Taehyung Noh}} (2023). Method for Analyzing Image and Text-based Characteristics of Objects.
 
-\item Kyungsik Han, Seungwan Jin, Hoyoung Choi, \textbf{Taehyung Noh} (2022). Image-Text Retrieval Model Construction Method and Service Device.
+\item \underline{\textbf{Taehyung Noh}}, Kyungsik Han (2026). Method and Device for Generating User Profiles Using Artificial Intelligence. (PCT International Application, PCT/KR2026/095009)
+
+\item Kyungsik Han, Seungwan Jin, Hoyoung Choi, \underline{\textbf{Taehyung Noh}} (2022). Image-Text Retrieval Model Construction Method and Service Device.
 
 \end{enumerate}
 }
+
+\section{\textbf{Software Registrations}}
+\vspace{0.2mm}
+\small{
+\begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{SW.1}]}, itemindent=0em, label={\textbf{[SW.\arabic*]}}]
+
+\item Kyungsik Han, \underline{\textbf{Taehyung Noh}} (2025). Human-in-the-Loop Industrial Preprocessing \& Training System (HILIPS). (C-2025-052302)
+
+\item Kyungsik Han, \underline{\textbf{Taehyung Noh}}, Haein Yeo, Myungjin Kim (2025). Customized Fashion E-commerce Solutions Dashboard. (C-2025-025185)
+
+\item Kyungsik Han, Bogoan Kim, Dayoung Jeong, \underline{\textbf{Taehyung Noh}} (2024). VR Data-based Expert Decision-making and Patient Self-cognition Support Dashboard for Depression Patients. (C-2024-034698)
+
+\item Kyungsik Han, \underline{\textbf{Taehyung Noh}}, Haein Yeo, Myungjin Kim (2024). Fashion Element Analysis and Product Description Generation Dashboard for Fashion Experts. (C-2024-016124)
+
+\item \underline{\textbf{Taehyung Noh}}, Kyungsik Han (2022). VR User Biometric Signal Data Collection and Analysis System. (C-2022-051352)
+
+\end{enumerate}
+}
+
 \section{\textbf{Honors and Awards}}
 % \vspace{-0.4mm}
 % \begin{itemize}

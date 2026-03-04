@@ -33,12 +33,22 @@ const Introduction = () => {
           .
         </p>
         <p>
-          My research focuses on developing AI systems that understand and model
-          human psychology for better personalization. I work on integrating
-          psychological theories with Large Language Models (LLMs) to create
-          more human-centered AI systems. My recent work includes the TRIPLE
-          project, which combines the Theory of Planned Behavior with LLMs to
-          enhance user profiling and personalization services.
+          My research focuses on understanding and modeling humans through the
+          lens of psychological and behavioral theories, and exploring how to
+          align Large Language Models (LLMs) with individual users. I am
+          particularly interested in bridging the gap between how people
+          actually think and behave, and how AI systems represent and adapt to
+          them.
+        </p>
+        <p>
+          Specifically, I investigate (1) theory-driven user modeling that
+          integrates established psychological frameworks—such as the Theory of
+          Planned Behavior—into LLMs for deeper user understanding (TRIPLE,
+          AAAI 2026), and (2) the fundamental challenge of LLM-human alignment:
+          how can we ensure AI systems truly reflect user preferences when users
+          themselves may not accurately articulate what they want? I also work
+          on building human-in-the-loop systems that keep humans meaningfully
+          involved in AI decision-making processes.
         </p>
 
         <div className="research-interests">

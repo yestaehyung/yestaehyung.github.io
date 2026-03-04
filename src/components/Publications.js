@@ -8,6 +8,31 @@ const Publications = () => {
 
   const publicationsData = [
     {
+      id: 8,
+      title:
+        '"Can LLMs Persuade Humans with Deception?": From a Deceptive Strategy Taxonomy to a Large-Scale Empirical Study',
+      authors: [
+        { name: "Haein Yeo", isAuthor: false },
+        { name: "Seungwan Jin", isAuthor: false },
+        { name: "Taehyung Noh", isAuthor: true },
+        { name: "Yejin Shin", isAuthor: false },
+        { name: "Sangyeon Kang", isAuthor: false },
+        { name: "Sangwoo Heo", isAuthor: false },
+        { name: "Jiwon Chung", isAuthor: false },
+        { name: "Hwarim Hyun", isAuthor: false },
+        { name: "Kyungsik Han", isAuthor: false },
+      ],
+      venue: "ACM CHI 2026 (full paper)",
+      type: "conference",
+      image: `${process.env.PUBLIC_URL}/images/projects/llm_deception.png`,
+      links: [
+        {
+          url: "https://astlyi.s3.ap-northeast-2.amazonaws.com/2026/2026_CHI_Can_LLMs_Persuade_Humans_with_Deception.pdf",
+          text: "PDF",
+        },
+      ],
+    },
+    {
       id: 1,
       title:
         "TRIPLE: Theory-Driven Integration of Planned and Habitual Behaviors for LLM-based Personalization",
@@ -17,9 +42,15 @@ const Publications = () => {
         { name: "Haein Yeo", isAuthor: false },
         { name: "Kyungsik Han", isAuthor: false },
       ],
-      venue: "AAAI 2026 Full(Oral) - Completed",
+      venue: "AAAI 2026 (full paper, oral)",
       type: "conference",
-      link: null,
+      image: `${process.env.PUBLIC_URL}/images/projects/aaai_framework.png`,
+      links: [
+        {
+          url: "https://yestaehyung.github.io/aaai26-triple/#",
+          text: "Web",
+        },
+      ],
     },
     {
       id: 2,
@@ -31,9 +62,19 @@ const Publications = () => {
         { name: "Haein Yeo", isAuthor: false },
         { name: "Kyungsik Han", isAuthor: false },
       ],
-      venue: "CIKM 2025 Short",
+      venue: "ACM CIKM 2025 (short paper)",
       type: "conference",
-      link: "https://dl.acm.org/doi/10.1145/3746252.3760965",
+      image: `${process.env.PUBLIC_URL}/images/projects/triple_overall.jpg`,
+      links: [
+        {
+          url: "https://dl.acm.org/doi/10.1145/3746252.3760965",
+          text: "PDF",
+        },
+        {
+          url: "https://yestaehyung.github.io/cikm25-triple/#",
+          text: "Web",
+        },
+      ],
     },
     {
       id: 3,
@@ -44,9 +85,10 @@ const Publications = () => {
         { name: "Taehyung Noh", isAuthor: true },
         { name: "Kyungsik Han", isAuthor: false },
       ],
-      venue: "Fashion and Textiles",
+      venue: "Fashion and Textiles (journal)",
       type: "journal",
-      link: null,
+      image: null,
+      links: [],
     },
     {
       id: 4,
@@ -59,7 +101,13 @@ const Publications = () => {
       ],
       venue: "TTA Report",
       type: "report",
-      link: "https://astlyi.s3.ap-northeast-2.amazonaws.com/2025/TTA_LLM+%E1%84%8B%E1%85%B2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5%E1%86%BC+%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A7%E1%86%A8+%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%85%E1%85%A3%E1%86%A8%E1%84%8B%E1%85%A6+%E1%84%83%E1%85%A2%E1%84%92%E1%85%A1%E1%86%AB+%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A5%E1%86%A8+%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8.pdf",
+      image: `${process.env.PUBLIC_URL}/images/projects/llm_attack.png`,
+      links: [
+        {
+          url: "https://astlyi.s3.ap-northeast-2.amazonaws.com/2025/TTA_LLM+%E1%84%8B%E1%85%B2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5%E1%86%BC+%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A7%E1%86%A8+%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%85%E1%85%A3%E1%86%A8%E1%84%8B%E1%85%A6+%E1%84%83%E1%85%A2%E1%84%92%E1%85%A1%E1%86%AB+%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A5%E1%86%A8+%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8.pdf",
+          text: "PDF",
+        },
+      ],
     },
     {
       id: 5,
@@ -73,7 +121,13 @@ const Publications = () => {
       ],
       venue: "COLING 2025",
       type: "conference",
-      link: "https://aclanthology.org/2025.coling-main.382/",
+      image: `${process.env.PUBLIC_URL}/images/projects/pado.png`,
+      links: [
+        {
+          url: "https://aclanthology.org/2025.coling-main.382/",
+          text: "PDF",
+        },
+      ],
     },
     {
       id: 6,
@@ -87,7 +141,13 @@ const Publications = () => {
       ],
       venue: "ECCV 2024",
       type: "conference",
-      link: "https://link.springer.com/chapter/10.1007/978-3-031-73010-8_4",
+      image: `${process.env.PUBLIC_URL}/images/projects/fashion_fine.png`,
+      links: [
+        {
+          url: "https://link.springer.com/chapter/10.1007/978-3-031-73010-8_4",
+          text: "PDF",
+        },
+      ],
     },
     {
       id: 7,
@@ -99,9 +159,19 @@ const Publications = () => {
         { name: "Myungin Kim", isAuthor: false },
         { name: "Kyungsik Han", isAuthor: false },
       ],
-      venue: "CHI LBW 2023",
+      venue: "ACM CHI LBW 2023",
       type: "conference",
-      link: "https://dl.acm.org/doi/abs/10.1145/3544549.3585641",
+      image: `${process.env.PUBLIC_URL}/images/projects/recommendation_examples.png`,
+      links: [
+        {
+          url: "https://dl.acm.org/doi/abs/10.1145/3544549.3585641",
+          text: "PDF",
+        },
+        {
+          url: "https://yestaehyung.github.io/lbw-mos/",
+          text: "Web",
+        },
+      ],
     },
   ];
 
@@ -129,7 +199,10 @@ const Publications = () => {
 
   return (
     <section id="publications" className="publications">
-      <h2 onClick={handleTitleClick} style={{ cursor: 'pointer', userSelect: 'none' }}>
+      <h2
+        onClick={handleTitleClick}
+        style={{ cursor: "pointer", userSelect: "none" }}
+      >
         Publications
       </h2>
 
@@ -159,38 +232,46 @@ const Publications = () => {
           <div
             key={publication.id}
             className="publication"
-            style={isChaos ? {
-              animationDelay: `${index * 0.1}s`,
-              '--random-x': `${Math.random() * 2000 - 1000}px`,
-              '--random-y': `${Math.random() * 1000 + 500}px`,
-              '--random-rotate': `${Math.random() * 720 - 360}deg`
-            } : {}}
+            style={
+              isChaos
+                ? {
+                    animationDelay: `${index * 0.1}s`,
+                    "--random-x": `${Math.random() * 2000 - 1000}px`,
+                    "--random-y": `${Math.random() * 1000 + 500}px`,
+                    "--random-rotate": `${Math.random() * 720 - 360}deg`,
+                  }
+                : {}
+            }
           >
-            <h3>{publication.title}</h3>
-            <p className="authors">
-              {publication.authors.map((author, index) => (
-                <span key={index}>
-                  {author.isAuthor ? (
-                    <strong>{author.name}</strong>
-                  ) : (
-                    author.name
-                  )}
-                  {index < publication.authors.length - 1 ? ", " : ""}
-                </span>
-              ))}
-            </p>
-            <p className="conference">{publication.venue}</p>
-            {publication.link && (
-              <div className="links">
-                <a
-                  href={publication.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {publication.type === "report" ? "Report" : "Paper"}
-                </a>
+            <div className="publication-content">
+              <h3>{publication.title}</h3>
+              <p className="authors">
+                {publication.authors.map((author, idx) => (
+                  <span key={idx}>
+                    {author.isAuthor ? (
+                      <strong className="highlight-author">{author.name}</strong>
+                    ) : (
+                      author.name
+                    )}
+                    {idx < publication.authors.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+              </p>
+              <div className="venue-links">
+                <span className="venue">{publication.venue}</span>
+                {publication.links.map((link, idx) => (
+                  <a
+                    key={idx}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-badge"
+                  >
+                    {link.text}
+                  </a>
+                ))}
               </div>
-            )}
+            </div>
           </div>
         ))}
       </div>
