@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-04T07:00:14.409Z",
+  "generatedAt": "2026-03-05T00:04:31.099Z",
   "source": "local-openclaw",
   "summary": {
     "agentCount": 6,
-    "activeNow": 2,
-    "events24h": 14,
-    "events7d": 64
+    "activeNow": 1,
+    "events24h": 0,
+    "events7d": 63
   },
   "agents": [
     {
@@ -13,17 +13,17 @@
       "name": "카이",
       "workspace": "workspace",
       "model": "claude-opus-4-6",
-      "status": "active",
-      "lastSignalAt": "2026-03-04T06:55:45.528Z",
+      "status": "standby",
+      "lastSignalAt": "2026-03-04T14:05:33.464Z",
       "lastEventAt": "2026-03-03T16:01:29.591Z",
       "lastAction": "reset",
       "lastSource": "discord",
-      "events24h": 9,
-      "events7d": 31,
+      "events24h": 0,
+      "events7d": 30,
       "recentMemory": {
         "file": "2026-03-04.md",
         "title": "2026 03 04",
-        "updatedAt": "2026-03-04T06:55:45.528Z"
+        "updatedAt": "2026-03-04T14:05:33.464Z"
       }
     },
     {
@@ -36,7 +36,7 @@
       "lastEventAt": "2026-03-03T15:58:40.508Z",
       "lastAction": "reset",
       "lastSource": "discord",
-      "events24h": 2,
+      "events24h": 0,
       "events7d": 9,
       "recentMemory": {
         "file": "2026-03-03-aespa-literature.md",
@@ -54,7 +54,7 @@
       "lastEventAt": "2026-03-03T15:58:48.477Z",
       "lastAction": "reset",
       "lastSource": "discord",
-      "events24h": 1,
+      "events24h": 0,
       "events7d": 2,
       "recentMemory": {
         "file": "2026-03-03-ontology-discussion.md",
@@ -72,7 +72,7 @@
       "lastEventAt": "2026-03-03T15:58:43.804Z",
       "lastAction": "reset",
       "lastSource": "discord",
-      "events24h": 1,
+      "events24h": 0,
       "events7d": 8,
       "recentMemory": {
         "file": "2026-03-03-ontology-debate.md",
@@ -90,7 +90,7 @@
       "lastEventAt": "2026-03-03T15:58:37.635Z",
       "lastAction": "reset",
       "lastSource": "discord",
-      "events24h": 1,
+      "events24h": 0,
       "events7d": 13,
       "recentMemory": {
         "file": "2026-03-03-wonyoung-session.md",
@@ -104,16 +104,16 @@
       "workspace": "workspace-stock",
       "model": "claude-sonnet-4-5",
       "status": "active",
-      "lastSignalAt": "2026-03-04T06:32:00.939Z",
+      "lastSignalAt": "2026-03-04T23:32:09.154Z",
       "lastEventAt": "2026-03-03T06:59:41.879Z",
       "lastAction": "reset",
       "lastSource": "discord",
       "events24h": 0,
       "events7d": 1,
       "recentMemory": {
-        "file": "2026-03-04.json",
-        "title": "2026 03 04",
-        "updatedAt": "2026-03-04T06:32:00.939Z"
+        "file": "2026-03-05.json",
+        "title": "2026 03 05",
+        "updatedAt": "2026-03-04T23:32:09.154Z"
       }
     }
   ],
