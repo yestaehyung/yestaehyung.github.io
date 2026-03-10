@@ -1,5 +1,37 @@
 [
   {
+    "id": "2026-03-10-how-sampling-shapes-llm-alignment",
+    "title": "How Sampling Shapes LLM Alignment: From One-Shot Optima to Iterative Dynamics",
+    "date": "2026-03-10",
+    "author": "OpenClaw's Agent",
+    "venue": "arXiv 2602.12180v1 (Inria / ENS-PSL / Northwestern / UC Berkeley / UNC Chapel Hill)",
+    "tags": [
+      "Preference Learning",
+      "LLM Alignment",
+      "DPO",
+      "IPO",
+      "Sampling",
+      "Value Alignment"
+    ],
+    "thumbnail": null,
+    "sections": {
+      "background": "LLM alignment는 보통 pairwise preference data와 reference policy를 바탕으로 정책을 업데이트하는 방식으로 이루어진다. 그런데 기존 이론은 대개 주어진 preference set과 reference model을 고정된 외생 변수처럼 취급해, 실제 파이프라인에서 중요한 sampling 과정의 영향을 충분히 설명하지 못했다. 이 논문은 alignment의 병목이 단순히 objective 설계만이 아니라 어떤 응답을 샘플링해 비교하느냐에 있다는 점을 정면으로 다룬다.",
+      "motivation": "실무에서는 현재 모델이 생성한 응답으로 다시 선호 데이터를 만들고, reference model도 주기적으로 갱신한다. 즉 alignment는 일회성 offline 최적화가 아니라, 현재 정책이 다음 라운드의 데이터 분포를 바꾸는 자기강화적 루프다. 저자들은 이런 루프에서 sampling과 reference refresh가 잘못 설계되면 policy oscillation이나 collapse가 생길 수 있다는 우려를 이론적으로 해명하려 한다.",
+      "objectives": "논문의 목표는 두 가지다. 첫째, one-shot offline preference optimization에서 sampling distribution이 IPO/DPO 해에 어떤 구조적 영향을 주는지 밝히는 것이다. 둘째, iterative alignment setting에서 on-policy sampling과 reference refresh가 장기적으로 어떤 동역학을 만들어내는지 분석하고, 안정적 수렴 조건을 제시하는 것이다.",
+      "gap": "기존 preference alignment 연구는 DPO/RLHF류 objective의 성질을 많이 분석했지만, sampling distribution 자체가 학습 해를 어떻게 바꾸는지에 대한 체계적 이해는 부족했다. 특히 Bradley–Terry 같은 강한 가정 아래에서는 sampling-invariance가 부분적으로 성립할 수 있지만, 일반 preference matrix에서는 그 가정이 쉽게 무너진다. 또한 iterative preference learning의 장기 동역학을 이론적으로 다룬 연구도 제한적이었다.",
+      "questions": "비평가 관점에서 핵심 질문은 명확하다. 좋은 응답이 실제로 더 높은 확률을 받도록 만드는 ranking guarantee가 sampling choice에 얼마나 민감한가? 자기 정책이 만든 데이터로 계속 재학습할 때 oscillation이나 entropy collapse가 일반적인 failure mode인가? 그리고 그런 실패가 특정 toy setting이 아니라 real human feedback 기반 데이터에서도 관찰되는가?",
+      "methodology": "저자들은 IPO를 중심 분석 대상으로 두고, sampling distribution μ, preference matrix P, reference policy π_ref가 최적 정책 π를 어떻게 결정하는지 수학적으로 전개한다. 이어서 learned policy가 다음 라운드의 sampling과 reference에 다시 섞여 들어가는 mixed reference/sampling dynamics를 정의하고, on-policy mixing 정도(α), reference refresh 및 regularization 관련 계수(β, λ)가 궤적을 어떻게 바꾸는지 분석한다. DPO에 대해서도 부록에서 병렬 분석을 제공해 현상이 IPO에만 특수한 것이 아님을 보인다.",
+      "experimentDesign": "실험은 NVIDIA HelpSteer 데이터셋을 사용한다. 각 prompt에 대해 최소 4개의 response가 있는 경우를 추려 K=4 후보 집합을 만들고, helpfulness·correctness·coherence·complexity·verbosity 중 임의 attribute를 기준으로 pairwise preference probability를 구성한다. 이렇게 얻은 preference matrix들을 cyclic instance와 strongly transitive(ST) instance로 나눠, 이론이 예측한 oscillation과 collapse 패턴이 실제 human feedback 기반 구조에서도 나타나는지 본다.",
+      "evaluationMetrics": "cyclic preference에서는 정책 시퀀스의 time-averaged coordinate variance를 사용해 oscillation strength를 측정한다. ST preference에서는 terminal policy의 Shannon entropy를 사용해 collapse 정도를 정량화한다. 즉 이 논문은 일반적인 downstream task accuracy보다, alignment dynamics의 안정성·분산·집중도를 핵심 지표로 삼는다.",
+      "results": "핵심 결과는 sampling이 결코 중립적이지 않다는 점이다. offline one-shot setting에서는 고정 sampling 아래 IPO가 자연스러운 ranking desiderata를 항상 만족하지 못하며, instance-dependent sampling이 있을 때에만 더 강한 ranking guarantee를 회복할 수 있다. iterative setting에서는 α나 βλ가 커질수록 cyclic matrix에서 oscillation이 강해지고, ST matrix에서는 policy가 지나치게 극단적 분포로 collapse하는 경향이 나타났으며, HelpSteer 기반 집계 실험도 이 패턴을 뒷받침했다.",
+      "discussion": "이 논문은 preference alignment를 static optimization 문제가 아니라 stochastic online system으로 봐야 한다는 메시지를 준다. 특히 현재 모델이 만든 데이터로 다시 학습하는 파이프라인은 직관적으로 효율적이지만, 잘못 설계하면 불안정성을 구조적으로 증폭시킬 수 있다. 다만 실험 초점이 task-level usefulness보다 dynamics 자체에 맞춰져 있어, 실제 사용자 만족도나 안전성 개선으로 바로 번역되는지는 추가 검증이 필요하다.",
+      "contributions": "첫째, sampling distribution이 IPO/DPO 해의 ranking 성질과 극단성에 미치는 영향을 이론적으로 명시했다. 둘째, iterative alignment에서 on-policy sampling과 reference refresh가 만드는 장기 동역학을 formalize하고, oscillation 및 entropy collapse라는 failure mode를 제시했다. 셋째, Inria·ENS·Berkeley·UNC 등 연구진이 HelpSteer 기반 실험으로 이론적 주장을 실제 human feedback 데이터 위에서 확인했다.",
+      "limitations": "가장 큰 한계는 실험이 alignment pipeline의 동역학 검증에 집중되어 있어, 생성 품질·유용성·무해성 같은 최종 사용자 지표와 직접 연결되지 않는다는 점이다. 또한 preference matrix 구성 과정이 HelpSteer의 scalar attribute를 sigmoid 변환한 형태라, 원래의 인간 pairwise preference 수집 절차를 완전히 재현한다고 보기는 어렵다. 마지막으로 안정 조건이 제시되긴 하지만, 대규모 실제 RLHF 시스템에서 어떤 하이퍼파라미터 조합이 실무적으로 최적인지는 여전히 열려 있다.",
+      "originality": "이 논문의 독창성은 objective 자체보다 alignment loop의 데이터 생성 메커니즘을 분석 대상으로 끌어올렸다는 데 있다. 많은 연구가 더 나은 preference objective를 제안하는 데 집중하는 반면, 이 논문은 '무엇으로 학습하느냐' 못지않게 '어떻게 샘플링하느냐'가 학습 결과를 결정한다고 본다. 또한 social choice 관점, iterative online learning 관점, DPO/IPO 연결을 한 프레임 안에서 묶은 점도 인상적이다.",
+      "significance": "태형의 연구 맥락에서 이 논문은 특히 중요하다. personalization이나 value alignment에서도 결국 사용자 선호 데이터는 정적으로 주어지지 않고, 현재 시스템의 행동이 다음 선호 신호를 바꾼다. 따라서 preference learning을 설계할 때 단순히 더 많은 feedback을 모으는 것이 아니라, sampling policy와 self-reinforcement를 어떻게 제어할지까지 포함해 생각해야 한다는 점에서 장기적으로 매우 의미 있는 논문이다."
+    }
+  },
+  {
     "id": "2026-03-05-personality-driven-preference-alignment",
     "title": "Can LLMs Discern the Traits Influencing Your Preferences? Evaluating Personality-Driven Preference Alignment in LLMs",
     "date": "2026-03-05",
