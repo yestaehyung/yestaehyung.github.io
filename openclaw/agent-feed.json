@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-19T00:02:02.596Z",
+  "generatedAt": "2026-03-24T00:02:09.836Z",
   "source": "local-openclaw",
   "summary": {
     "agentCount": 7,
-    "activeNow": 0,
-    "events24h": 1,
-    "events7d": 25
+    "activeNow": 1,
+    "events24h": 2,
+    "events7d": 9
   },
   "agents": [
     {
@@ -13,17 +13,17 @@
       "name": "카이",
       "workspace": "workspace",
       "model": "claude-opus-4-6",
-      "status": "standby",
-      "lastSignalAt": "2026-03-18T14:01:25.329Z",
-      "lastEventAt": "2026-03-16T05:12:16.110Z",
+      "status": "active",
+      "lastSignalAt": "2026-03-24T00:00:46.464Z",
+      "lastEventAt": "2026-03-23T07:15:59.445Z",
       "lastAction": "new",
       "lastSource": "discord",
-      "events24h": 0,
-      "events7d": 5,
+      "events24h": 1,
+      "events7d": 1,
       "recentMemory": {
-        "file": "2026-03-18.md",
-        "title": "2026 03 18",
-        "updatedAt": "2026-03-18T14:01:25.329Z"
+        "file": "2026-03-24.md",
+        "title": "2026 03 24",
+        "updatedAt": "2026-03-24T00:00:46.464Z"
       }
     },
     {
@@ -31,13 +31,13 @@
       "name": "백지헌",
       "workspace": "workspace-researcher",
       "model": "claude-sonnet-4-6",
-      "status": "standby",
+      "status": "idle",
       "lastSignalAt": "2026-03-17T05:38:14.017Z",
       "lastEventAt": "2026-03-17T05:38:04.940Z",
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
-      "events7d": 3,
+      "events7d": 1,
       "recentMemory": {
         "file": "2026-03-17-session-greeting.md",
         "title": "2026 03 17 session greeting",
@@ -49,13 +49,13 @@
       "name": "이채영",
       "workspace": "workspace-analyst",
       "model": "gpt-5.4",
-      "status": "standby",
+      "status": "idle",
       "lastSignalAt": "2026-03-17T09:10:17.054Z",
       "lastEventAt": "2026-03-16T05:06:09.802Z",
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
-      "events7d": 2,
+      "events7d": 0,
       "recentMemory": {
         "file": "lessons.md",
         "title": "lessons",
@@ -73,7 +73,7 @@
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
-      "events7d": 2,
+      "events7d": 0,
       "recentMemory": {
         "file": "2026-03-16-keti-figures.md",
         "title": "2026 03 16 keti figures",
@@ -91,7 +91,7 @@
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
-      "events7d": 4,
+      "events7d": 0,
       "recentMemory": {
         "file": "2026-03-16-keti-revision.md",
         "title": "2026 03 16 keti revision",
@@ -104,16 +104,16 @@
       "workspace": "workspace-elon",
       "model": "claude-opus-4-6",
       "status": "standby",
-      "lastSignalAt": "2026-03-18T14:01:07.367Z",
-      "lastEventAt": "2026-03-18T06:39:44.061Z",
+      "lastSignalAt": "2026-03-23T14:01:15.946Z",
+      "lastEventAt": "2026-03-23T01:41:01.369Z",
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 1,
-      "events7d": 9,
+      "events7d": 7,
       "recentMemory": {
-        "file": "2026-03-18.md",
-        "title": "2026 03 18",
-        "updatedAt": "2026-03-18T14:01:07.367Z"
+        "file": "2026-03-23.md",
+        "title": "2026 03 23",
+        "updatedAt": "2026-03-23T14:01:15.946Z"
       }
     },
     {
@@ -122,7 +122,7 @@
       "workspace": "workspace-stock",
       "model": "gpt-5.4",
       "status": "standby",
-      "lastSignalAt": "2026-03-18T13:14:31.485Z",
+      "lastSignalAt": "2026-03-23T13:43:06.349Z",
       "lastEventAt": "2026-03-09T01:34:15.071Z",
       "lastAction": "reset",
       "lastSource": "discord",
@@ -131,11 +131,43 @@
       "recentMemory": {
         "file": "heartbeat-state.json",
         "title": "heartbeat state",
-        "updatedAt": "2026-03-18T13:14:31.485Z"
+        "updatedAt": "2026-03-23T13:43:06.349Z"
       }
     }
   ],
   "timeline": [
+    {
+      "timestamp": "2026-03-23T07:15:59.445Z",
+      "agentId": "main",
+      "agentName": "카이",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:direct"
+    },
+    {
+      "timestamp": "2026-03-23T01:41:01.369Z",
+      "agentId": "elon",
+      "agentName": "일론 머스크",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:direct"
+    },
+    {
+      "timestamp": "2026-03-22T19:55:32.450Z",
+      "agentId": "elon",
+      "agentName": "일론 머스크",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:direct"
+    },
+    {
+      "timestamp": "2026-03-19T01:42:02.403Z",
+      "agentId": "elon",
+      "agentName": "일론 머스크",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:direct"
+    },
     {
       "timestamp": "2026-03-18T06:39:44.061Z",
       "agentId": "elon",
@@ -359,38 +391,6 @@
       "action": "new",
       "source": "discord",
       "session": "discord:channel"
-    },
-    {
-      "timestamp": "2026-03-10T09:08:54.002Z",
-      "agentId": "analyst",
-      "agentName": "이채영",
-      "action": "new",
-      "source": "discord",
-      "session": "discord:channel"
-    },
-    {
-      "timestamp": "2026-03-10T09:08:51.471Z",
-      "agentId": "researcher",
-      "agentName": "백지헌",
-      "action": "new",
-      "source": "discord",
-      "session": "discord:channel"
-    },
-    {
-      "timestamp": "2026-03-10T09:08:48.528Z",
-      "agentId": "main",
-      "agentName": "카이",
-      "action": "new",
-      "source": "discord",
-      "session": "discord:channel"
-    },
-    {
-      "timestamp": "2026-03-10T09:02:29.240Z",
-      "agentId": "main",
-      "agentName": "카이",
-      "action": "new",
-      "source": "discord",
-      "session": "discord:direct"
     }
   ]
 }
