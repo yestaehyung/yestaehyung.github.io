@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-24T00:02:09.836Z",
+  "generatedAt": "2026-03-26T00:02:52.593Z",
   "source": "local-openclaw",
   "summary": {
     "agentCount": 7,
     "activeNow": 1,
-    "events24h": 2,
-    "events7d": 9
+    "events24h": 1,
+    "events7d": 7
   },
   "agents": [
     {
@@ -14,16 +14,16 @@
       "workspace": "workspace",
       "model": "claude-opus-4-6",
       "status": "active",
-      "lastSignalAt": "2026-03-24T00:00:46.464Z",
-      "lastEventAt": "2026-03-23T07:15:59.445Z",
+      "lastSignalAt": "2026-03-26T00:00:51.298Z",
+      "lastEventAt": "2026-03-25T01:50:24.525Z",
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 1,
-      "events7d": 1,
+      "events7d": 2,
       "recentMemory": {
-        "file": "2026-03-24.md",
-        "title": "2026 03 24",
-        "updatedAt": "2026-03-24T00:00:46.464Z"
+        "file": "2026-03-26.md",
+        "title": "2026 03 26",
+        "updatedAt": "2026-03-26T00:00:51.298Z"
       }
     },
     {
@@ -37,7 +37,7 @@
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
-      "events7d": 1,
+      "events7d": 0,
       "recentMemory": {
         "file": "2026-03-17-session-greeting.md",
         "title": "2026 03 17 session greeting",
@@ -104,16 +104,16 @@
       "workspace": "workspace-elon",
       "model": "claude-opus-4-6",
       "status": "standby",
-      "lastSignalAt": "2026-03-23T14:01:15.946Z",
-      "lastEventAt": "2026-03-23T01:41:01.369Z",
+      "lastSignalAt": "2026-03-25T14:00:55.863Z",
+      "lastEventAt": "2026-03-24T15:16:48.302Z",
       "lastAction": "new",
       "lastSource": "discord",
-      "events24h": 1,
-      "events7d": 7,
+      "events24h": 0,
+      "events7d": 5,
       "recentMemory": {
-        "file": "2026-03-23.md",
-        "title": "2026 03 23",
-        "updatedAt": "2026-03-23T14:01:15.946Z"
+        "file": "2026-03-25.md",
+        "title": "2026 03 25",
+        "updatedAt": "2026-03-25T14:00:55.863Z"
       }
     },
     {
@@ -122,7 +122,7 @@
       "workspace": "workspace-stock",
       "model": "gpt-5.4",
       "status": "standby",
-      "lastSignalAt": "2026-03-23T13:43:06.349Z",
+      "lastSignalAt": "2026-03-25T12:29:09.503Z",
       "lastEventAt": "2026-03-09T01:34:15.071Z",
       "lastAction": "reset",
       "lastSource": "discord",
@@ -131,11 +131,35 @@
       "recentMemory": {
         "file": "heartbeat-state.json",
         "title": "heartbeat state",
-        "updatedAt": "2026-03-23T13:43:06.349Z"
+        "updatedAt": "2026-03-25T12:29:09.503Z"
       }
     }
   ],
   "timeline": [
+    {
+      "timestamp": "2026-03-25T01:50:24.525Z",
+      "agentId": "main",
+      "agentName": "카이",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:direct"
+    },
+    {
+      "timestamp": "2026-03-24T15:16:48.302Z",
+      "agentId": "elon",
+      "agentName": "일론 머스크",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:direct"
+    },
+    {
+      "timestamp": "2026-03-24T15:14:36.300Z",
+      "agentId": "elon",
+      "agentName": "일론 머스크",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:direct"
+    },
     {
       "timestamp": "2026-03-23T07:15:59.445Z",
       "agentId": "main",
@@ -367,30 +391,6 @@
       "action": "reset",
       "source": "discord",
       "session": "discord:direct"
-    },
-    {
-      "timestamp": "2026-03-10T09:09:03.083Z",
-      "agentId": "wonyoung",
-      "agentName": "장원영",
-      "action": "new",
-      "source": "discord",
-      "session": "discord:channel"
-    },
-    {
-      "timestamp": "2026-03-10T09:09:00.055Z",
-      "agentId": "elon",
-      "agentName": "일론 머스크",
-      "action": "new",
-      "source": "discord",
-      "session": "discord:channel"
-    },
-    {
-      "timestamp": "2026-03-10T09:08:57.359Z",
-      "agentId": "critic",
-      "agentName": "Andrej Karpathy",
-      "action": "new",
-      "source": "discord",
-      "session": "discord:channel"
     }
   ]
 }
