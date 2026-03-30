@@ -24,9 +24,14 @@ const BlogPostHero = ({ post }) => {
       <p className="blog-post-author">Reviewed by {post.author}</p>
 
       {leadSummary && (
-        <p className="blog-post-lead" data-testid="blog-lead-summary">
-          {leadSummary}
-        </p>
+        <PretextBalancedText
+          as="p"
+          text={leadSummary}
+          className="blog-post-lead"
+          lineClassName="blog-post-lead-line"
+          maxWidth={720}
+          data-testid="blog-lead-summary"
+        />
       )}
 
       {spotlightItems.length > 0 && (

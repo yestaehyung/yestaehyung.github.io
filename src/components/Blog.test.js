@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 
 let mockParams = {};
 
@@ -127,5 +127,58 @@ describe("Blog", () => {
     expect(await screen.findAllByTestId("blog-rhythm-block")).toHaveLength(2);
     expect(screen.getByText("Background sentence.")).toBeInTheDocument();
     expect(screen.getByText("Results sentence.")).toBeInTheDocument();
+  });
+
+  test("renders compact Korean toc labels on the detail page", async () => {
+    mockParams = { postId: "test-post" };
+
+    render(
+      <MemoryRouter initialEntries={["/blog/test-post"]}>
+        <Routes>
+          <Route path="/blog/:postId" element={<Blog />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    const toc = await screen.findByRole("navigation", { name: /table of contents/i });
+    expect(within(toc).getByText("연구 배경")).toBeInTheDocument();
+    expect(within(toc).getByText("연구 동기")).toBeInTheDocument();
+    expect(within(toc).getByText("결과")).toBeInTheDocument();
+    expect(within(toc).queryByText(/Research Background/i)).not.toBeInTheDocument();
+  });
+
+  test("renders a lead preview summary on the blog list cards", async () => {
+    render(
+      <MemoryRouter initialEntries={["/blog"]}>
+        <Routes>
+          <Route path="/blog" element={<Blog />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    expect(await screen.findByText("Motivation sentence.")).toBeInTheDocument();
+  });
+
+  test("uses pretext balancing for hero lead and section headings", async () => {
+    mockParams = { postId: "test-post" };
+
+    render(
+      <MemoryRouter initialEntries={["/blog/test-post"]}>
+        <Routes>
+          <Route path="/blog/:postId" element={<Blog />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    await screen.findByText("Maximizing mutual information");
+
+    expect(getBalancedLines).toHaveBeenCalledWith(
+      "Motivation sentence.",
+      expect.objectContaining({ maxWidth: expect.any(Number) })
+    );
+    expect(getBalancedLines).toHaveBeenCalledWith(
+      "연구 배경 (Research Background)",
+      expect.objectContaining({ maxWidth: expect.any(Number) })
+    );
   });
 });

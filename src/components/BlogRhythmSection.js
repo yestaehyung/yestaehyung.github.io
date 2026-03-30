@@ -1,4 +1,5 @@
 import React from "react";
+import PretextBalancedText from "./PretextBalancedText";
 
 const BlogRhythmSection = ({
   id,
@@ -11,7 +12,13 @@ const BlogRhythmSection = ({
     <section id={id} className="blog-section">
       <div className="blog-section-head">
         <span className="blog-section-num">{sectionNumber}</span>
-        <h3>{title}</h3>
+        <PretextBalancedText
+          as="h3"
+          text={title}
+          className="blog-section-title"
+          lineClassName="blog-section-title-line"
+          maxWidth={560}
+        />
       </div>
 
       {rhythmBlock ? (
@@ -24,7 +31,13 @@ const BlogRhythmSection = ({
           )}
 
           {rhythmBlock.type === "quote" ? (
-            <p className="blog-rhythm-quote">{rhythmBlock.content}</p>
+            <PretextBalancedText
+              as="p"
+              text={rhythmBlock.content}
+              className="blog-rhythm-quote"
+              lineClassName="blog-rhythm-quote-line"
+              maxWidth={680}
+            />
           ) : null}
 
           {rhythmBlock.type === "spotlight" ? (

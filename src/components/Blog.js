@@ -4,7 +4,11 @@ import PaperGraph from "./PaperGraph";
 import PretextBalancedText from "./PretextBalancedText";
 import BlogPostHero from "./BlogPostHero";
 import BlogRhythmSection from "./BlogRhythmSection";
-import { buildSpotlightItems, pickPullQuote } from "../lib/blogPresentation";
+import {
+  buildLeadSummary,
+  buildSpotlightItems,
+  pickPullQuote,
+} from "../lib/blogPresentation";
 import "../styles/Blog.css";
 
 const sectionLabels = {
@@ -22,6 +26,23 @@ const sectionLabels = {
   limitations: "12. 한계점 (Limitations)",
   originality: "13. 독창성 (Originality)",
   significance: "14. 중요성 (Significance)",
+};
+
+const sectionTocLabels = {
+  background: "연구 배경",
+  motivation: "연구 동기",
+  objectives: "연구 목적",
+  gap: "한계점",
+  questions: "연구 질문",
+  methodology: "방법론",
+  experimentDesign: "실험 설계",
+  evaluationMetrics: "평가 지표",
+  results: "결과",
+  discussion: "논의",
+  contributions: "기여",
+  limitations: "한계",
+  originality: "독창성",
+  significance: "중요성",
 };
 
 const sectionOrder = Object.keys(sectionLabels);
@@ -503,6 +524,9 @@ const BlogList = ({ posts }) => {
                 maxWidth={520}
               />
               <p className="blog-card-author">by {post.author}</p>
+              {buildLeadSummary(post) ? (
+                <p className="blog-card-preview">{buildLeadSummary(post)}</p>
+              ) : null}
               <div className="blog-card-tags">
                 {post.tags.map((tag, i) => (
                   <span key={i} className="blog-tag">{tag}</span>
@@ -568,6 +592,8 @@ const BlogPost = ({ posts }) => {
     return label.replace(/^\d+\.\s*/, "");
   };
 
+  const sectionTocTitle = (key) => sectionTocLabels[key] || sectionTitle(key);
+
   return (
     <article className="blog-post">
       <Link to="/blog" className="blog-back">Back to Blog</Link>
@@ -591,7 +617,7 @@ const BlogPost = ({ posts }) => {
                   }}
                 >
                   <span className="toc-num">{sectionNumber(key)}</span>
-                  <span className="toc-text">{sectionTitle(key)}</span>
+                  <span className="toc-text">{sectionTocTitle(key)}</span>
                 </a>
               </li>
             ))}

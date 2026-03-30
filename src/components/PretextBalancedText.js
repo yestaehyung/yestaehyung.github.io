@@ -8,12 +8,20 @@ const PretextBalancedText = ({
   lineClassName = "",
   maxWidth = 320,
   maxLines,
+  font,
+  lineHeight,
+  prepareOptions,
   ...rest
 }) => {
   const lines = useMemo(() => {
-    const balanced = getBalancedLines(text, { maxWidth });
+    const balanced = getBalancedLines(text, {
+      maxWidth,
+      font,
+      lineHeight,
+      prepareOptions,
+    });
     return maxLines ? balanced.slice(0, maxLines) : balanced;
-  }, [maxLines, maxWidth, text]);
+  }, [font, lineHeight, maxLines, maxWidth, prepareOptions, text]);
 
   return (
     <Tag className={className} {...rest}>
