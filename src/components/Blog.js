@@ -521,7 +521,9 @@ const BlogList = ({ posts }) => {
                 text={post.title}
                 className="blog-card-title"
                 lineClassName="blog-card-title-line"
-                maxWidth={520}
+                maxWidth={720}
+                font='600 16px "SUIT"'
+                lineHeight={22}
               />
               <p className="blog-card-author">by {post.author}</p>
               {buildLeadSummary(post) ? (

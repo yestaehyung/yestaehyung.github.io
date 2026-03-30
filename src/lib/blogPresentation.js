@@ -10,7 +10,15 @@ const SECTION_PRIORITY = [
 function firstSentence(text) {
   if (!text) return "";
 
-  const normalized = text.replace(/\s+/g, " ").trim();
+  const normalized = text
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/__([^_]+)__/g, "$1")
+    .replace(/_([^_]+)_/g, "$1")
+    .replace(/\s+/g, " ")
+    .trim();
   if (!normalized) return "";
 
   const match = normalized.match(/(.+?[.!?]|.+?$)/);

@@ -10,15 +10,18 @@ const post = {
   tags: ["LLM Personalization", "Preference Learning", "DPO"],
   sections: {
     background: "Background sentence.",
-    motivation: "Motivation sentence with the strongest framing.",
+    motivation:
+      "현재 LLM 연구는 **선호의 일관성(preference consistency)**과 **행동적 결과(behavioral consequences)**를 분리하며 다룬다.",
     results: "Results sentence.",
     discussion: "Discussion sentence.",
   },
 };
 
 describe("blogPresentation helpers", () => {
-  test("buildLeadSummary prefers motivation and results content", () => {
-    expect(buildLeadSummary(post)).toMatch(/Motivation sentence|Results sentence/);
+  test("buildLeadSummary strips inline markdown from the preferred sentence", () => {
+    expect(buildLeadSummary(post)).toBe(
+      "현재 LLM 연구는 선호의 일관성(preference consistency)과 행동적 결과(behavioral consequences)를 분리하며 다룬다."
+    );
   });
 
   test("pickPullQuote returns a short sentence-sized emphasis line", () => {

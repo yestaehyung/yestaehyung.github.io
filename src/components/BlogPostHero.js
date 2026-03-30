@@ -18,7 +18,9 @@ const BlogPostHero = ({ post }) => {
         text={post.title}
         className="blog-post-title"
         lineClassName="blog-post-title-line"
-        maxWidth={820}
+        maxWidth={920}
+        font='700 32px "SUIT"'
+        lineHeight={44}
       />
 
       <p className="blog-post-author">Reviewed by {post.author}</p>
@@ -29,7 +31,9 @@ const BlogPostHero = ({ post }) => {
           text={leadSummary}
           className="blog-post-lead"
           lineClassName="blog-post-lead-line"
-          maxWidth={720}
+          maxWidth={920}
+          font='400 15px "SUIT"'
+          lineHeight={24}
           data-testid="blog-lead-summary"
         />
       )}

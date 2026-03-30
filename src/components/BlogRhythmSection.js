@@ -17,7 +17,9 @@ const BlogRhythmSection = ({
           text={title}
           className="blog-section-title"
           lineClassName="blog-section-title-line"
-          maxWidth={560}
+          maxWidth={720}
+          font='600 17px "SUIT"'
+          lineHeight={24}
         />
       </div>
 
@@ -36,7 +38,9 @@ const BlogRhythmSection = ({
               text={rhythmBlock.content}
               className="blog-rhythm-quote"
               lineClassName="blog-rhythm-quote-line"
-              maxWidth={680}
+              maxWidth={920}
+              font='400 15px "SUIT"'
+              lineHeight={24}
             />
           ) : null}
 
