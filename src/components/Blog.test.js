@@ -122,7 +122,7 @@ describe("Blog", () => {
     expect(screen.getByTestId("blog-lead-summary")).toBeInTheDocument();
   });
 
-  test("renders rhythm blocks only for motivation-style emphasis", async () => {
+  test("does not render extra rhythm callouts in the paper notebook preview", async () => {
     mockParams = { postId: "test-post" };
 
     render(
@@ -133,9 +133,12 @@ describe("Blog", () => {
       </MemoryRouter>
     );
 
-    expect(await screen.findAllByTestId("blog-rhythm-block")).toHaveLength(1);
+    await screen.findByText("Maximizing mutual information");
+
+    expect(screen.queryAllByTestId("blog-rhythm-block")).toHaveLength(0);
     expect(screen.getByText("Background sentence.")).toBeInTheDocument();
     expect(screen.getByText("Results sentence.")).toBeInTheDocument();
+    expect(screen.queryByText("Key Line")).not.toBeInTheDocument();
     expect(screen.queryByText("Spotlight")).not.toBeInTheDocument();
   });
 

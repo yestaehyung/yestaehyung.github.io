@@ -4,7 +4,7 @@ import PaperGraph from "./PaperGraph";
 import PretextBalancedText from "./PretextBalancedText";
 import BlogPostHero from "./BlogPostHero";
 import BlogRhythmSection from "./BlogRhythmSection";
-import { buildLeadSummary, pickPullQuote } from "../lib/blogPresentation";
+import { buildLeadSummary } from "../lib/blogPresentation";
 import "../styles/Blog.css";
 
 const sectionLabels = {
@@ -173,20 +173,7 @@ const renderInlineWithLineBreaks = (text, keyPrefix) => {
   });
 };
 
-const buildSectionRhythmBlock = (post, key) => {
-  if (key === "motivation") {
-    const quote = pickPullQuote(post);
-    return quote
-      ? {
-          type: "quote",
-          label: "Key Line",
-          content: quote,
-        }
-      : null;
-  }
-
-  return null;
-};
+const buildSectionRhythmBlock = () => null;
 
 const parseMarkdownBlocks = (rawContent) => {
   const content = (rawContent || "").replace(/\r\n/g, "\n");
