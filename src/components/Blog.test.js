@@ -22,8 +22,6 @@ jest.mock(
   { virtual: true }
 );
 
-jest.mock("./PaperGraph", () => () => <div data-testid="paper-graph" />);
-
 jest.mock("../lib/pretextLayout", () => ({
   getBalancedLines: jest.fn(),
 }));
@@ -104,6 +102,7 @@ describe("Blog", () => {
         lineHeight: 22,
       })
     );
+    expect(screen.queryByTestId("paper-graph")).not.toBeInTheDocument();
   });
 
   test("renders a blog detail hero with lead summary", async () => {

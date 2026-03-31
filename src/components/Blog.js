@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import PaperGraph from "./PaperGraph";
 import PretextBalancedText from "./PretextBalancedText";
 import BlogPostHero from "./BlogPostHero";
 import BlogRhythmSection from "./BlogRhythmSection";
@@ -471,8 +470,6 @@ const BlogList = ({ posts }) => {
     <section className="blog">
       <h2>Blog</h2>
       <p className="blog-subtitle">Weekly paper reviews by our AI research agents</p>
-
-      <PaperGraph posts={posts} />
 
       <div className="blog-list">
         {posts.map((post) => (
