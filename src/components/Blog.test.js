@@ -173,7 +173,7 @@ describe("Blog", () => {
     expect(screen.queryByText(/\*\*/)).not.toBeInTheDocument();
   });
 
-  test("uses context-specific pretext metrics for hero and section text", async () => {
+  test("limits pretext to titles while keeping supporting copy plain", async () => {
     mockParams = { postId: "test-post" };
 
     render(
@@ -187,28 +187,29 @@ describe("Blog", () => {
     await screen.findByText("Maximizing mutual information");
 
     expect(getBalancedLines).toHaveBeenCalledWith(
-      "현재 LLM 연구는 선호의 일관성(preference consistency)과 행동적 결과(behavioral consequences)를 분리하며 다룬다.",
+      "Maximizing mutual information between user-contexts and responses improves LLM personalization with no additional data",
       expect.objectContaining({
         maxWidth: expect.any(Number),
-        font: '400 15px "SUIT"',
-        lineHeight: 24,
+        font: '700 32px "SUIT"',
+        lineHeight: 44,
       })
     );
-    expect(getBalancedLines).toHaveBeenCalledWith(
+
+    expect(screen.getByTestId("blog-lead-summary")).toBeInTheDocument();
+    expect(
+      screen.getAllByText(
+        "현재 LLM 연구는 선호의 일관성(preference consistency)과 행동적 결과(behavioral consequences)를 분리하며 다룬다."
+      ).length
+    ).toBeGreaterThan(0);
+    expect(screen.getByText("연구 배경 (Research Background)")).toBeInTheDocument();
+
+    expect(getBalancedLines).not.toHaveBeenCalledWith(
       "연구 배경 (Research Background)",
-      expect.objectContaining({
-        maxWidth: expect.any(Number),
-        font: '600 17px "SUIT"',
-        lineHeight: 24,
-      })
+      expect.anything()
     );
-    expect(getBalancedLines).toHaveBeenCalledWith(
+    expect(getBalancedLines).not.toHaveBeenCalledWith(
       "현재 LLM 연구는 선호의 일관성(preference consistency)과 행동적 결과(behavioral consequences)를 분리하며 다룬다.",
-      expect.objectContaining({
-        maxWidth: expect.any(Number),
-        font: '400 15px "SUIT"',
-        lineHeight: 24,
-      })
+      expect.anything()
     );
   });
 });
