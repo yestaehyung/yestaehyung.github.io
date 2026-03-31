@@ -97,12 +97,13 @@ describe("Blog", () => {
     expect(getBalancedLines).toHaveBeenCalledWith(
       "Maximizing mutual information between user-contexts and responses improves LLM personalization with no additional data",
       expect.objectContaining({
-        maxWidth: expect.any(Number),
+        maxWidth: 920,
         font: '600 16px "SUIT"',
         lineHeight: 22,
       })
     );
     expect(screen.queryByTestId("paper-graph")).not.toBeInTheDocument();
+    expect(screen.getAllByTestId("balanced-text-line").length).toBeLessThanOrEqual(2);
   });
 
   test("renders a blog detail hero with lead summary", async () => {

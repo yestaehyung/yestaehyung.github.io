@@ -489,7 +489,8 @@ const BlogList = ({ posts }) => {
                 text={post.title}
                 className="blog-card-title"
                 lineClassName="blog-card-title-line"
-                maxWidth={720}
+                maxWidth={920}
+                maxLines={2}
                 font='600 16px "SUIT"'
                 lineHeight={22}
               />
