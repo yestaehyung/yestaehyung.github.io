@@ -4,7 +4,6 @@ import PaperGraph from "./PaperGraph";
 import PretextBalancedText from "./PretextBalancedText";
 import BlogPostHero from "./BlogPostHero";
 import BlogRhythmSection from "./BlogRhythmSection";
-import { buildLeadSummary } from "../lib/blogPresentation";
 import "../styles/Blog.css";
 
 const sectionLabels = {
@@ -498,9 +497,6 @@ const BlogList = ({ posts }) => {
                 lineHeight={22}
               />
               <p className="blog-card-author">by {post.author}</p>
-              {buildLeadSummary(post) ? (
-                <p className="blog-card-preview">{buildLeadSummary(post)}</p>
-              ) : null}
               <div className="blog-card-tags">
                 {post.tags.map((tag, i) => (
                   <span key={i} className="blog-tag">{tag}</span>

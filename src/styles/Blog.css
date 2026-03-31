@@ -102,14 +102,6 @@
 .blog-card-author {
   font-size: 0.82rem;
   color: #999;
-  margin: 0 0 6px 0;
-}
-
-.blog-card-preview {
-  max-width: 70ch;
-  font-size: 0.86rem;
-  line-height: 1.58;
-  color: #5a6472;
   margin: 0 0 8px 0;
 }
 

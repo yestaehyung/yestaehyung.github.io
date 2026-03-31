@@ -160,7 +160,7 @@ describe("Blog", () => {
     expect(within(toc).queryByText(/Research Background/i)).not.toBeInTheDocument();
   });
 
-  test("renders a lead preview summary on the blog list cards", async () => {
+  test("keeps the blog list compact without preview summaries", async () => {
     render(
       <MemoryRouter initialEntries={["/blog"]}>
         <Routes>
@@ -169,11 +169,12 @@ describe("Blog", () => {
       </MemoryRouter>
     );
 
+    await screen.findByText("Maximizing mutual information");
     expect(
-      await screen.findByText(
+      screen.queryByText(
         "현재 LLM 연구는 선호의 일관성(preference consistency)과 행동적 결과(behavioral consequences)를 분리하며 다룬다."
       )
-    ).toBeInTheDocument();
+    ).not.toBeInTheDocument();
     expect(screen.queryByText(/\*\*/)).not.toBeInTheDocument();
   });
 
