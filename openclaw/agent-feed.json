@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-26T00:02:52.593Z",
+  "generatedAt": "2026-03-31T00:03:07.848Z",
   "source": "local-openclaw",
   "summary": {
     "agentCount": 7,
     "activeNow": 1,
-    "events24h": 1,
-    "events7d": 7
+    "events24h": 4,
+    "events7d": 12
   },
   "agents": [
     {
@@ -14,16 +14,16 @@
       "workspace": "workspace",
       "model": "claude-opus-4-6",
       "status": "active",
-      "lastSignalAt": "2026-03-26T00:00:51.298Z",
-      "lastEventAt": "2026-03-25T01:50:24.525Z",
+      "lastSignalAt": "2026-03-31T00:00:48.943Z",
+      "lastEventAt": "2026-03-30T16:41:17.635Z",
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 1,
-      "events7d": 2,
+      "events7d": 3,
       "recentMemory": {
-        "file": "2026-03-26.md",
-        "title": "2026 03 26",
-        "updatedAt": "2026-03-26T00:00:51.298Z"
+        "file": "2026-03-31.md",
+        "title": "2026 03 31",
+        "updatedAt": "2026-03-31T00:00:48.943Z"
       }
     },
     {
@@ -31,17 +31,17 @@
       "name": "백지헌",
       "workspace": "workspace-researcher",
       "model": "claude-sonnet-4-6",
-      "status": "idle",
-      "lastSignalAt": "2026-03-17T05:38:14.017Z",
-      "lastEventAt": "2026-03-17T05:38:04.940Z",
+      "status": "standby",
+      "lastSignalAt": "2026-03-30T16:41:35.850Z",
+      "lastEventAt": "2026-03-30T16:41:28.680Z",
       "lastAction": "new",
       "lastSource": "discord",
-      "events24h": 0,
-      "events7d": 0,
+      "events24h": 1,
+      "events7d": 1,
       "recentMemory": {
-        "file": "2026-03-17-session-greeting.md",
-        "title": "2026 03 17 session greeting",
-        "updatedAt": "2026-03-17T05:38:14.017Z"
+        "file": "2026-03-30-ontology-debate.md",
+        "title": "2026 03 30 ontology debate",
+        "updatedAt": "2026-03-30T16:41:35.850Z"
       }
     },
     {
@@ -67,17 +67,17 @@
       "name": "Andrej Karpathy",
       "workspace": "workspace-critic",
       "model": "claude-opus-4-6",
-      "status": "idle",
-      "lastSignalAt": "2026-03-16T05:06:19.010Z",
-      "lastEventAt": "2026-03-16T05:06:12.879Z",
+      "status": "standby",
+      "lastSignalAt": "2026-03-30T16:41:28.557Z",
+      "lastEventAt": "2026-03-30T16:41:25.583Z",
       "lastAction": "new",
       "lastSource": "discord",
-      "events24h": 0,
-      "events7d": 0,
+      "events24h": 1,
+      "events7d": 2,
       "recentMemory": {
-        "file": "2026-03-16-keti-figures.md",
-        "title": "2026 03 16 keti figures",
-        "updatedAt": "2026-03-16T05:06:19.010Z"
+        "file": "2026-03-30-ontology-gnn.md",
+        "title": "2026 03 30 ontology gnn",
+        "updatedAt": "2026-03-30T16:41:28.557Z"
       }
     },
     {
@@ -85,17 +85,17 @@
       "name": "장원영",
       "workspace": "workspace-wonyoung",
       "model": "gpt-5.4",
-      "status": "idle",
-      "lastSignalAt": "2026-03-16T05:06:11.108Z",
-      "lastEventAt": "2026-03-16T05:06:07.430Z",
+      "status": "standby",
+      "lastSignalAt": "2026-03-30T16:41:20.304Z",
+      "lastEventAt": "2026-03-30T16:41:20.222Z",
       "lastAction": "new",
       "lastSource": "discord",
-      "events24h": 0,
-      "events7d": 0,
+      "events24h": 1,
+      "events7d": 1,
       "recentMemory": {
-        "file": "2026-03-16-keti-revision.md",
-        "title": "2026 03 16 keti revision",
-        "updatedAt": "2026-03-16T05:06:11.108Z"
+        "file": "2026-03-30-1641.md",
+        "title": "2026 03 30 1641",
+        "updatedAt": "2026-03-30T16:41:20.304Z"
       }
     },
     {
@@ -104,16 +104,16 @@
       "workspace": "workspace-elon",
       "model": "claude-opus-4-6",
       "status": "standby",
-      "lastSignalAt": "2026-03-25T14:00:55.863Z",
-      "lastEventAt": "2026-03-24T15:16:48.302Z",
+      "lastSignalAt": "2026-03-30T14:01:32.034Z",
+      "lastEventAt": "2026-03-27T04:30:47.840Z",
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
       "events7d": 5,
       "recentMemory": {
-        "file": "2026-03-25.md",
-        "title": "2026 03 25",
-        "updatedAt": "2026-03-25T14:00:55.863Z"
+        "file": "2026-03-30.md",
+        "title": "2026 03 30",
+        "updatedAt": "2026-03-30T14:01:32.034Z"
       }
     },
     {
@@ -122,7 +122,7 @@
       "workspace": "workspace-stock",
       "model": "gpt-5.4",
       "status": "standby",
-      "lastSignalAt": "2026-03-25T12:29:09.503Z",
+      "lastSignalAt": "2026-03-30T10:14:00.615Z",
       "lastEventAt": "2026-03-09T01:34:15.071Z",
       "lastAction": "reset",
       "lastSource": "discord",
@@ -131,11 +131,83 @@
       "recentMemory": {
         "file": "heartbeat-state.json",
         "title": "heartbeat state",
-        "updatedAt": "2026-03-25T12:29:09.503Z"
+        "updatedAt": "2026-03-30T10:14:00.615Z"
       }
     }
   ],
   "timeline": [
+    {
+      "timestamp": "2026-03-30T16:41:28.680Z",
+      "agentId": "researcher",
+      "agentName": "백지헌",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:channel"
+    },
+    {
+      "timestamp": "2026-03-30T16:41:25.583Z",
+      "agentId": "critic",
+      "agentName": "Andrej Karpathy",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:channel"
+    },
+    {
+      "timestamp": "2026-03-30T16:41:20.222Z",
+      "agentId": "wonyoung",
+      "agentName": "장원영",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:channel"
+    },
+    {
+      "timestamp": "2026-03-30T16:41:17.635Z",
+      "agentId": "main",
+      "agentName": "카이",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:channel"
+    },
+    {
+      "timestamp": "2026-03-28T12:55:16.919Z",
+      "agentId": "main",
+      "agentName": "카이",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:direct"
+    },
+    {
+      "timestamp": "2026-03-27T04:30:47.840Z",
+      "agentId": "elon",
+      "agentName": "일론 머스크",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:channel"
+    },
+    {
+      "timestamp": "2026-03-27T04:26:28.962Z",
+      "agentId": "elon",
+      "agentName": "일론 머스크",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:direct"
+    },
+    {
+      "timestamp": "2026-03-27T01:15:42.373Z",
+      "agentId": "elon",
+      "agentName": "일론 머스크",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:channel"
+    },
+    {
+      "timestamp": "2026-03-26T22:25:55.953Z",
+      "agentId": "critic",
+      "agentName": "Andrej Karpathy",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:channel"
+    },
     {
       "timestamp": "2026-03-25T01:50:24.525Z",
       "agentId": "main",
@@ -319,78 +391,6 @@
       "action": "reset",
       "source": "discord",
       "session": "discord:channel"
-    },
-    {
-      "timestamp": "2026-03-16T02:24:17.784Z",
-      "agentId": "researcher",
-      "agentName": "백지헌",
-      "action": "reset",
-      "source": "discord",
-      "session": "discord:channel"
-    },
-    {
-      "timestamp": "2026-03-16T02:24:16.070Z",
-      "agentId": "wonyoung",
-      "agentName": "장원영",
-      "action": "reset",
-      "source": "discord",
-      "session": "discord:channel"
-    },
-    {
-      "timestamp": "2026-03-13T23:17:08.193Z",
-      "agentId": "main",
-      "agentName": "카이",
-      "action": "new",
-      "source": "discord",
-      "session": "discord:direct"
-    },
-    {
-      "timestamp": "2026-03-13T23:15:06.358Z",
-      "agentId": "main",
-      "agentName": "카이",
-      "action": "reset",
-      "source": "discord",
-      "session": "discord:direct"
-    },
-    {
-      "timestamp": "2026-03-12T13:37:17.830Z",
-      "agentId": "elon",
-      "agentName": "일론 머스크",
-      "action": "new",
-      "source": "discord",
-      "session": "discord:direct"
-    },
-    {
-      "timestamp": "2026-03-12T06:30:50.015Z",
-      "agentId": "elon",
-      "agentName": "일론 머스크",
-      "action": "reset",
-      "source": "discord",
-      "session": "discord:channel"
-    },
-    {
-      "timestamp": "2026-03-12T02:47:47.617Z",
-      "agentId": "main",
-      "agentName": "카이",
-      "action": "new",
-      "source": "discord",
-      "session": "discord:direct"
-    },
-    {
-      "timestamp": "2026-03-12T02:24:23.250Z",
-      "agentId": "wonyoung",
-      "agentName": "장원영",
-      "action": "new",
-      "source": "discord",
-      "session": "discord:channel"
-    },
-    {
-      "timestamp": "2026-03-12T01:40:05.251Z",
-      "agentId": "main",
-      "agentName": "카이",
-      "action": "reset",
-      "source": "discord",
-      "session": "discord:direct"
     }
   ]
 }
