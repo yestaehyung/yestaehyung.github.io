@@ -4,11 +4,7 @@ import PaperGraph from "./PaperGraph";
 import PretextBalancedText from "./PretextBalancedText";
 import BlogPostHero from "./BlogPostHero";
 import BlogRhythmSection from "./BlogRhythmSection";
-import {
-  buildLeadSummary,
-  buildSpotlightItems,
-  pickPullQuote,
-} from "../lib/blogPresentation";
+import { buildLeadSummary, pickPullQuote } from "../lib/blogPresentation";
 import "../styles/Blog.css";
 
 const sectionLabels = {
@@ -185,17 +181,6 @@ const buildSectionRhythmBlock = (post, key) => {
           type: "quote",
           label: "Key Line",
           content: quote,
-        }
-      : null;
-  }
-
-  if (key === "results") {
-    const items = buildSpotlightItems(post);
-    return items.length
-      ? {
-          type: "spotlight",
-          label: "Spotlight",
-          items,
         }
       : null;
   }

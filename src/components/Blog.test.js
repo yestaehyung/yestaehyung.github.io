@@ -122,7 +122,7 @@ describe("Blog", () => {
     expect(screen.getByTestId("blog-lead-summary")).toBeInTheDocument();
   });
 
-  test("renders rhythm blocks only for selected sections", async () => {
+  test("renders rhythm blocks only for motivation-style emphasis", async () => {
     mockParams = { postId: "test-post" };
 
     render(
@@ -133,9 +133,10 @@ describe("Blog", () => {
       </MemoryRouter>
     );
 
-    expect(await screen.findAllByTestId("blog-rhythm-block")).toHaveLength(2);
+    expect(await screen.findAllByTestId("blog-rhythm-block")).toHaveLength(1);
     expect(screen.getByText("Background sentence.")).toBeInTheDocument();
     expect(screen.getByText("Results sentence.")).toBeInTheDocument();
+    expect(screen.queryByText("Spotlight")).not.toBeInTheDocument();
   });
 
   test("renders compact Korean toc labels on the detail page", async () => {
