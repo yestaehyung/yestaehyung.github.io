@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-04-02T00:13:52.801Z",
+  "generatedAt": "2026-04-14T00:04:36.692Z",
   "source": "local-openclaw",
   "summary": {
     "agentCount": 7,
-    "activeNow": 1,
+    "activeNow": 0,
     "events24h": 0,
-    "events7d": 13
+    "events7d": 0
   },
   "agents": [
     {
@@ -13,17 +13,17 @@
       "name": "카이",
       "workspace": "workspace",
       "model": "claude-opus-4-6",
-      "status": "active",
-      "lastSignalAt": "2026-04-02T00:11:30.754Z",
+      "status": "standby",
+      "lastSignalAt": "2026-04-13T14:01:24.642Z",
       "lastEventAt": "2026-03-31T07:42:09.548Z",
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
-      "events7d": 3,
+      "events7d": 0,
       "recentMemory": {
-        "file": "2026-04-02.md",
-        "title": "2026 04 02",
-        "updatedAt": "2026-04-02T00:11:30.754Z"
+        "file": "2026-04-13.md",
+        "title": "2026 04 13",
+        "updatedAt": "2026-04-13T14:01:24.642Z"
       }
     },
     {
@@ -31,13 +31,13 @@
       "name": "백지헌",
       "workspace": "workspace-researcher",
       "model": "claude-sonnet-4-6",
-      "status": "standby",
+      "status": "idle",
       "lastSignalAt": "2026-03-31T07:13:08.216Z",
       "lastEventAt": "2026-03-31T07:13:08.192Z",
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
-      "events7d": 2,
+      "events7d": 0,
       "recentMemory": {
         "file": "2026-03-31-0713.md",
         "title": "2026 03 31 0713",
@@ -67,13 +67,13 @@
       "name": "Andrej Karpathy",
       "workspace": "workspace-critic",
       "model": "claude-opus-4-6",
-      "status": "standby",
+      "status": "idle",
       "lastSignalAt": "2026-03-31T07:13:04.111Z",
       "lastEventAt": "2026-03-31T07:13:04.032Z",
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
-      "events7d": 3,
+      "events7d": 0,
       "recentMemory": {
         "file": "2026-03-31-0713.md",
         "title": "2026 03 31 0713",
@@ -91,7 +91,7 @@
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
-      "events7d": 1,
+      "events7d": 0,
       "recentMemory": {
         "file": "2026-03-30-1641.md",
         "title": "2026 03 30 1641",
@@ -104,16 +104,16 @@
       "workspace": "workspace-elon",
       "model": "claude-opus-4-6",
       "status": "standby",
-      "lastSignalAt": "2026-04-01T14:00:49.813Z",
+      "lastSignalAt": "2026-04-13T14:01:24.643Z",
       "lastEventAt": "2026-03-31T07:12:59.830Z",
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
-      "events7d": 4,
+      "events7d": 0,
       "recentMemory": {
-        "file": "2026-04-01.md",
-        "title": "2026 04 01",
-        "updatedAt": "2026-04-01T14:00:49.813Z"
+        "file": "2026-04-13.md",
+        "title": "2026 04 13",
+        "updatedAt": "2026-04-13T14:01:24.643Z"
       }
     },
     {
@@ -122,7 +122,7 @@
       "workspace": "workspace-stock",
       "model": "gpt-5.4",
       "status": "standby",
-      "lastSignalAt": "2026-04-01T10:19:25.708Z",
+      "lastSignalAt": "2026-04-13T02:59:39.733Z",
       "lastEventAt": "2026-03-09T01:34:15.071Z",
       "lastAction": "reset",
       "lastSource": "discord",
@@ -131,7 +131,7 @@
       "recentMemory": {
         "file": "heartbeat-state.json",
         "title": "heartbeat state",
-        "updatedAt": "2026-04-01T10:19:25.708Z"
+        "updatedAt": "2026-04-13T02:59:39.733Z"
       }
     }
   ],
