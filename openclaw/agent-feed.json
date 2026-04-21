@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-04-14T00:04:36.692Z",
+  "generatedAt": "2026-04-21T00:04:35.823Z",
   "source": "local-openclaw",
   "summary": {
     "agentCount": 7,
     "activeNow": 0,
     "events24h": 0,
-    "events7d": 0
+    "events7d": 1
   },
   "agents": [
     {
@@ -14,16 +14,16 @@
       "workspace": "workspace",
       "model": "claude-opus-4-6",
       "status": "standby",
-      "lastSignalAt": "2026-04-13T14:01:24.642Z",
-      "lastEventAt": "2026-03-31T07:42:09.548Z",
+      "lastSignalAt": "2026-04-20T14:00:48.896Z",
+      "lastEventAt": "2026-04-17T06:42:50.258Z",
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
-      "events7d": 0,
+      "events7d": 1,
       "recentMemory": {
-        "file": "2026-04-13.md",
-        "title": "2026 04 13",
-        "updatedAt": "2026-04-13T14:01:24.642Z"
+        "file": "2026-04-20.md",
+        "title": "2026 04 20",
+        "updatedAt": "2026-04-20T14:00:48.896Z"
       }
     },
     {
@@ -104,16 +104,16 @@
       "workspace": "workspace-elon",
       "model": "claude-opus-4-6",
       "status": "standby",
-      "lastSignalAt": "2026-04-13T14:01:24.643Z",
+      "lastSignalAt": "2026-04-20T14:00:40.449Z",
       "lastEventAt": "2026-03-31T07:12:59.830Z",
       "lastAction": "new",
       "lastSource": "discord",
       "events24h": 0,
       "events7d": 0,
       "recentMemory": {
-        "file": "2026-04-13.md",
-        "title": "2026 04 13",
-        "updatedAt": "2026-04-13T14:01:24.643Z"
+        "file": "2026-04-20.md",
+        "title": "2026 04 20",
+        "updatedAt": "2026-04-20T14:00:40.449Z"
       }
     },
     {
@@ -121,8 +121,8 @@
       "name": "전인구",
       "workspace": "workspace-stock",
       "model": "gpt-5.4",
-      "status": "standby",
-      "lastSignalAt": "2026-04-13T02:59:39.733Z",
+      "status": "idle",
+      "lastSignalAt": "2026-04-14T07:59:02.951Z",
       "lastEventAt": "2026-03-09T01:34:15.071Z",
       "lastAction": "reset",
       "lastSource": "discord",
@@ -131,11 +131,19 @@
       "recentMemory": {
         "file": "heartbeat-state.json",
         "title": "heartbeat state",
-        "updatedAt": "2026-04-13T02:59:39.733Z"
+        "updatedAt": "2026-04-14T07:59:02.951Z"
       }
     }
   ],
   "timeline": [
+    {
+      "timestamp": "2026-04-17T06:42:50.258Z",
+      "agentId": "main",
+      "agentName": "카이",
+      "action": "new",
+      "source": "discord",
+      "session": "discord:direct"
+    },
     {
       "timestamp": "2026-03-31T07:42:09.548Z",
       "agentId": "main",
@@ -381,14 +389,6 @@
       "agentId": "wonyoung",
       "agentName": "장원영",
       "action": "new",
-      "source": "discord",
-      "session": "discord:channel"
-    },
-    {
-      "timestamp": "2026-03-16T02:56:09.290Z",
-      "agentId": "elon",
-      "agentName": "일론 머스크",
-      "action": "reset",
       "source": "discord",
       "session": "discord:channel"
     }
