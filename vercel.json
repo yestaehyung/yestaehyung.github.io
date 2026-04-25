@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/cikm25-triple/:path*",
+      "destination": "https://yestaehyung.github.io/cikm25-triple/:path*"
+    },
+    {
+      "source": "/aaai26-triple/:path*",
+      "destination": "https://yestaehyung.github.io/aaai26-triple/:path*"
+    }
+  ]
+}
