@@ -6,36 +6,48 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `npm start` — local dev server at http://localhost:3000
 - `npm run build` — production build to `build/`
-- `npm run deploy` — build + deploy to GitHub Pages (`gh-pages` branch)
-- `npm test` — run tests (interactive watch mode)
+- `npm test` — run tests (interactive watch mode); `npm test -- --testPathPattern=Blog` runs a single suite, `CI=true npm test` runs once non-interactively
+- `npm run sync:openclaw` — refresh `public/openclaw/agent-feed.json` from a local `OPENCLAW_HOME` (no-op when not set)
+- `npm run sync:openclaw:loop` — same, every `OPENCLAW_SYNC_INTERVAL_SEC` seconds (default 10) for local desktop syncing
+- `npm run deploy` — runs `predeploy` (sync:openclaw + build) then publishes `build/` to the `gh-pages` branch via the `gh-pages` package
+
+`scripts/sync-openclaw-status.mjs` is referenced by the sync scripts but is not tracked in this repo — sync commands degrade gracefully if it or `OPENCLAW_HOME` is missing.
 
 ## Deployment
 
-Hosted on GitHub Pages at https://yestaehyung.github.io. The `gh-pages` npm package pushes the `build/` output to the `gh-pages` branch. The `homepage` field in `package.json` controls the base URL.
+Primary host is **Vercel** at https://taehyungnoh.com (configured by `homepage` in `package.json` and `vercel.json`). Vercel auto-builds from `main`.
+
+GitHub Actions (`.github/workflows/openclaw-hourly-deploy.yml`) also runs hourly: it builds and pushes to the `gh-pages` branch via `peaceiris/actions-gh-pages`. Treat `gh-pages` as a generated artifact (do not edit directly).
 
 ## Architecture
 
-Single-page React app (Create React App) — academic personal website for a Ph.D. student.
+Single-page React app (Create React App, React 19) — academic personal website with a research blog.
 
-**Layout** (`App.js`): Two-column top section (Profile left, Introduction right) followed by full-width Research Projects and Publications sections.
+### Routing (`src/App.js`)
+Uses **HashRouter** so paths work on static hosts without server rewrites:
+- `/` — `HomePage`: two-column top (`Profile` / `Introduction`), then full-width `ResearchNetwork`, `FeaturedProjects`, `Publications`
+- `/projects` — `ResearchProjects` (the full filterable project list lives here, not on the home page)
+- `/blog` and `/blog/:postId` — `Blog`
 
-**Components** (`src/components/`): Each component has a matching CSS file in `src/styles/`. No routing — all content on one page with anchor navigation (#about-me, #projects, #publications).
+### Data sources
+- **Projects**: `src/data/projectsData.js` (single source consumed by both `FeaturedProjects` and `ResearchProjects`). Adding a project = editing this file.
+- **Publications**: hard-coded array inside `src/components/Publications.js`. Bold author = this author.
+- **Blog posts**: `public/blog/posts.json` — fetched at runtime by `Blog.js`. Each post has structured Korean/English research-paper sections (background, motivation, gap, methodology, results, etc.) keyed by name; `Blog.js` maps those keys to display labels.
+- **OpenClaw feed**: `public/openclaw/agent-feed.json` — periodically replaced by the sync scripts; consumed by the agent-monitoring UI.
 
-- `Header` — fixed nav with anchor links
-- `Profile` — photo, name, social links (email, Google Scholar, GitHub, CV PDF)
-- `Introduction` — bio and research interests
-- `ResearchProjects` — filterable project cards (all/ongoing/under-review/completed) with image zoom modal and hover tooltips
-- `Publications` — filterable publication list (all/conference/journal) with author highlighting (bold = this author)
-- `Footer` — copyright and last updated date
+### Notable subsystems
+- **Typography balancing** (`src/lib/pretextLayout.js` + `src/components/PretextBalancedText.js`) wraps `@chenglou/pretext` to balance multi-line headings/cards. Tests live next to the source.
+- **Blog presentation** (`src/lib/blogPresentation.js`) derives hero summaries, rhythm sections, and TOC entries from a post's structured fields. Used by `BlogPostHero` and `BlogRhythmSection`.
+- **Research network graph** (`ResearchNetwork.js`) uses `react-force-graph-2d`.
+- **Easter egg**: triple-clicking section titles in `ResearchProjects`/`Publications` triggers a "chaos mode" animation.
 
-**Data pattern**: Both `ResearchProjects` and `Publications` store data as arrays directly in the component files (not external JSON). New publications/projects are added by editing these arrays.
+### Standalone project sub-sites
+`public/aaai26-triple/`, `public/cikm25-triple/`, `public/lbw-mos/` are self-contained Bulma-based paper landing pages served as static assets under their own paths (no React integration). When a project page is "imported", it's dropped into `public/` rather than rebuilt as a React route.
 
-**Easter egg**: Triple-clicking section titles in ResearchProjects and Publications triggers a "chaos mode" animation.
-
-**Static assets** (`public/`): Profile image at `public/images/profile.jpg`, project images at `public/images/projects/`, CV PDF at `public/CV_Taehyung/main.pdf`. Referenced via `process.env.PUBLIC_URL`.
+### Static assets
+Profile image at `public/images/profile.jpg`, project images at `public/images/projects/`, CV PDF at `public/CV_Taehyung/main.pdf`. Reference via `process.env.PUBLIC_URL`. Each component has a matching CSS file in `src/styles/`.
 
 ## Git Conventions
 
-- `main` branch: source code
-- `gh-pages` branch: deployed build output (managed by `gh-pages` package, do not edit directly)
-- Commit messages: do not attribute commits to Claude Code
+- `main` is the only working branch (Vercel deploys from it). `gh-pages` is generated by the hourly workflow.
+- Commit messages: do not attribute commits to Claude Code.
