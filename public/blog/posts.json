@@ -1,7 +1,7 @@
 [
   {
     "id": "2026-05-07-research-meeting-slides-skill",
-    "title": "Research Meeting Slides: 교수님 미팅 슬라이드를 자동화하는 Skill",
+    "title": "Research Meeting Slides: 미팅 슬라이드를 준비하는 Skill",
     "date": "2026-05-07",
     "author": "Taehyung Noh",
     "type": "essay",
@@ -14,16 +14,6 @@
       "HCI"
     ],
     "thumbnail": null,
-    "videos": [
-      {
-        "url": "https://youtu.be/QW6qo4MOeL0",
-        "title": "research-meeting-slides 데모 1"
-      },
-      {
-        "url": "https://youtu.be/96bo422tDp4",
-        "title": "research-meeting-slides 데모 2"
-      }
-    ],
     "sectionLabels": {
       "motivation": "1. 만들게 된 배경",
       "goals": "2. 무엇을 자동화하고 싶었는가",
