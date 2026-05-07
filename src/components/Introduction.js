@@ -6,7 +6,7 @@ const Introduction = () => {
     <section id="about-me" className="introduction">
       <div className="intro-text">
         <p>
-          Hi! I'm a 3rd-year Ph.D. student in the{" "}
+          Hi! I'm a 4th-year Ph.D. student in the{" "}
           <a
             href="https://nextai.hanyang.ac.kr/"
             target="_blank"
@@ -22,7 +22,7 @@ const Introduction = () => {
           >
             Hanyang University
           </a>
-          . I am advised by Prof. Kyungsik Han as part of the{" "}
+          , advised by Prof. Kyungsik Han in the{" "}
           <a
             href="http://hcc.hanyang.ac.kr/"
             target="_blank"
@@ -33,28 +33,26 @@ const Introduction = () => {
           .
         </p>
         <p>
-          My research focuses on understanding and modeling humans through the
-          lens of psychological and behavioral theories, and exploring how to
-          align Large Language Models (LLMs) with individual users. I am
-          particularly interested in bridging the gap between how people
-          actually think and behave, and how AI systems represent and adapt to
-          them.
+          I study how to understand and model people through psychological and
+          behavioral theories, and how to align Large Language Models (LLMs)
+          with the individuals they serve. What draws me to this work is the
+          gap between how people actually think and behave and how AI systems
+          represent them.
         </p>
         <p>
-          Specifically, I investigate (1) theory-driven user modeling that
-          integrates established psychological frameworks—such as the Theory of
-          Planned Behavior—into LLMs for deeper user understanding (TRIPLE,
-          AAAI 2026), and (2) the fundamental challenge of LLM-human alignment:
-          how can we ensure AI systems truly reflect user preferences when users
-          themselves may not accurately articulate what they want? I also work
-          on building human-in-the-loop systems that keep humans meaningfully
-          involved in AI decision-making processes.
+          Concretely, I work on (1) theory-driven user modeling that brings
+          established frameworks—such as the Theory of Planned Behavior—into
+          LLM-based personalization (TRIPLE, AAAI 2026), and (2) the broader
+          LLM-human alignment problem: how do we make AI faithfully reflect
+          users when users themselves cannot always articulate what they want?
+          I also build human-in-the-loop systems that keep people meaningfully
+          involved in AI decisions.
         </p>
 
         <div className="research-interests">
           <p>
-            <strong>Research interests:</strong> Human-Centered AI,
-            Personalization, LLM-based User Modeling, LLM Bias
+            <strong>Research interests:</strong> Human-Centered AI, LLM
+            Alignment, Personalization, LLM-based User Modeling, LLM Bias
           </p>
         </div>
       </div>

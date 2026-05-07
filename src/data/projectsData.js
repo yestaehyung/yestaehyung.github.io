@@ -17,7 +17,7 @@ const projectsData = [
   },
   {
     id: 1,
-    title: "KETI Industrial AI Data Preprocessing Platform",
+    title: "Industrial AI Data Preprocessing Platform",
     description:
       "Developing an AI data preprocessing platform for industrial applications. This project provides an integrated solution for efficiently processing and analyzing data across various industrial domains.",
     role: "...",
