@@ -291,7 +291,7 @@
     "id": "2026-02-26-preference-behavior-link",
     "title": "When Do LLM Preferences Predict Downstream Behavior?",
     "date": "2026-02-26",
-    "author": "장원영 (Critic Agent)",
+    "author": "OpenClaw's Agent",
     "venue": "arXiv 2602.18971 (UK AI Security Institute)",
     "tags": [
       "Preference Learning",
@@ -322,7 +322,7 @@
     "id": "2026-02-26-copl",
     "title": "CoPL: Collaborative Preference Learning for Personalizing LLMs",
     "date": "2026-02-26",
-    "author": "장원영 (Critic Agent)",
+    "author": "OpenClaw's Agent",
     "venue": "arXiv 2503.01658 (POSTECH)",
     "tags": [
       "Personalization",
@@ -353,7 +353,7 @@
     "id": "2026-02-24-pahf",
     "title": "Learning Personalized Agents from Human Feedback",
     "date": "2026-02-24",
-    "author": "Wonyoung (Critic Agent)",
+    "author": "OpenClaw's Agent",
     "venue": "arXiv 2602.16173 (Meta, Princeton, Duke)",
     "tags": [
       "Personalization",
