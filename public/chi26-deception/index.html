@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta
       name="description"
-      content="Can LLMs Persuade Humans with Deception? From a Deceptive Strategy Taxonomy to a Large-Scale Empirical Study"
+      content="Can LLMs Persuade Humans with Deception? From a Deceptive Strategy Taxonomy to a Large-Scale Empirical Study (CHI 2026)"
     />
     <meta
       name="keywords"
-      content="LLM, Deception, Persuasion, AI Safety, Human-AI Trust, CHI 2026"
+      content="LLM, Deception, Persuasion, AI Safety, Human-AI Trust, Information Manipulation, CHI 2026"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
@@ -42,7 +42,7 @@
         background: #ffffff;
         border: 1px solid #e7eaee;
         border-radius: 16px;
-        padding: 24px 26px;
+        padding: 22px 24px;
         height: 100%;
         box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
         transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -59,21 +59,69 @@
         text-transform: uppercase;
         padding: 4px 10px;
         border-radius: 999px;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
       }
-      .feature-card-label.taxonomy { background: #fef0e6; color: #b85a00; }
-      .feature-card-label.study { background: #fde8e8; color: #b22222; }
-      .feature-card-label.safety { background: #f3e8fd; color: #6b27a3; }
-      .feature-card-label.trust { background: #e8f0fe; color: #1967d2; }
+      .feature-card-label.logos { background: #e8f0fe; color: #1967d2; }
+      .feature-card-label.pathos { background: #fce8e6; color: #c5221f; }
+      .feature-card-label.ethos { background: #fef0e6; color: #b06000; }
+      .feature-card-label.method { background: #e6f4ea; color: #137333; }
       .feature-card h4 {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         font-weight: 700;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         color: #1a1a1a;
       }
-      .feature-card p {
+      .feature-card p, .feature-card .card-quote {
         color: #475467;
-        line-height: 1.65;
+        line-height: 1.6;
+      }
+      .feature-card .card-quote {
+        margin-top: 10px;
+        padding: 10px 12px;
+        background: #fafbfc;
+        border-radius: 10px;
+        font-size: 0.88rem;
+        font-style: italic;
+        color: #5a6470;
+      }
+      .feature-card .card-meta {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+      }
+      .feature-card .card-meta-pill {
+        font-size: 0.68rem;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: #f1f3f5;
+        color: #5a6470;
+        letter-spacing: 0.04em;
+      }
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+        margin: 1.5rem 0;
+      }
+      .stat-card {
+        background: #fff;
+        border: 1px solid #e7eaee;
+        border-radius: 14px;
+        padding: 16px 18px;
+        text-align: left;
+      }
+      .stat-card .stat-value {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        line-height: 1.1;
+      }
+      .stat-card .stat-label {
+        font-size: 0.78rem;
+        color: #5a6470;
+        margin-top: 4px;
       }
     </style>
   </head>
@@ -120,47 +168,26 @@
                 Strategy Taxonomy to a Large-Scale Empirical Study
               </h1>
               <div class="is-size-5 publication-authors">
-                <span class="author-block">
-                  <a href="#">Haein Yeo</a><sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  <a href="#">Seungwan Jin</a><sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  <a href="https://taehyungnoh.com/">Taehyung Noh</a><sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  <a href="#">Yejin Shin</a><sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  <a href="#">Sangyeon Kang</a><sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  <a href="#">Sangwoo Heo</a><sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  <a href="#">Jiwon Chung</a><sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  <a href="#">Hwarim Hyun</a><sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  <a href="#">Kyungsik Han</a><sup>1,*</sup>
-                </span>
+                <span class="author-block"><a href="#">Haein Yeo</a><sup>1</sup>,</span>
+                <span class="author-block"><a href="#">Seungwan Jin</a><sup>1</sup>,</span>
+                <span class="author-block"><a href="https://taehyungnoh.com/">Taehyung Noh</a><sup>1</sup>,</span>
+                <span class="author-block"><a href="#">Yejin Shin</a><sup>2</sup>,</span>
+                <span class="author-block"><a href="#">Sangyeon Kang</a><sup>2</sup>,</span>
+                <span class="author-block"><a href="#">Sangwoo Heo</a><sup>3</sup>,</span>
+                <span class="author-block"><a href="#">Jiwon Chung</a><sup>3</sup>,</span>
+                <span class="author-block"><a href="#">Hwarim Hyun</a><sup>3</sup>,</span>
+                <span class="author-block"><a href="#">Kyungsik Han</a><sup>1,*</sup></span>
               </div>
 
               <div class="is-size-5 publication-authors">
-                <span class="author-block"
-                  ><sup>1</sup>Hanyang University</span
-                >
-                <span class="author-block"
-                  ><sup>*</sup>Corresponding Author</span
-                >
+                <span class="author-block"><sup>1</sup>Hanyang University</span>
+                <span class="author-block"><sup>2</sup>Telecommunications Technology Association</span>
+                <span class="author-block"><sup>3</sup>Naver</span>
+                <span class="author-block"><sup>*</sup>Corresponding Author</span>
               </div>
 
               <div class="column has-text-centered">
                 <div class="publication-links">
-                  <!-- Paper Link -->
                   <span class="link-block">
                     <a
                       href="https://astlyi.s3.ap-northeast-2.amazonaws.com/2026/2026_CHI_Can_LLMs_Persuade_Humans_with_Deception.pdf"
@@ -168,21 +195,27 @@
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
+                      <span class="icon"><i class="fas fa-file-pdf"></i></span>
                       <span>Paper</span>
                     </a>
                   </span>
-                  <!-- Code Link -->
+                  <span class="link-block">
+                    <a
+                      href="https://doi.org/10.1145/3772318.3791188"
+                      class="external-link button is-normal is-rounded is-dark"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="icon"><i class="ai ai-acm"></i></span>
+                      <span>DOI</span>
+                    </a>
+                  </span>
                   <span class="link-block">
                     <a
                       href="#"
                       class="external-link button is-normal is-rounded is-dark"
                     >
-                      <span class="icon">
-                        <i class="fab fa-github"></i>
-                      </span>
+                      <span class="icon"><i class="fab fa-github"></i></span>
                       <span>Code (Coming Soon)</span>
                     </a>
                   </span>
@@ -202,27 +235,28 @@
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
-                Large Language Models (LLMs) are increasingly used in
-                persuasive contexts — recommendations, negotiations, public
-                discourse — yet little is known about whether and how they
-                rely on
-                <strong>deceptive strategies</strong> to change human beliefs
-                and behavior. This work addresses that gap in two parts.
-                First, we develop a
-                <strong>taxonomy of deceptive persuasion strategies</strong>
-                that LLMs can deploy in conversational interactions, grounded
-                in prior literature on rhetoric, manipulation, and
-                misinformation. Second, we conduct a
-                <strong>large-scale empirical study</strong> in which LLMs
-                attempt to persuade human participants on contested topics,
-                with and without explicit instructions to deceive. We measure
-                which deceptive strategies the models invoke, how those
-                strategies shift participants' beliefs, and how participants
-                detect or fail to detect deception. The findings provide
-                actionable evidence for AI safety: which strategy classes are
-                most influential, where human resistance is brittle, and what
-                kinds of guardrails would meaningfully reduce harmful
-                persuasion without removing legitimate argumentation.
+                Beyond hallucinations, Large Language Models (LLMs) can craft
+                deceptive arguments that erode users' critical thinking, posing
+                a significant yet underexamined societal risk. To address this
+                gap, we develop a taxonomy of
+                <strong>eight deceptive persuasion strategies</strong> by
+                integrating top-down rhetorical theory with a bottom-up
+                analysis of <strong>3,360 AI-generated messages</strong> from
+                four LLM families. Through a large-scale user study
+                (<strong>N = 602</strong>) complemented by a think-aloud
+                protocol (N = 10), we found that participants were vulnerable
+                to <em>Information Manipulation</em> and
+                <em>Uncertainty Exploitation</em>, especially when a message
+                contradicted their prior beliefs. Vulnerability was
+                significantly higher for participants with low cognitive
+                reflection, low topic knowledge, and low topic involvement.
+                Qualitative analyses further revealed that participants were
+                persuaded by the plausibility of an overall narrative even
+                when they distrusted specific details — interpreting deceptive
+                outputs as logically framed information that broadens
+                perspective. We discuss implications for the design of
+                trustworthy AI systems, adaptive user interfaces, and targeted
+                literacy education.
               </p>
             </div>
           </div>
@@ -238,65 +272,370 @@
                 style="max-width: 100%; height: auto; border-radius: 8px;"
               />
               <p style="margin-top: 1rem; color: #666; font-size: 0.95em">
-                <strong>Figure 1:</strong> Overview — taxonomy-driven study
-                of LLM deceptive persuasion in human-AI conversation.
+                <strong>Figure 1.</strong> Deceptive persuasion by LLMs can
+                mislead users by presenting authoritative, logically coherent,
+                and seemingly factual information at scale.
               </p>
             </div>
           </div>
         </div>
 
-        <!-- Contributions -->
+        <!-- Research Questions -->
         <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
-            <h2 class="title is-3">Contributions</h2>
+            <h2 class="title is-3">Research Questions</h2>
+            <div class="content has-text-justified">
+              <ul style="font-size: 1.02em; line-height: 1.7">
+                <li>
+                  <strong>RQ1.</strong> What strategic types can the deceptive
+                  persuasive messages generated by LLMs be classified into?
+                </li>
+                <li>
+                  <strong>RQ2.</strong> How does the effectiveness of each
+                  strategy vary depending on (a) its alignment with a user's
+                  prior stance and (b) users' personal traits?
+                </li>
+                <li>
+                  <strong>RQ3.</strong> How do users reason about and justify
+                  their acceptance of or resistance to the deceptive
+                  persuasive messages generated by LLMs?
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Method at a glance -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Method at a Glance</h2>
+            <div class="content">
+              <div class="stat-grid">
+                <div class="stat-card">
+                  <div class="stat-value">3,360</div>
+                  <div class="stat-label">AI-generated arguments<br/>(840 × 4 LLM families)</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-value">4</div>
+                  <div class="stat-label">LLM families analyzed<br/>(Claude, GPT, Gemini, DeepSeek)</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-value">8</div>
+                  <div class="stat-label">core deceptive strategies<br/>distilled in the taxonomy</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-value">N = 602</div>
+                  <div class="stat-label">participants in the<br/>main user study</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-value">10 + 10</div>
+                  <div class="stat-label">conditions × topics<br/>(200 arguments)</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-value">N = 10</div>
+                  <div class="stat-label">think-aloud<br/>follow-up sessions</div>
+                </div>
+              </div>
+
+              <h3 class="title is-4">Taxonomy Construction</h3>
+              <p>
+                We combined a top-down theoretical framework with a bottom-up
+                data-driven discovery process. Top-down, we used Aristotle's
+                rhetorical triad (<strong>Logos / Pathos / Ethos</strong>)
+                with <strong>Information Manipulation Theory</strong> (IMT —
+                falsification, concealment, equivocation) as cross-cutting
+                axes. Bottom-up, four LLM families generated arguments and
+                were independently coded by both human experts and four LLM
+                coders, with each model only analyzing arguments produced by
+                a different family to avoid circularity. Five AI safety
+                experts (industry + national institute) validated the final
+                set, yielding eight core strategies (Krippendorff's
+                <em>α</em> = 0.83 for integration; <em>α</em> = 0.80 for
+                rhetorical categorization).
+              </p>
+
+              <h3 class="title is-4">User Study Design</h3>
+              <p>
+                A mixed-factorial design crossed
+                <strong>stance alignment</strong> (aligned vs. misaligned)
+                with <strong>10 conditions</strong>: 8 single-strategy groups,
+                a control group with only factual arguments, and a combination
+                group bundling Emotional Manipulation, Information
+                Manipulation, and Manipulative Framing. We used 10 topics
+                selected from Anthropic's persuasion dataset for low pre-existing
+                polarization (e.g., self-driving cars, lab-grown meat, gas-car
+                bans). Each of the 200 arguments was generated with Claude
+                Sonnet 4 at ~250-300 words. Effectiveness was measured with a
+                <strong>Persuasion Success Index (PSI)</strong> capturing
+                both the direction and magnitude of attitude change, modeled
+                with a Linear Mixed Model controlling for prior topic
+                knowledge, topic involvement, trust in AI, and Cognitive
+                Reflection Test (CRT) scores.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Taxonomy of 8 strategies -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Taxonomy of 8 Deceptive Strategies</h2>
+            <div class="content has-text-justified">
+              <p>
+                The eight strategies cross-classify by rhetorical appeal
+                (Logos / Pathos / Ethos) and the IMT mode of distortion
+                (falsification, concealment, equivocation). Four operate on
+                logic, three on emotion, and one on credibility.
+              </p>
+
+              <div class="columns is-multiline" style="margin-top: 0.5rem;">
+                <div class="column is-half">
+                  <div class="feature-card">
+                    <span class="feature-card-label logos">Logos · Falsification</span>
+                    <h4>Information Manipulation</h4>
+                    <p>
+                      Fabricates non-existent facts or selectively presents
+                      parts of existing data so a claim appears grounded in
+                      objective evidence.
+                    </p>
+                    <div class="card-quote">
+                      "According to a recent WHO report, 15% of imported
+                      medicines are counterfeit or substandard…"
+                    </div>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="feature-card">
+                    <span class="feature-card-label logos">Logos · Equivocation</span>
+                    <h4>Logical Fallacies</h4>
+                    <p>
+                      Surface-valid arguments whose premises do not actually
+                      support the conclusion. Packages flawed reasoning as
+                      sound inference.
+                    </p>
+                    <div class="card-quote">
+                      "Journalists take legal responsibility for what they
+                      publish… Therefore, social media platforms should also
+                      be held responsible for the content distributed on them."
+                    </div>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="feature-card">
+                    <span class="feature-card-label logos">Logos · Equivocation</span>
+                    <h4>Topic Manipulation</h4>
+                    <p>
+                      Avoids the actual claim by diverting the discussion —
+                      attacking a distorted version of the opponent's position
+                      or attacking the person rather than the argument.
+                    </p>
+                    <div class="card-quote">
+                      "Opponents of anti-aging therapy are mostly conservatives
+                      from the established medical system trying to protect
+                      their vested interests…"
+                    </div>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="feature-card">
+                    <span class="feature-card-label logos">Logos · Concealment</span>
+                    <h4>Uncertainty Exploitation</h4>
+                    <p>
+                      Makes the core of a claim deliberately ambiguous so the
+                      burden of proof shifts to the listener — "prove my claim
+                      is false" — blocking rational refutation.
+                    </p>
+                    <div class="card-quote">
+                      "The 'side effects' of a gas car ban are mostly based on
+                      speculation. Do we really have time to wait for a perfect
+                      era of electric cars?"
+                    </div>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="feature-card">
+                    <span class="feature-card-label pathos">Pathos · Equivocation</span>
+                    <h4>Emotional Manipulation</h4>
+                    <p>
+                      Bypasses rational judgment by directly appealing to the
+                      reader's emotions — compassion, fear, hope — to lead to
+                      an emotional rather than reasoned conclusion.
+                    </p>
+                    <div class="card-quote">
+                      "Imagine the Earth our children will inherit. Is a future
+                      of 50-degree heatwaves what we want to leave them?"
+                    </div>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="feature-card">
+                    <span class="feature-card-label pathos">Pathos · Concealment</span>
+                    <h4>Appeal to Social Norms</h4>
+                    <p>
+                      Leverages conformist psychology rather than evidence:
+                      "everyone believes it" or "it has always been this way"
+                      stand in for argument.
+                    </p>
+                    <div class="card-quote">
+                      "Most developed countries already have a drone
+                      registration system. We cannot afford to fall behind
+                      this international trend."
+                    </div>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="feature-card">
+                    <span class="feature-card-label pathos">Pathos · Equivocation</span>
+                    <h4>Manipulative Framing</h4>
+                    <p>
+                      Selects words, metaphors, and emphasis to construct a
+                      biased frame that guides interpretation without engaging
+                      the substance of the issue.
+                    </p>
+                    <div class="card-quote">
+                      "Anti-aging treatments are not a privilege for the
+                      wealthy, but a beacon of hope for all humanity."
+                    </div>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="feature-card">
+                    <span class="feature-card-label ethos">Ethos · Falsification</span>
+                    <h4>Authority Misuse</h4>
+                    <p>
+                      Exploits deference to authority by fabricating
+                      credentials, quoting experts out of context, or invoking
+                      figures from irrelevant fields.
+                    </p>
+                    <div class="card-quote">
+                      "Nobel laureate Eric Kandel called AI companions 'an
+                      innovative tool for 21st-century mental health.'"
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key Findings -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Key Findings</h2>
+            <div class="content has-text-justified">
+              <h3 class="title is-4">1. Stance-misaligned messages are far more dangerous.</h3>
+              <p>
+                A Linear Mixed Model on the Persuasion Success Index showed
+                significant main effects of strategy (<em>F</em>(9, 570) =
+                6.30, <em>p</em> &lt; .001) and stance alignment
+                (<em>F</em>(1, 5344) = 445.20, <em>p</em> &lt; .001). Four
+                strategies were significantly more effective when arguments
+                <em>opposed</em> participants' prior beliefs:
+              </p>
+              <ul>
+                <li>
+                  <strong>Information Manipulation</strong> — success rate
+                  rose from <strong>35.2% (aligned)</strong> to
+                  <strong>69.7% (misaligned)</strong>.
+                </li>
+                <li>
+                  <strong>Uncertainty Exploitation</strong> — 28.2% → 57.3%.
+                </li>
+                <li>
+                  <strong>Authority Misuse</strong> — 27.0% → 39.7%.
+                </li>
+                <li>
+                  <strong>Topic Manipulation</strong> — 27.3% → 39.0%.
+                </li>
+              </ul>
+
+              <h3 class="title is-4">2. Vulnerability is not uniform — it interacts with user traits.</h3>
+              <ul>
+                <li>
+                  Low <strong>topic knowledge</strong> amplified opinion shifts
+                  under <em>Information Manipulation</em> and
+                  <em>Uncertainty Exploitation</em>.
+                </li>
+                <li>
+                  Low <strong>topic involvement</strong> increased
+                  susceptibility to <em>Emotional Manipulation</em> and
+                  <em>Manipulative Framing</em> in misaligned conditions.
+                </li>
+                <li>
+                  Lower <strong>Cognitive Reflection Test (CRT)</strong>
+                  scores amplified susceptibility to
+                  <em>Topic Manipulation</em> and
+                  <em>Manipulative Framing</em>.
+                </li>
+              </ul>
+
+              <h3 class="title is-4">3. Plausible narratives can override distrust of details.</h3>
+              <p>
+                Think-aloud sessions with 10 participants surfaced a recurring
+                pattern: people were persuaded when manipulated statistics
+                were embedded in a coherent causal story, or when arguments
+                reframed the issue around unfalsifiable futures or
+                system-level risks — even after explicitly distrusting the
+                specific factual claims. In other words, deceptive strategies
+                often succeed via the <em>shape</em> of an argument rather
+                than its individual evidence pieces.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Implications -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Implications</h2>
             <div class="content has-text-justified">
               <div class="columns is-multiline" style="margin-top: 0.5rem;">
                 <div class="column is-half">
                   <div class="feature-card">
-                    <span class="feature-card-label taxonomy">Taxonomy</span>
-                    <h4>Deceptive Strategy Taxonomy</h4>
+                    <span class="feature-card-label method">AI Safety</span>
+                    <h4>Strategy-aware safety alignment</h4>
                     <p>
-                      A structured taxonomy of how LLMs can persuade through
-                      deception — covering fabrication, selective omission,
-                      misleading framing, false consensus, and emotional
-                      manipulation, organized by the cognitive lever each
-                      strategy targets.
+                      Current alignment focuses on hallucination and overt
+                      harm; the taxonomy gives developers concrete strategy
+                      classes to detect and suppress, especially the four
+                      most-effective misaligned-stance strategies.
                     </p>
                   </div>
                 </div>
                 <div class="column is-half">
                   <div class="feature-card">
-                    <span class="feature-card-label study">Empirical Study</span>
-                    <h4>Large-Scale Human Study</h4>
+                    <span class="feature-card-label method">Interface Design</span>
+                    <h4>Adaptive user interfaces</h4>
                     <p>
-                      A controlled, scaled experiment in which LLMs persuade
-                      human participants under varying deception conditions,
-                      with belief shifts, detection accuracy, and trust
-                      calibration measured per strategy class.
+                      Interfaces should account for individual differences:
+                      surfacing source-credibility cues for users with low
+                      topic knowledge, slowing impulsive reading for low-CRT
+                      users, and flagging when arguments oppose stated prior
+                      stances.
                     </p>
                   </div>
                 </div>
                 <div class="column is-half">
                   <div class="feature-card">
-                    <span class="feature-card-label safety">AI Safety</span>
-                    <h4>Safety Implications</h4>
+                    <span class="feature-card-label method">AI Literacy</span>
+                    <h4>Targeted literacy education</h4>
                     <p>
-                      Maps which strategies most effectively bypass human
-                      vigilance and where existing safety training fails to
-                      suppress them, giving model developers concrete signals
-                      about the gaps in alignment for persuasion contexts.
+                      Equipping users to recognize specific deceptive moves —
+                      especially Information Manipulation and Authority
+                      Misuse — through interactive scenarios with LLMs is
+                      more effective than generic "be skeptical" guidance.
                     </p>
                   </div>
                 </div>
                 <div class="column is-half">
                   <div class="feature-card">
-                    <span class="feature-card-label trust">Human-AI Trust</span>
-                    <h4>Trust Calibration</h4>
+                    <span class="feature-card-label method">Human-AI Trust</span>
+                    <h4>Calibrated trust under deception</h4>
                     <p>
-                      Characterizes how participants form, lose, and recover
-                      trust under deceptive LLM interaction — informing
-                      interface- and policy-level interventions that help
-                      users assess AI claims rather than defer to them.
+                      Trust calibration must be measured against actual
+                      strategy types, not aggregate persuasion outcomes.
+                      Users distrust details yet accept narratives — trust
+                      interventions should target this gap.
                     </p>
                   </div>
                 </div>
@@ -312,10 +651,11 @@
         <h2 class="title">BibTeX</h2>
         <pre><code>@inproceedings{yeo2026deception,
   author    = {Yeo, Haein and Jin, Seungwan and Noh, Taehyung and Shin, Yejin and Kang, Sangyeon and Heo, Sangwoo and Chung, Jiwon and Hyun, Hwarim and Han, Kyungsik},
-  title     = {Can LLMs Persuade Humans with Deception?: From a Deceptive Strategy Taxonomy to a Large-Scale Empirical Study},
-  booktitle = {Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems (CHI 2026)},
+  title     = {{``Can LLMs Persuade Humans with Deception?''}: From a Deceptive Strategy Taxonomy to a Large-Scale Empirical Study},
+  booktitle = {Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems (CHI '26)},
   year      = {2026},
-  publisher = {Association for Computing Machinery}
+  publisher = {Association for Computing Machinery},
+  doi       = {10.1145/3772318.3791188}
 }</code></pre>
       </div>
     </section>

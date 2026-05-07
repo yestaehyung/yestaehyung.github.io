@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta
       name="description"
-      content="PADO: Personality-induced multi-Agents for Detecting OCEAN in human-generated texts"
+      content="PADO: Personality-induced multi-Agents for Detecting OCEAN in human-generated texts (COLING 2025)"
     />
     <meta
       name="keywords"
-      content="Personality Detection, OCEAN, Big Five, Multi-Agent, LLM, COLING 2025, PADO"
+      content="Personality Detection, OCEAN, Big Five, Multi-Agent, LLM, COLING 2025, PADO, Psycholinguistics"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
@@ -43,7 +43,7 @@
         background: #ffffff;
         border: 1px solid #e7eaee;
         border-radius: 16px;
-        padding: 24px 26px;
+        padding: 22px 24px;
         height: 100%;
         box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
         transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -60,23 +60,73 @@
         text-transform: uppercase;
         padding: 4px 10px;
         border-radius: 999px;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
       }
       .feature-card-label.openness { background: #e6f4ea; color: #137333; }
       .feature-card-label.conscientiousness { background: #fef7e0; color: #b06000; }
       .feature-card-label.extraversion { background: #fce8e6; color: #c5221f; }
       .feature-card-label.agreeableness { background: #f3e8fd; color: #7627bb; }
       .feature-card-label.neuroticism { background: #e8f0fe; color: #1967d2; }
-      .feature-card-label.synth { background: #e3f2fd; color: #1565c0; }
+      .feature-card-label.phase { background: #e3f2fd; color: #1565c0; }
       .feature-card h4 {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         font-weight: 700;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         color: #1a1a1a;
       }
       .feature-card p {
         color: #475467;
-        line-height: 1.65;
+        line-height: 1.6;
+      }
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+        margin: 1.5rem 0;
+      }
+      .stat-card {
+        background: #fff;
+        border: 1px solid #e7eaee;
+        border-radius: 14px;
+        padding: 16px 18px;
+        text-align: left;
+      }
+      .stat-card .stat-value {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        line-height: 1.1;
+      }
+      .stat-card .stat-label {
+        font-size: 0.78rem;
+        color: #5a6470;
+        margin-top: 4px;
+      }
+      table.results-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.92rem;
+        margin-top: 1rem;
+      }
+      table.results-table th,
+      table.results-table td {
+        padding: 8px 12px;
+        border-bottom: 1px solid #eef0f3;
+        text-align: center;
+      }
+      table.results-table th {
+        background: #fafbfc;
+        color: #475467;
+        font-weight: 600;
+        text-align: center;
+      }
+      table.results-table td.method-col,
+      table.results-table th.method-col {
+        text-align: left;
+      }
+      table.results-table tr.pado-row td {
+        background: #f0f7ff;
+        font-weight: 600;
       }
     </style>
   </head>
@@ -123,32 +173,24 @@
                 human-generated texts
               </h1>
               <div class="is-size-5 publication-authors">
-                <span class="author-block">
-                  <a href="#">Haein Yeo</a><sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  <a href="https://taehyungnoh.com/">Taehyung Noh</a><sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  <a href="#">Seungwan Jin</a><sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  <a href="#">Kyungsik Han</a><sup>1,*</sup>
-                </span>
+                <span class="author-block"><a href="#">Haein Yeo</a><sup>1</sup>,</span>
+                <span class="author-block"><a href="https://taehyungnoh.com/">Taehyung Noh</a><sup>1</sup>,</span>
+                <span class="author-block"><a href="#">Seungwan Jin</a><sup>2</sup>,</span>
+                <span class="author-block"><a href="#">Kyungsik Han</a><sup>1,2,*</sup></span>
               </div>
 
               <div class="is-size-5 publication-authors">
-                <span class="author-block"
-                  ><sup>1</sup>Hanyang University</span
-                >
-                <span class="author-block"
-                  ><sup>*</sup>Corresponding Author</span
-                >
+                <span class="author-block"><sup>1</sup>Department of Artificial Intelligence, Hanyang University</span>
+              </div>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>2</sup>Department of Data Science, Hanyang University</span>
+              </div>
+              <div class="is-size-6 publication-authors">
+                <span class="author-block"><sup>*</sup>Corresponding Author</span>
               </div>
 
               <div class="column has-text-centered">
                 <div class="publication-links">
-                  <!-- Paper Link -->
                   <span class="link-block">
                     <a
                       href="https://aclanthology.org/2025.coling-main.382/"
@@ -156,22 +198,19 @@
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
+                      <span class="icon"><i class="fas fa-file-pdf"></i></span>
                       <span>Paper</span>
                     </a>
                   </span>
-                  <!-- Code Link -->
                   <span class="link-block">
                     <a
-                      href="#"
+                      href="https://github.com/haaaein/PADO"
                       class="external-link button is-normal is-rounded is-dark"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <span class="icon">
-                        <i class="fab fa-github"></i>
-                      </span>
-                      <span>Code (Coming Soon)</span>
+                      <span class="icon"><i class="fab fa-github"></i></span>
+                      <span>Code</span>
                     </a>
                   </span>
                 </div>
@@ -190,131 +229,319 @@
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
-                Detecting personality traits from text is a long-standing
-                challenge in computational psycholinguistics. Most existing
-                approaches treat personality as a flat multi-label task,
-                ignoring that the
-                <strong>Big Five (OCEAN)</strong> traits are conceptually
-                distinct and require different linguistic evidence. We
-                introduce <strong>PADO</strong> (<strong>P</strong>ersonality-induced
-                multi-<strong>A</strong>gents for <strong>D</strong>etecting
-                <strong>O</strong>CEAN), a multi-agent framework where each
-                agent is specialized for a single personality dimension.
-                Specialized agents independently analyze input text through
-                trait-specific lenses, and a coordinator agent synthesizes
-                their outputs into a final personality profile. Across
-                benchmark datasets and multiple LLM backbones, PADO yields more
-                accurate and interpretable trait predictions than single-prompt
-                baselines, especially on traits whose linguistic markers are
-                subtle or context-dependent.
+                As personality can be useful in many cases — better
+                understanding people's underlying contexts or providing
+                personalized services — research has long focused on modeling
+                personality from text. Personality detection, however, is
+                hard: traits are
+                <strong>latent and relative</strong>, vocabulary cues are
+                context-dependent, and high-quality annotated data is scarce.
+                We introduce <strong>PADO</strong>
+                (<strong>P</strong>ersonality-induced multi-<strong>A</strong>gent
+                framework for <strong>D</strong>etecting <strong>O</strong>CEAN
+                Big Five traits), the
+                <em>first LLM-based multi-agent personality detection
+                framework</em>. PADO replaces a single-perspective judgment
+                with a <strong>comparative judgment</strong> between agents
+                that have been induced toward contrasting personality
+                expressions, then aggregates their reasoning along
+                psycholinguistic axes (emotion, cognition, sociality). Across
+                two benchmarks (Essays, MyPersonality) and a range of LLMs
+                from <strong>GPT-4o</strong> down to
+                <strong>LLaMA3-8B-Instruct</strong>, PADO is consistently
+                more accurate and generalizable than zero-shot, one-shot, and
+                Chain-of-Thought prompting baselines, with particularly large
+                gains on smaller models and on traits with subtle linguistic
+                signatures.
               </p>
             </div>
           </div>
         </div>
 
-        <!-- Framework Figure -->
+        <!-- Project Image -->
         <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
-            <h2 class="title is-3">Framework Overview</h2>
+            <div class="has-text-centered" style="margin: 1rem 0 2rem;">
+              <img
+                src="https://taehyungnoh.com/images/projects/pado.png"
+                alt="PADO Framework"
+                style="max-width: 100%; height: auto; border-radius: 8px;"
+              />
+              <p style="margin-top: 1rem; color: #666; font-size: 0.95em">
+                <strong>Figure 1.</strong> Overview of PADO. For each OCEAN
+                trait, two personality-induced reasoner agents analyze the
+                text from contrasting perspectives, and a judge agent
+                determines the trait level via comparative assessment.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Motivation -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Why a Multi-Agent, Comparative Approach?</h2>
             <div class="content has-text-justified">
               <p>
-                PADO decomposes personality detection into five
-                trait-specialized analyses run in parallel, then aggregates
-                them through a coordinator agent. This decomposition mirrors
-                the conceptual structure of the OCEAN model and lets each
-                agent focus on dimension-specific cues without having to
-                balance all five traits at once.
+                Single-prompt LLM personality detection inherits the model's
+                own biases and tends to over-rely on surface keywords. Naively
+                stacking more agents helps little either, because
+                similarly-prompted agents converge on similar verdicts —
+                producing a multi-agent analogue of confirmation bias. PADO
+                instead structures disagreement: it instantiates agents
+                <em>induced</em> toward opposing endpoints of a trait, has
+                them produce evidence-grounded explanations, and uses a
+                separate judge agent to compare the two analyses. This mirrors
+                LLM-as-Judge protocols (Zheng et al., 2024) but applies them
+                to a task where the right answer depends on relative, not
+                absolute, evidence — well-suited to personality.
               </p>
+            </div>
+          </div>
+        </div>
 
-              <div class="has-text-centered" style="margin: 2rem 0">
-                <img
-                  src="https://taehyungnoh.com/images/projects/pado.png"
-                  alt="PADO Framework"
-                  style="max-width: 100%; height: auto; border-radius: 8px;"
-                />
-                <p style="margin-top: 1rem; color: #666; font-size: 0.95em">
-                  <strong>Figure 1:</strong> PADO multi-agent framework. Five
-                  trait-specialized agents analyze the input text in parallel;
-                  a coordinator agent synthesizes the OCEAN profile.
-                </p>
+        <!-- Method at a glance -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Three-Phase Pipeline</h2>
+            <div class="content">
+              <div class="columns is-multiline" style="margin-top: 0.5rem;">
+                <div class="column is-one-third">
+                  <div class="feature-card">
+                    <span class="feature-card-label phase">Phase 1</span>
+                    <h4>Personality Induction</h4>
+                    <p>
+                      Builds two reasoner agents per trait — one induced
+                      toward the high pole, one toward the low pole — using
+                      the Personality Prompting (P²) method and validated on
+                      the MPI Evaluation Dataset for internal consistency.
+                      Inducing both poles directly creates the contrast the
+                      later judgment phase needs.
+                    </p>
+                  </div>
+                </div>
+                <div class="column is-one-third">
+                  <div class="feature-card">
+                    <span class="feature-card-label phase">Phase 2</span>
+                    <h4>Psycholinguistic Explanation</h4>
+                    <p>
+                      Each induced reasoner analyzes the text along three
+                      psycholinguistic axes drawn from Pennebaker's
+                      framework: <strong>emotional</strong> (affective tone),
+                      <strong>cognitive</strong> (reasoning complexity), and
+                      <strong>social</strong> (interpersonal orientation).
+                      Outputs are evidence-grounded explanations rather than
+                      direct labels.
+                    </p>
+                  </div>
+                </div>
+                <div class="column is-one-third">
+                  <div class="feature-card">
+                    <span class="feature-card-label phase">Phase 3</span>
+                    <h4>Comparative Assessment</h4>
+                    <p>
+                      A judge agent runs three steps:
+                      <em>comparative analysis</em> (where do the two
+                      reasoners agree or disagree, and how well does each
+                      match the text?), <em>overall evaluation</em> (which
+                      explanation better fits the user), and
+                      <em>final judgment</em> (high vs. low for the trait).
+                    </p>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
 
-              <h3 class="title is-4">Five Trait-Specialized Agents</h3>
+        <!-- The five OCEAN axes -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Five OCEAN Axes</h2>
+            <div class="content has-text-justified">
+              <p>
+                The pipeline above is run independently for each of the Big
+                Five trait dimensions. Each dimension gets its own pair of
+                contrasting induced agents and its own comparative judgment
+                pass.
+              </p>
               <div class="columns is-multiline" style="margin-top: 0.5rem;">
                 <div class="column is-half">
                   <div class="feature-card">
                     <span class="feature-card-label openness">O · Openness</span>
-                    <h4>Openness Agent</h4>
+                    <h4>Openness to Experience</h4>
                     <p>
-                      Reads for curiosity, abstract reasoning, novelty-seeking
-                      vocabulary, and aesthetic engagement. Distinguishes
-                      explorative phrasing from routine descriptive language.
+                      Curiosity, abstract thinking, novelty-seeking and
+                      aesthetic engagement. The contrasting agents debate
+                      whether vocabulary signals exploratory cognition or
+                      conventional descriptive language.
                     </p>
                   </div>
                 </div>
                 <div class="column is-half">
                   <div class="feature-card">
                     <span class="feature-card-label conscientiousness">C · Conscientiousness</span>
-                    <h4>Conscientiousness Agent</h4>
+                    <h4>Conscientiousness</h4>
                     <p>
-                      Looks for goal orientation, planning, reliability cues,
-                      and self-discipline markers. Captures structure in how
-                      the writer organizes time, tasks, and obligations.
+                      Planning, reliability, and self-discipline cues. The
+                      agents weigh whether structure and goal orientation
+                      come through, against signals of impulsivity.
                     </p>
                   </div>
                 </div>
                 <div class="column is-half">
                   <div class="feature-card">
                     <span class="feature-card-label extraversion">E · Extraversion</span>
-                    <h4>Extraversion Agent</h4>
+                    <h4>Extraversion</h4>
                     <p>
-                      Detects social engagement, energy, assertive tone, and
-                      orientation toward others. Differentiates outward-facing
-                      narratives from introspective ones.
+                      Outward-facing energy, assertiveness, and social
+                      orientation. The judge resolves whether narratives are
+                      socially engaged or introspective.
                     </p>
                   </div>
                 </div>
                 <div class="column is-half">
                   <div class="feature-card">
                     <span class="feature-card-label agreeableness">A · Agreeableness</span>
-                    <h4>Agreeableness Agent</h4>
+                    <h4>Agreeableness</h4>
                     <p>
-                      Identifies warmth, cooperative framing, empathy
-                      expressions, and prosocial reasoning. Separates
-                      genuine care signals from polite formulaic phrases.
+                      Warmth, cooperation, and prosocial reasoning. The
+                      contrast helps separate genuine empathy from
+                      formulaic politeness.
                     </p>
                   </div>
                 </div>
                 <div class="column is-half is-offset-one-quarter">
                   <div class="feature-card">
                     <span class="feature-card-label neuroticism">N · Neuroticism</span>
-                    <h4>Neuroticism Agent</h4>
+                    <h4>Neuroticism</h4>
                     <p>
-                      Picks up emotional reactivity, anxiety markers,
-                      vulnerability disclosures, and stress framing.
-                      Calibrates against context to avoid mistaking
-                      situational venting for trait-level neuroticism.
+                      Emotional reactivity, anxiety markers, vulnerability
+                      disclosures. Calibrated against context so that
+                      situational venting isn't mistaken for trait-level
+                      neuroticism.
                     </p>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
 
-              <h3 class="title is-4" style="margin-top: 2rem;">Coordinator Agent</h3>
-              <div class="columns">
-                <div class="column">
-                  <div class="feature-card">
-                    <span class="feature-card-label synth">Synthesis</span>
-                    <h4>Coordinator Agent</h4>
-                    <p>
-                      Receives the trait-level outputs and consolidates them
-                      into a coherent OCEAN profile. Resolves conflicts when
-                      agents disagree, weights evidence by confidence, and
-                      produces the final structured prediction together with
-                      a short rationale.
-                    </p>
-                  </div>
-                </div>
-              </div>
+        <!-- Experiments -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Experiments</h2>
+            <div class="content has-text-justified">
+              <h3 class="title is-4">Datasets</h3>
+              <ul>
+                <li>
+                  <strong>Essays</strong> (Pennebaker &amp; King, 1999) —
+                  2,468 stream-of-consciousness essays labeled high/low on
+                  each OCEAN trait via standardized self-report. ~50
+                  sentences per essay; 10% sampled for testing.
+                </li>
+                <li>
+                  <strong>MyPersonality</strong> (Celli et al., 2013) —
+                  9,913 Facebook status messages from 250 users, each
+                  labeled high/low on OCEAN traits.
+                </li>
+              </ul>
+
+              <h3 class="title is-4">Baselines &amp; Models Tested</h3>
+              <ul>
+                <li>
+                  <strong>Encoder fine-tuning</strong>: BERT, RoBERTa
+                  (8:1:1 train/val/test split).
+                </li>
+                <li>
+                  <strong>Decoder LLMs</strong> with zero-shot, one-shot,
+                  Chain-of-Thought, and PADO: GPT-4o, GPT-3.5-turbo,
+                  Solar-10.7B-Instruct, LLaMA3-8B-Instruct.
+                </li>
+              </ul>
+
+              <h3 class="title is-4">Headline Results (F1)</h3>
+              <p>
+                On the <strong>Essays</strong> benchmark with GPT-4o, PADO
+                lifts the average F1 from 0.53 (zero-shot) / 0.51 (one-shot)
+                / 0.54 (CoT) to <strong>0.66</strong>. The same backbone on
+                <strong>MyPersonality</strong> reaches <strong>0.83 F1 on
+                Openness</strong> with PADO, well above all baselines.
+                Smaller models (LLaMA3-8B-Instruct, Solar-10.7B) show similar
+                directional improvements, confirming that the gains stem
+                from the comparative-judgment structure rather than raw
+                model scale.
+              </p>
+
+              <table class="results-table">
+                <thead>
+                  <tr>
+                    <th class="method-col">Backbone</th>
+                    <th class="method-col">Method</th>
+                    <th>O</th>
+                    <th>C</th>
+                    <th>E</th>
+                    <th>A</th>
+                    <th>N</th>
+                    <th>Avg.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="method-col" rowspan="4">GPT-4o (Essays)</td>
+                    <td class="method-col">Zero-shot</td>
+                    <td>0.62</td><td>0.38</td><td>0.41</td><td>0.59</td><td>0.64</td><td>0.53</td>
+                  </tr>
+                  <tr>
+                    <td class="method-col">One-shot</td>
+                    <td>0.39</td><td>0.43</td><td>0.51</td><td>0.58</td><td>0.66</td><td>0.51</td>
+                  </tr>
+                  <tr>
+                    <td class="method-col">CoT</td>
+                    <td>0.58</td><td>0.45</td><td>0.48</td><td>0.57</td><td>0.61</td><td>0.54</td>
+                  </tr>
+                  <tr class="pado-row">
+                    <td class="method-col">PADO (ours)</td>
+                    <td>0.70</td><td>0.70</td><td>0.63</td><td>0.65</td><td>0.61</td><td>0.66</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p style="font-size: 0.85rem; color: #666; margin-top: 6px;">
+                F1 scores on the Essays benchmark with GPT-4o as backbone,
+                excerpted from the paper. PADO improves the average and
+                substantially closes the gap on Conscientiousness and
+                Extraversion.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contributions -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Contributions</h2>
+            <div class="content has-text-justified">
+              <ul style="font-size: 1.02em; line-height: 1.7">
+                <li>
+                  A novel <strong>personality-induced multi-agent framework</strong>
+                  for OCEAN detection that leverages contrasting agent
+                  perspectives, the first such framework using LLM agents.
+                </li>
+                <li>
+                  Demonstration that PADO is
+                  <strong>backbone-agnostic</strong> across model scales
+                  (GPT-4o through LLaMA3-8B), with particularly strong
+                  improvements on smaller models.
+                </li>
+                <li>
+                  A
+                  <strong>psycholinguistically-grounded reasoning</strong>
+                  scheme that decomposes each agent's analysis into
+                  emotional, cognitive, and social axes — capturing implicit
+                  and relative trait signals without additional training.
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -326,9 +553,10 @@
         <h2 class="title">BibTeX</h2>
         <pre><code>@inproceedings{yeo2025pado,
   author    = {Yeo, Haein and Noh, Taehyung and Jin, Seungwan and Han, Kyungsik},
-  title     = {PADO: Personality-induced multi-Agents for Detecting OCEAN in human-generated texts},
+  title     = {{PADO}: Personality-induced multi-Agents for Detecting {OCEAN} in human-generated texts},
   booktitle = {Proceedings of the 31st International Conference on Computational Linguistics (COLING 2025)},
   year      = {2025},
+  pages     = {5719--5736},
   url       = {https://aclanthology.org/2025.coling-main.382/}
 }</code></pre>
       </div>
