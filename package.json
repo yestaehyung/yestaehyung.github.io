@@ -21,11 +21,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "sync:openclaw": "node scripts/sync-openclaw-status.mjs",
-    "sync:openclaw:loop": "sh -c 'while true; do npm run sync:openclaw; sleep ${OPENCLAW_SYNC_INTERVAL_SEC:-10}; done'",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run sync:openclaw && npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {

@@ -7,17 +7,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm start` — local dev server at http://localhost:3000
 - `npm run build` — production build to `build/`
 - `npm test` — run tests (interactive watch mode); `npm test -- --testPathPattern=Blog` runs a single suite, `CI=true npm test` runs once non-interactively
-- `npm run sync:openclaw` — refresh `public/openclaw/agent-feed.json` from a local `OPENCLAW_HOME` (no-op when not set)
-- `npm run sync:openclaw:loop` — same, every `OPENCLAW_SYNC_INTERVAL_SEC` seconds (default 10) for local desktop syncing
-- `npm run deploy` — runs `predeploy` (sync:openclaw + build) then publishes `build/` to the `gh-pages` branch via the `gh-pages` package
-
-`scripts/sync-openclaw-status.mjs` is referenced by the sync scripts but is not tracked in this repo — sync commands degrade gracefully if it or `OPENCLAW_HOME` is missing.
+- `npm run deploy` — builds and publishes `build/` to the `gh-pages` branch via the `gh-pages` package (manual fallback for the legacy GitHub Pages site at yestaehyung.github.io)
 
 ## Deployment
 
 Primary host is **Vercel** at https://taehyungnoh.com (configured by `homepage` in `package.json` and `vercel.json`). Vercel auto-builds from `main`.
 
-GitHub Actions (`.github/workflows/openclaw-hourly-deploy.yml`) also runs hourly: it builds and pushes to the `gh-pages` branch via `peaceiris/actions-gh-pages`. Treat `gh-pages` as a generated artifact (do not edit directly).
+The `gh-pages` branch holds an old GitHub Pages snapshot at https://yestaehyung.github.io and is no longer auto-updated — refresh it manually with `npm run deploy` if needed.
 
 ## Architecture
 
@@ -33,7 +29,6 @@ Uses **HashRouter** so paths work on static hosts without server rewrites:
 - **Projects**: `src/data/projectsData.js` (single source consumed by both `FeaturedProjects` and `ResearchProjects`). Adding a project = editing this file.
 - **Publications**: hard-coded array inside `src/components/Publications.js`. Bold author = this author.
 - **Blog posts**: `public/blog/posts.json` — fetched at runtime by `Blog.js`. Each post has structured Korean/English research-paper sections (background, motivation, gap, methodology, results, etc.) keyed by name; `Blog.js` maps those keys to display labels.
-- **OpenClaw feed**: `public/openclaw/agent-feed.json` — periodically replaced by the sync scripts; consumed by the agent-monitoring UI.
 
 ### Notable subsystems
 - **Typography balancing** (`src/lib/pretextLayout.js` + `src/components/PretextBalancedText.js`) wraps `@chenglou/pretext` to balance multi-line headings/cards. Tests live next to the source.
