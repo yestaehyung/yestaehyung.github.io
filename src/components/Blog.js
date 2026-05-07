@@ -5,7 +5,7 @@ import BlogPostHero from "./BlogPostHero";
 import BlogRhythmSection from "./BlogRhythmSection";
 import "../styles/Blog.css";
 
-const sectionLabels = {
+const paperSectionLabels = {
   background: "1. 연구 배경 (Research Background)",
   motivation: "2. 연구 동기 (Research Motivation)",
   objectives: "3. 연구 목적 & 문제 정의 (Objectives & Problem Statement)",
@@ -22,7 +22,7 @@ const sectionLabels = {
   significance: "14. 중요성 (Significance)",
 };
 
-const sectionTocLabels = {
+const paperSectionTocLabels = {
   background: "연구 배경",
   motivation: "연구 동기",
   objectives: "연구 목적",
@@ -39,7 +39,35 @@ const sectionTocLabels = {
   significance: "중요성",
 };
 
-const sectionOrder = Object.keys(sectionLabels);
+const paperSectionOrder = Object.keys(paperSectionLabels);
+
+const isEssay = (post) => post?.type === "essay";
+
+const resolveLabels = (post) => {
+  if (isEssay(post) && post.sectionLabels) {
+    return post.sectionLabels;
+  }
+  return paperSectionLabels;
+};
+
+const resolveTocLabels = (post) => {
+  if (isEssay(post)) {
+    const labels = post.sectionLabels || {};
+    const toc = {};
+    for (const key of Object.keys(labels)) {
+      toc[key] = labels[key].replace(/^\d+\.\s*/, "");
+    }
+    return toc;
+  }
+  return paperSectionTocLabels;
+};
+
+const resolveSectionOrder = (post) => {
+  if (isEssay(post)) {
+    return Object.keys(post.sections || {});
+  }
+  return paperSectionOrder;
+};
 
 const parseTaskItem = (text) => {
   const taskMatch = text.match(/^\[( |x|X)\]\s+(.*)$/);
@@ -465,14 +493,49 @@ const MarkdownRenderer = ({ content }) => {
 };
 
 // Blog list page
+const FILTERS = [
+  { key: "all", label: "All" },
+  { key: "paper", label: "Paper Reviews" },
+  { key: "essay", label: "Essays" },
+];
+
+const subtitleByFilter = {
+  all: "Paper reviews and essays",
+  paper: "Weekly paper reviews by our AI research agents",
+  essay: "Notes on tools, workflows, and research practice",
+};
+
 const BlogList = ({ posts }) => {
+  const [filter, setFilter] = useState("all");
+
+  const visiblePosts = useMemo(() => {
+    if (filter === "all") return posts;
+    if (filter === "paper") return posts.filter((p) => (p.type ?? "paper") === "paper");
+    return posts.filter((p) => p.type === filter);
+  }, [posts, filter]);
+
   return (
     <section className="blog">
       <h2>Blog</h2>
-      <p className="blog-subtitle">Weekly paper reviews by our AI research agents</p>
+      <p className="blog-subtitle">{subtitleByFilter[filter]}</p>
+
+      <div className="blog-filter-pills" role="tablist" aria-label="Filter posts">
+        {FILTERS.map((f) => (
+          <button
+            key={f.key}
+            type="button"
+            role="tab"
+            aria-selected={filter === f.key}
+            className={`blog-filter-pill ${filter === f.key ? "is-active" : ""}`}
+            onClick={() => setFilter(f.key)}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
 
       <div className="blog-list">
-        {posts.map((post) => (
+        {visiblePosts.map((post) => (
           <Link key={post.id} to={`/blog/${post.id}`} className="blog-card">
             {post.thumbnail && (
               <div className="blog-card-image">
@@ -482,7 +545,8 @@ const BlogList = ({ posts }) => {
             <div className="blog-card-content">
               <div className="blog-card-meta">
                 <span className="blog-card-date">{post.date}</span>
-                <span className="blog-card-venue">{post.venue}</span>
+                {post.venue && <span className="blog-card-venue">{post.venue}</span>}
+                {isEssay(post) && <span className="blog-card-type">Essay</span>}
               </div>
               <PretextBalancedText
                 as="h3"
@@ -515,7 +579,7 @@ const BlogPost = ({ posts }) => {
   const [activeSection, setActiveSection] = useState(null);
 
   const availableSections = useMemo(
-    () => (post ? sectionOrder.filter((key) => post.sections[key]) : []),
+    () => (post ? resolveSectionOrder(post).filter((key) => post.sections[key]) : []),
     [post]
   );
 
@@ -549,18 +613,21 @@ const BlogPost = ({ posts }) => {
     );
   }
 
+  const labels = resolveLabels(post);
+  const tocLabels = resolveTocLabels(post);
+
   const sectionNumber = (key) => {
-    const label = sectionLabels[key] || "";
+    const label = labels[key] || "";
     const match = label.match(/^(\d+)\./);
     return match ? match[1] : "";
   };
 
   const sectionTitle = (key) => {
-    const label = sectionLabels[key] || "";
+    const label = labels[key] || "";
     return label.replace(/^\d+\.\s*/, "");
   };
 
-  const sectionTocTitle = (key) => sectionTocLabels[key] || sectionTitle(key);
+  const sectionTocTitle = (key) => tocLabels[key] || sectionTitle(key);
 
   return (
     <article className="blog-post">

@@ -12,7 +12,86 @@
 .blog-subtitle {
   color: #888;
   font-size: 0.9rem;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
+}
+
+/* Filter pills */
+.blog-filter-pills {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.blog-filter-pill {
+  appearance: none;
+  border: 1px solid #e0e3e7;
+  background: #fff;
+  color: #555;
+  font-size: 0.85rem;
+  font-family: inherit;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.blog-filter-pill:hover {
+  border-color: #c5cad0;
+  color: #222;
+}
+
+.blog-filter-pill.is-active {
+  background: #1a1a1a;
+  color: #fff;
+  border-color: #1a1a1a;
+}
+
+.blog-card-type {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #eef1f5;
+  color: #4a5260;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Video embeds in essay hero */
+.blog-post-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  margin: 20px 0 8px;
+}
+
+.blog-post-video {
+  margin: 0;
+}
+
+.blog-post-video-frame {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+}
+
+.blog-post-video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.blog-post-video-caption {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
 }
 
 /* Blog list */

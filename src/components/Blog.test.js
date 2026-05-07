@@ -98,7 +98,7 @@ describe("Blog", () => {
       "Maximizing mutual information between user-contexts and responses improves LLM personalization with no additional data",
       expect.objectContaining({
         maxWidth: 920,
-        font: '600 16px "SUIT"',
+        font: '600 16px "Google Sans Flex"',
         lineHeight: 22,
       })
     );
@@ -195,7 +195,7 @@ describe("Blog", () => {
       "Maximizing mutual information between user-contexts and responses improves LLM personalization with no additional data",
       expect.objectContaining({
         maxWidth: expect.any(Number),
-        font: '700 32px "SUIT"',
+        font: '700 32px "Google Sans Flex"',
         lineHeight: 44,
       })
     );

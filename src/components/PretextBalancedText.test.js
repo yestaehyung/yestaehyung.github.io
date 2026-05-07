@@ -24,7 +24,7 @@ describe("PretextBalancedText", () => {
         text="alpha beta gamma"
         maxWidth={280}
         lineHeight={24}
-        font='700 18px "SUIT"'
+        font='700 18px "Google Sans Flex"'
         prepareOptions={prepareOptions}
       />
     );
@@ -32,7 +32,7 @@ describe("PretextBalancedText", () => {
     expect(getBalancedLines).toHaveBeenCalledWith("alpha beta gamma", {
       maxWidth: 280,
       lineHeight: 24,
-      font: '700 18px "SUIT"',
+      font: '700 18px "Google Sans Flex"',
       prepareOptions,
     });
   });

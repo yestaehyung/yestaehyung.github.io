@@ -1,5 +1,49 @@
 [
   {
+    "id": "2026-05-07-research-meeting-slides-skill",
+    "title": "Research Meeting Slides: 교수님 미팅 슬라이드를 자동화하는 Skill",
+    "date": "2026-05-07",
+    "author": "Taehyung Noh",
+    "type": "essay",
+    "tags": [
+      "Skill",
+      "Research Workflow",
+      "Slide Generation",
+      "Imagegen",
+      "Advisor Meeting",
+      "HCI"
+    ],
+    "thumbnail": null,
+    "videos": [
+      {
+        "url": "https://youtu.be/QW6qo4MOeL0",
+        "title": "research-meeting-slides 데모 1"
+      },
+      {
+        "url": "https://youtu.be/96bo422tDp4",
+        "title": "research-meeting-slides 데모 2"
+      }
+    ],
+    "sectionLabels": {
+      "motivation": "1. 만들게 된 배경",
+      "goals": "2. 무엇을 자동화하고 싶었는가",
+      "design": "3. 워크플로우 설계",
+      "figureMode": "4. Paper Figure Mode",
+      "outputs": "5. 산출물 형식",
+      "lessons": "6. 만들면서 배운 점",
+      "next": "7. 앞으로"
+    },
+    "sections": {
+      "motivation": "연구실에서 교수님 개인 미팅을 준비할 때마다 비슷한 구조의 슬라이드를 만들고 있었다. 연구 배경, gap, 가장 가까운 prior work, 재정의된 research question, 이전 시도가 왜 막혔는지, 지금의 방법론, evaluation, 그리고 advisor에게 무엇을 확인받고 싶은지 — 이 흐름은 프로젝트가 바뀌어도 거의 그대로다. 매번 백지부터 시작하기엔 반복 작업이 많았다.\n\n또 한 가지 문제는, 이 슬라이드의 목적이 외부 발표용 deck과 다르다는 점이다. 학회 발표는 청중을 설득하기 위한 narrative arc가 필요하지만, advisor 미팅은 연구 logic이 inspect 가능하도록 노출되어야 한다. 같은 figure도 외부용은 깔끔한 마케팅 톤이 맞지만, 내부 미팅에서는 \"이 부분이 약한데 어떻게 보강할까\"를 같이 보기 위한 figure가 필요하다.\n\n이 차이를 매번 의식하면서 슬라이드를 짜는 것보다, 처음부터 advisor-facing 미팅 전용으로 최적화된 도구를 만드는 게 낫겠다고 판단했다. 그래서 만든 것이 `research-meeting-slides` skill이다.",
+      "goals": "핵심은 세 가지다.\n\n첫째, **input의 다양성을 흡수한다.** 미팅 직전에 손에 있는 자료가 정돈된 Markdown이 아닐 수 있다. 거친 노트, PDF 한 편, 이미지 캡처, 또는 머릿속에서 막 정리되는 산문일 수도 있다. Skill은 이 모든 입력을 받아 deck outline으로 변환할 수 있어야 한다.\n\n둘째, **slide structure를 매번 재발견하지 않는다.** 12개 슬라이드 default flow (Title → Today's focus → Research background → Existing approaches → Gap → Closest prior work → Research question → Previous experiment → Current direction → Proposed methodology → Implementation plan → Evaluation plan → Discussion points)를 default로 깔아두고, 미팅 종류(progress update / direction check / methodology explanation / MD-to-slides)에 따라 강조점만 바꾸도록 했다.\n\n셋째, **figure를 imagegen-first로 만든다.** Methodology slide나 pipeline slide는 그림 한 장이 글 5줄을 대신한다. 매번 손으로 SVG/PPT 도형을 그리는 대신, 기본은 imagegen으로 paper-style figure를 먼저 시도하고, editable shape이 꼭 필요한 경우에만 SVG/TikZ로 fallback하는 정책을 잡았다.",
+      "design": "Skill의 7-step workflow는 다음과 같다.\n\n```\n1. Identify meeting purpose (4 modes)\n2. Read source artifact (MD/PDF/image/prose)\n3. Load style-guide.md (white bg, black text, blue takeaway)\n4. Build default 12-slide flow\n5. Produce slide-ready content (Korean + English technical terms)\n6. Create figure assets imagegen-first\n7. Output as MD/PPTX/Keynote\n```\n\n각 step에서 가장 신경 쓴 것은 **decoupling**이다. Style guide는 별도 reference 파일(`references/style-guide.md`)로 빼서, deck content 생성 로직과 분리했다. 이렇게 해두면 lab 전체의 발표 스타일이 바뀌어도 skill 코어는 안 건드리고 reference만 교체하면 된다.\n\n또 한 가지는 **slide당 logical function 한 개** 원칙이다. 한 슬라이드는 정확히 한 질문에 답한다 — Why is this research needed? / What is missing in prior work? / What changed from the previous direction? 식이다. Bullet이 12개씩 들어찬 슬라이드는 advisor가 어디에 코멘트해야 할지 모호하므로 명시적으로 금지했다.",
+      "figureMode": "논문 figure 톤의 그림을 만드는 것은 별도 mode로 분리했다. 사용자가 \"논문 Figure\", \"CHI/UIST 느낌\", \"학술적 figure\"를 요청하거나 특정 lab의 paper figure style을 reference로 인용하면 trigger된다.\n\nPaper Figure Mode의 핵심 제약:\n\n- **paper PDF의 in-paper figure**를 style reference로 우선. Project page, webzine, 보도용 이미지는 명시적 허락 없이는 사용하지 않는다.\n- **scholarly job 중심**으로 prompt를 짠다: 이 figure가 어떤 contribution을 설명하는지, 어떤 running example이 panel을 흐르는지, panel 번호는 어떻게 매겨지는지, generic ML pipeline로 보이지 않게 막는 negative constraint은 무엇인지.\n- **paper-like visual grammar**: 흰 배경, 작은 UI-like card나 mini data artifact, 번호 callout, 얇은 stroke, muted blue/green/gray accent, 최소 장식, academic layout.\n- **generic AI pipeline 다이어그램 금지**. 특히 user behavior, preference evidence, ontology, interaction flow가 contribution일 때는 abstract box만 있으면 contribution이 보이지 않는다. 실제 example이 method를 흐르는 그림이어야 한다.\n\n생성된 figure는 다섯 개의 check를 통과해야 슬라이드에 박힌다.\n\n1. Academic HCI/system paper figure처럼 보인다 (마케팅 인포그래픽 X)\n2. Abstract box만이 아닌 concrete running example이 있다\n3. Method의 contribution이 긴 슬라이드 설명 없이 legible하다\n4. 3D/robot/stock-AI/foundation-model pipeline 이미지가 아니다\n5. 텍스트가 image generation에서 살아남을 만큼 짧다",
+      "outputs": "Skill의 출력은 보통 세 가지 중 하나다.\n\n**(1) Slide outline as Markdown** — 가장 많이 쓰는 mode. Heading은 슬라이드, blockquote는 파란색 takeaway로 매핑된다. 이 Markdown은 그대로 review용으로도 좋고, python-pptx 같은 도구로 PPTX로 변환할 때의 source-of-truth로도 쓰인다.\n\n**(2) Methodology figure as PNG** — imagegen이 생성한 paper-style figure. 기본 generated-images directory에서 슬라이드 옆 `assets/` 디렉토리로 복사하고, `![Figure: short caption](assets/<filename>.png)` 형태로 Markdown에 embed한다.\n\n**(3) PPTX/Keynote** — 최종 production용. 단, style guide를 그대로 따라 만들고, 다이어그램은 사람이 직접 손볼 만큼만 단순하게 둔다 (overengineered SmartArt 금지).\n\n세 출력은 모두 같은 source artifact(연구 노트/MD/PDF)에서 파생되므로, 미팅이 한 번 끝나면 다음 미팅 준비는 이전 deck markdown을 input으로 다시 돌리는 것만으로 시작점이 잡힌다.",
+      "lessons": "**Skill은 doc이 아니라 contract다.** 처음에 SKILL.md를 README처럼 길게 썼더니, 막상 호출됐을 때 어디까지 따라야 하는지가 모호했다. 다시 쓸 때는 \"언제 이 skill을 호출하나\", \"정확히 어떤 step을 어떤 순서로 따르나\", \"어떤 output을 내야 하나\"를 명시적으로 박았다. 모호한 advice보다 검증 가능한 step list가 훨씬 잘 동작한다.\n\n**Style은 reference로 외부화한다.** 컬러 코드나 슬라이드 typography 같은 디테일을 SKILL.md 본문에 박으면 lab 단위로 spec이 바뀔 때마다 skill을 수정해야 한다. `references/style-guide.md`로 분리해두니 한국어/영어 deck, lab specific 톤 조정 모두 reference만 갈아끼우면 끝이다.\n\n**Imagegen-first는 figure의 default이지 강제가 아니다.** 다이어그램이 본질적으로 editable shape여야 하는 경우(예: TikZ로 정밀하게 좌표가 박혀야 하는 evaluation graph)는 imagegen이 오히려 손해다. 그래서 default는 imagegen이지만, \"SVG/TikZ/PPT-native editable shape\"이 명시될 때는 즉시 fallback하도록 명문화했다.",
+      "next": "지금은 본인 미팅 슬라이드용으로만 쓰지만, 다음 단계로 두 가지를 고려 중이다.\n\n**Lab-wide adoption.** 다른 학생들이 본인 advisor 미팅에서 같은 default flow를 쓰면 시간이 절약된다. 단, advisor마다 선호 톤이 다르므로 lab 단위가 아니라 **advisor profile 단위**로 reference를 갈아끼우는 형태가 맞을 것 같다 (예: `references/style-guide.han.md`).\n\n**Paper figure carryover.** 이 skill로 만든 figure 중 일부는 그대로 학회 final figure로 발전시킬 만하다. 이 경로(internal meeting figure → CHI/UIST/AAAI submission figure)를 매끄럽게 잇는 helper를 추가하면, 미팅 figure 만드는 시간이 final figure 만드는 시간으로 redirect된다.\n\n당분간은 본인이 매주 사용하면서 case study를 쌓는 단계다. SKILL.md는 contract이므로, 실제로 미팅에서 \"이 step이 부족하다\", \"이 output이 너무 길다\" 같은 피드백이 쌓이면 그때마다 수정할 예정이다."
+    }
+  },
+  {
     "id": "2026-03-31-user-preference-modeling-for-conversational-llm-agents-weak-rewards-from-retrieval-augmented-interaction",
     "title": "User Preference Modeling for Conversational LLM Agents: Weak Rewards from Retrieval-Augmented Interaction",
     "date": "2026-03-31",
