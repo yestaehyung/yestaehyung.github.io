@@ -45,6 +45,10 @@ const projectsData = [
         url: "https://taehyungnoh.com/aaai26-triple/#",
         text: "Project Page",
       },
+      {
+        url: "https://youtu.be/96bo422tDp4",
+        text: "Video",
+      },
     ],
   },
   {
@@ -60,6 +64,10 @@ const projectsData = [
       {
         url: "https://taehyungnoh.com/cikm25-triple/#",
         text: "Project Page",
+      },
+      {
+        url: "https://youtu.be/QW6qo4MOeL0",
+        text: "Video",
       },
     ],
   },

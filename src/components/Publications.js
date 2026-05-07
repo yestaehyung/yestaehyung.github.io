@@ -50,6 +50,10 @@ const Publications = () => {
           url: "https://taehyungnoh.com/aaai26-triple/#",
           text: "Web",
         },
+        {
+          url: "https://youtu.be/96bo422tDp4",
+          text: "Video",
+        },
       ],
     },
     {
@@ -73,6 +77,10 @@ const Publications = () => {
         {
           url: "https://taehyungnoh.com/cikm25-triple/#",
           text: "Web",
+        },
+        {
+          url: "https://youtu.be/QW6qo4MOeL0",
+          text: "Video",
         },
       ],
     },
