@@ -13,6 +13,10 @@ const projectsData = [
         url: "https://astlyi.s3.ap-northeast-2.amazonaws.com/2026/2026_CHI_Can_LLMs_Persuade_Humans_with_Deception.pdf",
         text: "Paper",
       },
+      {
+        url: "https://taehyungnoh.com/chi26-deception/",
+        text: "Project Page",
+      },
     ],
   },
   {
@@ -100,6 +104,10 @@ const projectsData = [
       {
         url: "https://aclanthology.org/2025.coling-main.382/",
         text: "Paper",
+      },
+      {
+        url: "https://taehyungnoh.com/pado/",
+        text: "Project Page",
       },
     ],
   },
