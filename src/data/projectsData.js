@@ -31,7 +31,7 @@ const projectsData = [
     links: [
       {
         url: "https://keti-sam-labeling.vercel.app/",
-        text: "Project Webpage",
+        text: "Project Page",
       },
     ],
   },
@@ -46,7 +46,7 @@ const projectsData = [
     status: "completed",
     links: [
       {
-        url: "https://taehyungnoh.com/aaai26-triple/#",
+        url: "https://taehyungnoh.com/aaai26-triple/",
         text: "Project Page",
       },
       {
@@ -66,7 +66,7 @@ const projectsData = [
     status: "completed",
     links: [
       {
-        url: "https://taehyungnoh.com/cikm25-triple/#",
+        url: "https://taehyungnoh.com/cikm25-triple/",
         text: "Project Page",
       },
       {

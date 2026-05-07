@@ -28,11 +28,11 @@ const Publications = () => {
       links: [
         {
           url: "https://astlyi.s3.ap-northeast-2.amazonaws.com/2026/2026_CHI_Can_LLMs_Persuade_Humans_with_Deception.pdf",
-          text: "PDF",
+          text: "Paper",
         },
         {
           url: "https://taehyungnoh.com/chi26-deception/",
-          text: "Web",
+          text: "Project Page",
         },
       ],
     },
@@ -51,8 +51,8 @@ const Publications = () => {
       image: `${process.env.PUBLIC_URL}/images/projects/aaai_framework.png`,
       links: [
         {
-          url: "https://taehyungnoh.com/aaai26-triple/#",
-          text: "Web",
+          url: "https://taehyungnoh.com/aaai26-triple/",
+          text: "Project Page",
         },
         {
           url: "https://youtu.be/96bo422tDp4",
@@ -76,11 +76,11 @@ const Publications = () => {
       links: [
         {
           url: "https://dl.acm.org/doi/10.1145/3746252.3760965",
-          text: "PDF",
+          text: "Paper",
         },
         {
-          url: "https://taehyungnoh.com/cikm25-triple/#",
-          text: "Web",
+          url: "https://taehyungnoh.com/cikm25-triple/",
+          text: "Project Page",
         },
         {
           url: "https://youtu.be/QW6qo4MOeL0",
@@ -117,7 +117,7 @@ const Publications = () => {
       links: [
         {
           url: "https://astlyi.s3.ap-northeast-2.amazonaws.com/2025/TTA_LLM+%E1%84%8B%E1%85%B2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5%E1%86%BC+%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A7%E1%86%A8+%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%85%E1%85%A3%E1%86%A8%E1%84%8B%E1%85%A6+%E1%84%83%E1%85%A2%E1%84%92%E1%85%A1%E1%86%AB+%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A5%E1%86%A8+%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8.pdf",
-          text: "PDF",
+          text: "Paper",
         },
       ],
     },
@@ -137,11 +137,11 @@ const Publications = () => {
       links: [
         {
           url: "https://aclanthology.org/2025.coling-main.382/",
-          text: "PDF",
+          text: "Paper",
         },
         {
           url: "https://taehyungnoh.com/pado/",
-          text: "Web",
+          text: "Project Page",
         },
       ],
     },
@@ -161,7 +161,7 @@ const Publications = () => {
       links: [
         {
           url: "https://link.springer.com/chapter/10.1007/978-3-031-73010-8_4",
-          text: "PDF",
+          text: "Paper",
         },
       ],
     },
@@ -181,11 +181,11 @@ const Publications = () => {
       links: [
         {
           url: "https://dl.acm.org/doi/abs/10.1145/3544549.3585641",
-          text: "PDF",
+          text: "Paper",
         },
         {
           url: "https://taehyungnoh.com/lbw-mos/",
-          text: "Web",
+          text: "Project Page",
         },
       ],
     },
