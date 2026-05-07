@@ -140,7 +140,7 @@ const Publications = () => {
           text: "Paper",
         },
         {
-          url: "https://taehyungnoh.com/pado/",
+          url: "https://taehyungnoh.com/coling25-pado/",
           text: "Project Page",
         },
       ],
@@ -184,7 +184,7 @@ const Publications = () => {
           text: "Paper",
         },
         {
-          url: "https://taehyungnoh.com/lbw-mos/",
+          url: "https://taehyungnoh.com/chi23-mos/",
           text: "Project Page",
         },
       ],

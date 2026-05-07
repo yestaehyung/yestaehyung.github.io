@@ -37,7 +37,7 @@ Uses **HashRouter** so paths work on static hosts without server rewrites:
 - **Easter egg**: triple-clicking section titles in `ResearchProjects`/`Publications` triggers a "chaos mode" animation.
 
 ### Standalone project sub-sites
-`public/aaai26-triple/`, `public/cikm25-triple/`, `public/lbw-mos/` are self-contained Bulma-based paper landing pages served as static assets under their own paths (no React integration). When a project page is "imported", it's dropped into `public/` rather than rebuilt as a React route.
+`public/aaai26-triple/`, `public/cikm25-triple/`, `public/chi23-mos/` are self-contained Bulma-based paper landing pages served as static assets under their own paths (no React integration). When a project page is "imported", it's dropped into `public/` rather than rebuilt as a React route.
 
 ### Static assets
 Profile image at `public/images/profile.jpg`, project images at `public/images/projects/`, CV PDF at `public/CV_Taehyung/main.pdf`. Reference via `process.env.PUBLIC_URL`. Each component has a matching CSS file in `src/styles/`.
