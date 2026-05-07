@@ -19,7 +19,7 @@ const BlogPostHero = ({ post }) => {
         className="blog-post-title"
         lineClassName="blog-post-title-line"
         maxWidth={920}
-        font='700 32px "SUIT"'
+        font='700 32px "Google Sans Flex"'
         lineHeight={44}
       />
 

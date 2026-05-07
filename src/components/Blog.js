@@ -491,7 +491,7 @@ const BlogList = ({ posts }) => {
                 lineClassName="blog-card-title-line"
                 maxWidth={920}
                 maxLines={2}
-                font='600 16px "SUIT"'
+                font='600 16px "Google Sans Flex"'
                 lineHeight={22}
               />
               <p className="blog-card-author">by {post.author}</p>

@@ -8,7 +8,7 @@ export function getBalancedLines(text, options = {}) {
 
   const maxWidth = Number(options.maxWidth) || 320;
   const lineHeight = Number(options.lineHeight) || 28;
-  const font = options.font || '600 32px "SUIT"';
+  const font = options.font || '600 32px "Google Sans Flex"';
 
   try {
     const { prepareWithSegments, layoutWithLines } = require("@chenglou/pretext");
