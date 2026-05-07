@@ -42,7 +42,7 @@ const projectsData = [
     status: "completed",
     links: [
       {
-        url: "https://yestaehyung.github.io/aaai26-triple/#",
+        url: "https://taehyungnoh.com/aaai26-triple/#",
         text: "Project Page",
       },
     ],
@@ -58,7 +58,7 @@ const projectsData = [
     status: "completed",
     links: [
       {
-        url: "https://yestaehyung.github.io/cikm25-triple/#",
+        url: "https://taehyungnoh.com/cikm25-triple/#",
         text: "Project Page",
       },
     ],
@@ -122,7 +122,7 @@ const projectsData = [
     status: "completed",
     links: [
       {
-        url: "https://yestaehyung.github.io/lbw-mos/",
+        url: "https://taehyungnoh.com/lbw-mos/",
         text: "Project Page",
       },
     ],
