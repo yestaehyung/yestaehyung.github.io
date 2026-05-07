@@ -20,16 +20,31 @@ const Header = () => {
     }
   };
 
+  const scrollToHome = (e) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="header">
       <div className="header-content">
-        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+        <Link
+          to="/"
+          onClick={scrollToHome}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
           <h1>Taehyung Noh</h1>
         </Link>
         <nav>
           <ul>
             <li>
-              <Link to="/" className={location.pathname === "/" ? "active" : ""}>
+              <Link
+                to="/"
+                onClick={scrollToHome}
+                className={location.pathname === "/" ? "active" : ""}
+              >
                 About Me
               </Link>
             </li>
