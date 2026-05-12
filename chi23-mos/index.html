@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Research Project Page" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Research Project</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+    <link rel="stylesheet" href="./static/css/index.css" />
+    <link rel="icon" href="./static/images/favicon.svg" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                A Study on User Perception and Experience Differences in
+                Recommendation Results by Domain Expertise: The Case of Fashion
+                Domains
+              </h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  Taehyung Noh<sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  Haein Yeo<sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  Myungjin Kim<sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  Kyungsik Han<sup>1</sup>,
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <sup>1</sup>Hanyang University</span
+                >
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- Paper Link -->
+                  <span class="link-block">
+                    <a
+                      href="https://dl.acm.org/doi/abs/10.1145/3544549.3585641"
+                      class="external-link button is-normal is-rounded is-dark"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+                  <!-- Video Link -->
+                  <span class="link-block">
+                    <a
+                      href="https://youtu.be/L2ZH-R64o3M?si=wRvb745dQ1f4vHaP"
+                      class="external-link button is-normal is-rounded is-dark"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="icon">
+                        <i class="fab fa-youtube"></i>
+                      </span>
+                      <span>Video</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Abstract Section -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Recommender systems widely support user decision-making, yet
+                users differ in how they understand and evaluate algorithmic
+                results. This study investigates how domain
+                expertise—specifically fashion knowledge and interest—shapes
+                user perception and satisfaction with fashion-recommendation
+                outcomes. We built My Own Style (MOS), a dashboard that analyzes
+                a given outfit image and recommends similar/diverse fashion
+                items using three algorithms with different similarity–diversity
+                characteristics. A large-scale study with 166 participants shows
+                that fashion experts better understand algorithmic outputs and
+                prefer highly similar recommendations, whereas non-experts
+                prefer more diverse results. These findings provide empirical
+                implications for designing personalized RS experiences based on
+                domain expertise.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Overview</h2>
+            <div class="content has-text-justified">
+              <h3 class="title is-4">Research Questions</h3>
+              <p>
+                This study addresses two key research questions: First,
+                <strong
+                  >do domain experts perceive and understand recommendation
+                  results differently?</strong
+                >
+                Second,
+                <strong
+                  >do domain experts prefer different types of recommendation
+                  results?</strong
+                >
+                These questions guide our investigation into how fashion
+                expertise influences user interaction with recommender systems.
+              </p>
+
+              <h3 class="title is-4" style="margin-top: 2rem">Key Idea</h3>
+              <p>
+                User satisfaction and interpretation of recommender system
+                outputs vary by domain knowledge. Thus, instead of a single
+                one-size-fits-all recommender, RS should adapt the
+                similarity–diversity balance depending on who the user is
+                (expert vs. general user). This personalized approach can
+                enhance both user understanding and satisfaction with
+                recommendation results.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- My Own Style (MOS) Section -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">System: My Own Style (MOS)</h2>
+            <div class="content has-text-justified">
+              <p>
+                MOS is a dashboard that recommends outfits for an input fashion
+                image using three tailored algorithms.
+              </p>
+
+              <h3 class="title is-4" style="margin-top: 2rem">Dataset</h3>
+              <p>
+                Our system leverages a comprehensive dataset of
+                <strong>699,613 fashion images</strong>, including 401,825
+                runway images from 2010–2022, 48,533 public fashion images, and
+                249,255 street fashion photographs. This diverse collection
+                enables robust recommendations across various fashion contexts
+                and styles.
+              </p>
+
+              <h3 class="title is-4" style="margin-top: 2rem">Algorithms</h3>
+              <p>
+                MOS implements three distinct recommendation algorithms with
+                varying similarity-diversity characteristics:
+                <strong>Image Feature-Based Recommendation</strong> (high
+                similarity),
+                <strong>Fashion Element-Based Recommendation</strong> (mid
+                similarity & diversity), and
+                <strong>Random-Based Recommendation</strong> (high diversity).
+                This multi-algorithm approach allows us to systematically
+                investigate user preferences across the similarity-diversity
+                spectrum.
+              </p>
+
+              <h3 class="title is-4" style="margin-top: 2rem">Interface</h3>
+              <p>
+                Users can search for fashion items through multiple filters
+                including year, season, color, and fashion elements. Upon
+                selecting an image, the system displays a detailed element
+                breakdown alongside top-10 recommendations from each algorithm
+                presented side-by-side, enabling direct comparison of different
+                recommendation strategies.
+              </p>
+
+              <!-- MOS Interface Image Placeholder -->
+              <div class="has-text-centered" style="margin: 2rem 0">
+                <img
+                  src="./static/images/mos_interface.png"
+                  alt="My Own Style (MOS) Interface"
+                  style="
+                    max-width: 100%;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                  "
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- User Study Section -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">User Study</h2>
+            <div class="content has-text-justified">
+              <p>
+                We conducted a large-scale user study at a design festival booth
+                to investigate how domain expertise affects the perception and
+                preference of recommendation results.
+              </p>
+
+              <h3 class="title is-4" style="margin-top: 2rem">Participants</h3>
+              <p>
+                We recruited <strong>166 participants</strong> from a design
+                festival booth, comprising 35 fashion experts, 59 designers, and
+                72 members of the general public. This diverse sample enabled us
+                to examine how fashion expertise influences recommendation
+                perception and preferences. Participants were grouped based on
+                their Fashion Characteristics (FC), which we measured through
+                self-reported ratings of interest in fashion, knowledge of
+                fashion, and perceived expertise. Based on these measures, we
+                classified participants into a
+                <strong>High FC group (100 participants)</strong> representing
+                fashion-knowledgeable users, and a
+                <strong>Low FC group (66 participants)</strong> representing
+                general users with limited fashion expertise.
+              </p>
+
+              <h3 class="title is-4" style="margin-top: 2rem">Procedure</h3>
+              <p>
+                The study consisted of two main components. First, participants
+                completed the
+                <strong>Fashion Characteristics (FC) measure</strong>, rating
+                their interest in fashion, knowledge of fashion, and perceived
+                expertise on structured scales. This assessment allowed us to
+                classify participants into expertise groups. Second,
+                participants engaged in <strong>evaluation tasks</strong> using
+                the MOS system. For each task, they were presented with
+                recommendation results from all three algorithms and asked to
+                identify which algorithm produced the most similar
+                recommendations, which produced the most diverse
+                recommendations, and which recommendation set they preferred
+                overall (i.e., found most satisfying). This dual-task design
+                enabled us to separately assess both understanding
+                (similarity/diversity perception) and preference (satisfaction)
+                across expertise levels.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Results</h2>
+            <div class="content has-text-justified">
+              <h3 class="title is-4">RQ1 – Understanding of Recommendations</h3>
+
+              <h4><strong>Similarity Perception</strong></h4>
+              <p>
+                Our findings reveal significant differences in how users
+                perceive similarity-based recommendations. Participants with
+                <strong
+                  >High FC (Fashion Characteristics) correctly identified
+                  Algorithm 1 (high similarity) 78% of the time</strong
+                >, whereas those with
+                <strong>Low FC achieved only 64% accuracy</strong>. This
+                indicates that experts understand similarity-based results
+                significantly better than non-experts, suggesting that domain
+                knowledge enhances the ability to recognize nuanced visual
+                similarities in fashion items.
+              </p>
+
+              <h4 style="margin-top: 1.5rem">
+                <strong>Diversity Perception</strong>
+              </h4>
+              <p>
+                In contrast to similarity perception, we found
+                <strong>no significant difference between groups</strong> in
+                identifying diverse recommendations. This suggests that
+                diversity is easier for all users to recognize, regardless of
+                their fashion expertise. The cognitive process of detecting
+                dissimilarity appears to be more universal and less dependent on
+                domain-specific knowledge.
+              </p>
+
+              <h3 class="title is-4" style="margin-top: 2rem">
+                RQ2 – Preference for Recommendation Results
+              </h3>
+
+              <h4>
+                <strong
+                  >High FC (Experts) Prefer Similar Recommendations</strong
+                >
+              </h4>
+              <p>
+                Fashion experts demonstrated a strong preference for
+                similarity-driven recommendations, with
+                <strong>71% preferring Algorithm 1</strong> and only 29%
+                favoring diverse results (Algorithms 2 & 3). This preference
+                pattern suggests that experts value the precision and visual
+                coherence that similarity-based recommendations provide, likely
+                because they can better appreciate the subtle stylistic
+                alignments in such results.
+              </p>
+
+              <h4 style="margin-top: 1.5rem">
+                <strong
+                  >Low FC (Non-Experts) Prefer Diverse Recommendations</strong
+                >
+              </h4>
+              <p>
+                Non-experts showed a different preference pattern, with
+                <strong>52% preferring diversity-driven algorithms</strong>
+                (Algorithms 2 & 3) compared to 48% preferring similarity-based
+                results. This near-even split, tilting slightly toward
+                diversity, indicates that novice users value exploration and
+                variety over precision, possibly because diverse recommendations
+                help them discover new styles and broaden their fashion
+                horizons.
+              </p>
+
+              <h3 class="title is-4" style="margin-top: 2rem">
+                Interpretation
+              </h3>
+              <p>
+                These findings reveal a fundamental divide in how different user
+                groups interact with fashion recommender systems.
+                <strong>Experts value precision and visual coherence</strong>,
+                seeking recommendations that closely match their refined
+                aesthetic sensibilities. In contrast,
+                <strong>novices value diversity and exploration</strong>,
+                preferring systems that expose them to a broader range of
+                options. This suggests that effective fashion RS should adapt
+                their similarity-diversity balance based on user expertise
+                levels to maximize satisfaction and engagement.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recommendation Examples Section -->
+    <section class="section" style="background-color: #fafafa">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Recommendation Examples</h2>
+            <div class="content has-text-justified">
+              <p>
+                The following examples demonstrate how our three algorithms
+                generate different recommendation results for the same input
+                image, showcasing the spectrum from high similarity to high
+                diversity.
+              </p>
+
+              <!-- Recommendation Examples Image Placeholder -->
+              <div class="has-text-centered" style="margin: 2rem 0">
+                <img
+                  src="./static/images/recommendation_examples.png"
+                  alt="Recommendation Examples"
+                  style="
+                    max-width: 100%;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                  "
+                />
+              </div>
+
+              <p style="margin-top: 1.5rem; font-size: 0.95em; color: #666">
+                <strong>Left to Right:</strong> Image Feature-Based (High
+                Similarity) | Fashion Element-Based (Mid Similarity & Diversity)
+                | Random-Based (High Diversity)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Contributions Section -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Key Contributions</h2>
+            <div class="content has-text-justified">
+              <p>
+                This research makes several important contributions to the field
+                of recommender systems and human-computer interaction. We
+                provide
+                <strong
+                  >empirical evidence that domain expertise significantly
+                  influences both perception and preference</strong
+                >
+                of recommendation results, particularly in the fashion domain.
+                Our study demonstrates that experts better understand
+                similarity-based recommendations and prefer them over diverse
+                results, while novices show the opposite pattern. Additionally,
+                we introduce
+                <strong
+                  >My Own Style (MOS), a comprehensive fashion recommendation
+                  dashboard</strong
+                >
+                that implements three distinct algorithms spanning the
+                similarity-diversity spectrum, enabling systematic investigation
+                of user preferences. Finally, our findings offer
+                <strong
+                  >practical design implications for personalized recommender
+                  systems</strong
+                >
+                that adapt to user expertise levels, suggesting that
+                one-size-fits-all approaches may be suboptimal for diverse user
+                populations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BibTeX Section -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3 has-text-centered">BibTeX</h2>
+            <div class="content">
+              <pre><code>@inproceedings{noh2023study,
+  title={A study on user perception and experience differences in recommendation results by domain expertise: the case of fashion domains},
+  author={Noh, Taehyung and Yeo, Haein and Kim, Myungjin and Han, Kyungsik},
+  booktitle={Extended abstracts of the 2023 CHI conference on human factors in computing systems},
+  pages={1--7},
+  year={2023}
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            This website is adapted from the
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+            template.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
