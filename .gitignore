@@ -34,3 +34,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .worktrees
+
+# Draft / under-review papers and personal files dropped in the repo root
+# (read locally for reference, never published to the public site).
+# Root-anchored so the served CV at public/CV_Taehyung/main.pdf is unaffected.
+/*.pdf
+/*.xlsx
