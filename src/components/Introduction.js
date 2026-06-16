@@ -42,7 +42,11 @@ const Introduction = () => {
         <p>
           Concretely, I work on (1) theory-driven user modeling that brings
           established frameworks—such as the Theory of Planned Behavior—into
-          LLM-based personalization (TRIPLE, AAAI 2026), and (2) the broader
+          LLM-based personalization (TRIPLE, AAAI 2026); (2) value-based user
+          understanding—whether LLMs can infer the deeper human values behind
+          people's choices, grounded in theories of basic human values, rather
+          than merely matching their surface preferences, and whether that
+          understanding transfers to entirely new contexts; and (3) the broader
           LLM-human alignment problem: how do we make AI faithfully reflect
           users when users themselves cannot always articulate what they want?
           I also build human-in-the-loop systems that keep people meaningfully
@@ -52,7 +56,8 @@ const Introduction = () => {
         <div className="research-interests">
           <p>
             <strong>Research interests:</strong> Human-Centered AI, LLM
-            Alignment, Personalization, LLM-based User Modeling, LLM Bias
+            Alignment, Human Values, Personalization, LLM-based User Modeling,
+            LLM Bias
           </p>
         </div>
       </div>

@@ -6,18 +6,12 @@ const ResearchProjects = () => {
   const [topicFilter, setTopicFilter] = useState("all");
   const [isChaos, setIsChaos] = useState(false);
   const [clickCount, setClickCount] = useState(0);
-  const [zoomedImage, setZoomedImage] = useState(null);
   const [hoveredTitle, setHoveredTitle] = useState(null);
   const [hoveredDescription, setHoveredDescription] = useState(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
-  const projectsData = projectsDataRaw.map((p) => ({
-    ...p,
-    image: p.image ? `${process.env.PUBLIC_URL}${p.image}` : null,
-  }));
-
   // Sort: ongoing first
-  const sortedProjects = [...projectsData].sort((a, b) => {
+  const sortedProjects = [...projectsDataRaw].sort((a, b) => {
     if (a.status === "ongoing" && b.status !== "ongoing") return -1;
     if (a.status !== "ongoing" && b.status === "ongoing") return 1;
     return 0;
@@ -69,15 +63,6 @@ const ResearchProjects = () => {
               "--random-rotate": `${Math.random() * 720 - 360}deg`,
             } : {}}
           >
-            <div className="project-media" onClick={() => project.image && setZoomedImage(project.image)}>
-              {project.image ? (
-                <img src={project.image} alt={project.title} />
-              ) : (
-                <div className="project-placeholder">
-                  <span className="project-no-image">No Image</span>
-                </div>
-              )}
-            </div>
             <div className="project-content">
               <div className="project-header">
                 <h3
@@ -116,15 +101,6 @@ const ResearchProjects = () => {
           </div>
         ))}
       </div>
-
-      {zoomedImage && (
-        <div className="image-modal" onClick={() => setZoomedImage(null)}>
-          <div className="modal-content">
-            <img src={zoomedImage} alt="Zoomed project" />
-            <button className="modal-close" onClick={() => setZoomedImage(null)}>✕</button>
-          </div>
-        </div>
-      )}
 
       {hoveredTitle && (
         <div className="tooltip tooltip-below" style={{ position: "fixed", left: `${tooltipPosition.x}px`, top: `${tooltipPosition.y + 30}px` }}>

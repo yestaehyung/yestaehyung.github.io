@@ -59,66 +59,6 @@
   transform: translateY(0);
 }
 
-.project-media {
-  flex-shrink: 0;
-  width: 180px;
-  height: 130px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #f6f8fa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: relative;
-}
-
-.project-media::after {
-  content: '🔍';
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  font-size: 12px;
-  pointer-events: none;
-}
-
-.project-media:hover::after {
-  opacity: 1;
-}
-
-.project-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-}
-
-.project-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #e9ecef;
-}
-
-.project-no-image {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: #868e96;
-  font-family: "Google Sans Flex", "SUIT", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  user-select: none;
-}
-
 .project-content {
   flex: 1;
   min-width: 0;
@@ -264,11 +204,6 @@
     gap: 12px;
   }
 
-  .project-media {
-    width: 100%;
-    height: 180px;
-  }
-
   .project-title {
     font-size: 1rem;
   }
@@ -287,67 +222,6 @@
   0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
   20% { transform: translateY(-50px) translateX(0) rotate(5deg); }
   100% { transform: translateY(var(--random-y)) translateX(var(--random-x)) rotate(var(--random-rotate)); opacity: 0; }
-}
-
-/* Image Modal */
-.image-modal {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  cursor: pointer;
-  animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-.modal-content {
-  position: relative;
-  max-width: 90%;
-  max-height: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: zoomIn 0.3s ease;
-}
-
-@keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-.modal-content img {
-  max-width: 100%;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-
-.modal-close {
-  position: absolute;
-  top: -50px;
-  right: 0;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 300;
-  line-height: 1;
-}
-
-.modal-close:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: scale(1.1);
 }
 
 /* Tooltip */
