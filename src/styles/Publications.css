@@ -15,7 +15,7 @@
   padding: 10px 24px;
   border: none;
   background-color: transparent;
-  color: #999;
+  color: #6f6f6f;
   font-size: 0.9rem;
   font-weight: 500;
   border-radius: 8px;
@@ -103,7 +103,7 @@
   text-decoration: none !important;
   transition: color 0.2s ease;
   letter-spacing: 0.03em;
-  color: #999 !important;
+  color: #6f6f6f !important;
   background: none !important;
   border: none !important;
   text-transform: uppercase;

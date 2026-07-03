@@ -20,5 +20,11 @@
       "destination": "/chi23-mos/:path*",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }

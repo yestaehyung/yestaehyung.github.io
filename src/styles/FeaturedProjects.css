@@ -38,7 +38,7 @@
   padding: 10px 24px;
   border: none;
   background-color: transparent;
-  color: #999;
+  color: #6f6f6f;
   font-size: 0.9rem;
   font-weight: 500;
   border-radius: 8px;
@@ -135,7 +135,7 @@
 
 .featured-status.completed {
   background-color: #f0f0f0;
-  color: #999;
+  color: #6f6f6f;
   border: 1px solid #ddd;
 }
 
@@ -179,7 +179,7 @@
   display: inline-block;
   padding: 10px 0;
   margin: -10px 0;
-  color: #999;
+  color: #6f6f6f;
   font-size: 0.85rem;
   font-weight: 400;
   text-decoration: none;

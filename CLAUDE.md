@@ -20,8 +20,8 @@ The `gh-pages` branch holds an old GitHub Pages snapshot at https://yestaehyung.
 Single-page React app (Create React App, React 19) — academic personal website with a research blog.
 
 ### Routing (`src/App.js`)
-Uses **HashRouter** so paths work on static hosts without server rewrites:
-- `/` — `HomePage`: two-column top (`Profile` / `Introduction`), then full-width `ResearchNetwork`, `FeaturedProjects`, `Publications`
+Uses **BrowserRouter** with clean URLs. SPA fallback: `vercel.json` rewrites all paths to `/index.html` on Vercel; a `postbuild` script copies `index.html` to `404.html` for the legacy GitHub Pages snapshot. `public/index.html` contains a small script that redirects legacy `/#/path` hash URLs to `/path`.
+- `/` — `HomePage`: two-column top (`Profile` / `Introduction`), then full-width `FeaturedProjects`, `Publications`
 - `/projects` — `ResearchProjects` (the full filterable project list lives here, not on the home page)
 - `/blog` and `/blog/:postId` — `Blog`
 
@@ -33,7 +33,6 @@ Uses **HashRouter** so paths work on static hosts without server rewrites:
 ### Notable subsystems
 - **Typography balancing** (`src/lib/pretextLayout.js` + `src/components/PretextBalancedText.js`) wraps `@chenglou/pretext` to balance multi-line headings/cards. Tests live next to the source.
 - **Blog presentation** (`src/lib/blogPresentation.js`) derives hero summaries, rhythm sections, and TOC entries from a post's structured fields. Used by `BlogPostHero` and `BlogRhythmSection`.
-- **Research network graph** (`ResearchNetwork.js`) uses `react-force-graph-2d`.
 - **Easter egg**: triple-clicking section titles in `ResearchProjects`/`Publications` triggers a "chaos mode" animation.
 
 ### Standalone project sub-sites

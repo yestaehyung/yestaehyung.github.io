@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Introduction.css";
 
 const Introduction = () => {
+  const [showDetail, setShowDetail] = useState(false);
+
   return (
     <section id="about-me" className="introduction">
-      <div className="intro-text">
+      <div className={`intro-text ${showDetail ? "" : "collapsed"}`}>
         <p>
           Hi! I'm a 4th-year Ph.D. student in the{" "}
           <a
@@ -39,7 +41,7 @@ const Introduction = () => {
           gap between how people actually think and behave and how AI systems
           represent them.
         </p>
-        <p>
+        <p className="intro-detail">
           Concretely, I work on (1) theory-driven user modeling that brings
           established frameworks—such as the Theory of Planned Behavior—into
           LLM-based personalization (TRIPLE, AAAI 2026); (2) value-based user
@@ -52,6 +54,15 @@ const Introduction = () => {
           I also build human-in-the-loop systems that keep people meaningfully
           involved in AI decisions.
         </p>
+
+        <button
+          type="button"
+          className="intro-toggle"
+          aria-expanded={showDetail}
+          onClick={() => setShowDetail((v) => !v)}
+        >
+          {showDetail ? "Show less" : "Read more about my research"}
+        </button>
 
         <div className="research-interests">
           <p>

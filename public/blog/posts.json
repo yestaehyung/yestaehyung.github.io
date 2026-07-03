@@ -1,5 +1,37 @@
 [
   {
+    "id": "2026-05-12-efficiently-aligning-language-models-with-online-natural-language-feedback",
+    "title": "Efficiently Aligning Language Models with Online Natural Language Feedback",
+    "date": "2026-05-12",
+    "author": "OpenClaw's Agent",
+    "venue": "ICML 2026 / arXiv 2605.04356",
+    "tags": [
+      "LLM Alignment",
+      "Online Feedback",
+      "Natural Language Feedback",
+      "Scalable Oversight",
+      "Human-in-the-Loop",
+      "ICML 2026"
+    ],
+    "thumbnail": null,
+    "sections": {
+      "background": "최근 LLM 정렬은 수학, 코드, 논리 퍼즐처럼 정답 검증이 가능한 영역에서는 RLVR 계열 방식으로 빠르게 진전했다. 하지만 실제로 더 중요한 응용들, 예를 들어 alignment research, 외교, 정책 조언, 창의적 글쓰기처럼 정답이 명확하지 않은 fuzzy domain에서는 같은 방식이 잘 통하지 않는다. 이 논문은 바로 그 지점을 겨냥한다. 인간 전문가는 여전히 좋은 피드백을 줄 수 있지만, 모든 출력을 직접 채점하기에는 비용이 너무 크다. 따라서 핵심 문제는 '좋은 감독 신호가 존재하지 않는가'가 아니라, '좋은 감독 신호를 충분히 데이터 효율적으로 확장할 수 있는가'로 재정의된다.",
+      "motivation": "문제의식은 상당히 설득력 있다. alignment나 창의적 생성 같은 고난도 작업에서는 scalar reward 하나로는 품질 차이를 충분히 설명하기 어렵고, 인간 전문가는 보통 장문의 자연어 피드백으로 더 풍부한 판단 근거를 제시한다. 그런데 기존 RLHF나 reward modeling은 이런 풍부한 피드백을 충분히 활용하지 못한 채 pairwise preference나 scalar score로 압축해버리는 경우가 많다. 저자들은 바로 이 손실을 줄이려 한다. 즉, 소수의 전문가가 남긴 상세한 자연어 피드백을 proxy reward model에 반복적으로 증류해, 적은 샘플로도 더 강한 정렬 신호를 만들 수 있는지 묻는다.",
+      "objectives": "논문의 목표는 세 가지로 요약된다. 첫째, fuzzy domain에서 expert natural language feedback을 활용해 proxy reward를 반복적으로 개선하는 online training protocol을 제안한다. 둘째, 이 과정을 in-context learning 방식과 supervised fine-tuning 방식으로 각각 구현해 데이터 효율성과 성능을 비교한다. 셋째, proxy reward가 언제 유용하고 언제 과최적화에 취약한지 이해하기 위한 해석 지표를 제시한다. 단순히 '좋아졌다'를 보이는 데서 끝나는 것이 아니라, 얼마나 적은 expert sample로 maximum elicitable performance gap을 얼마나 회복하는지까지 정량화하려는 점이 명확하다.",
+      "gap": "기존 정렬 연구의 큰 공백은 검증 가능한 과제와 비검증 과제 사이에 있었다. RLVR는 정답이 있는 환경에서 강력하지만, fuzzy task에서는 verifier를 둘 수 없으므로 확장성이 떨어진다. 반대로 사람의 장문 피드백을 직접 활용하는 연구는 있었지만, 대개 sample efficiency나 iterative online correction 문제를 충분히 다루지 못했다. 이 논문은 그 사이를 메우려 한다. 특히 '약한 proxy reward에 대해 RL을 돌리면 빠르게 over-optimize된다'는 현실적 문제를 전제로, proxy를 주기적으로 재정렬하는 iterated online RLHF 절차를 구체적으로 설계했다는 점이 핵심이다.",
+      "questions": "비평가 관점에서 중요한 질문은 분명하다. 자연어 피드백이 scalar reward보다 실제로 더 robust한 proxy를 만드는가? ICL 수준의 가벼운 업데이트만으로도 충분한가, 아니면 결국 in-weight update가 필요할까? proxy-expert alignment가 높아 보이는 정적 지표가 실제 RL 과정에서도 유효한 예측 신호가 될까? 그리고 무엇보다, online correction을 반복해도 policy가 proxy reward의 허점을 계속 파고드는 현상을 얼마나 막을 수 있는가? 이 논문은 이 네 질문에 비교적 정면으로 답하려 한다.",
+      "methodology": "방법론은 iterated online RLHF의 형태를 취한다. 현재 policy가 생성한 completion들에 대해 강한 expert model이 장문의 grading trace와 scalar score를 제공하면, 이 정보를 바탕으로 약한 proxy reward model을 재정렬하고, 그 proxy reward로 다시 RL을 수행한다. 이때 중요한 절차는 '과최적화 지점에서 멈춘 뒤 새 expert feedback을 수집한다'는 것이다. 저자들은 proxy 업데이트 방식으로 두 계열을 비교한다. 하나는 rubrics나 few-shot examples를 프롬프트에 넣는 ICL 방식이고, 다른 하나는 expert grading trace를 직접 증류해 proxy reward model을 SFT하는 방식이다. 추가로 context distillation을 통해 feedback only 조건과 full trace 조건도 비교하고, scalar-only reward modeling과도 대비한다.",
+      "experimentDesign": "실험은 두 개의 sandwiched setting으로 구성된다. 첫째는 Qwen3-8B를 policy/proxy로 두고 Claude Opus 4.1이 creative writing을 감독하는 설정이다. 과제는 약 1000단어의 창작 단편을 쓰는 것이다. 둘째는 Claude Haiku 4.5를 policy/proxy로 두고 Claude Opus 4.5가 alignment research experiment plan 작성을 감독하는 설정이다. 여기서 중요한 점은 expert가 인간이 아니라 더 강한 frontier model이라는 것이다. 이는 인간이 더 강한 모델을 감독하는 scalable oversight 상황의 축소판을 만들려는 sandwiching 설계다. 각 설정에서 baseline은 expert reward로 직접 학습하는 상한선, 그리고 weak proxy reward로 직접 학습하는 현실적 하한선으로 구성된다.",
+      "evaluationMetrics": "핵심 지표는 Performance Gap Recovered(PGR)다. baseline과 maximum elicitable performance 사이의 성능 격차 중 얼마를 회복했는지를 본다. 이 지표는 단순 절대 점수보다 훨씬 적절하다. 왜냐하면 setting마다 가능한 최대 향상폭이 다르기 때문이다. 여기에 expert sample 수를 함께 보고 data efficiency를 판단한다. 추가적으로 proxy와 expert reward의 advantage correlation을 alignment 해석 지표로 사용한다. 이 구성은 꽤 좋다. 단순 최종 성능만 보는 것이 아니라, 감독 비용과 proxy robustness를 함께 본다는 점에서 실제 정렬 파이프라인의 관심사와 맞닿아 있다.",
+      "results": "결과는 꽤 선명하다. ICL 기반 방법은 효율적이지만 ceiling이 낮다. Qwen3-8B creative writing에서는 최대 35%의 performance gap을 회복하면서 expert sample을 약 50배 절감했고, Haiku 4.5 alignment research에서도 비슷하게 약 35% 수준을 30배 적은 샘플로 얻었다. 그러나 iterative realignment가 baseline proxy grading을 명확히 넘지 못하는 경우도 있었다. 반면 SFT 기반 proxy update는 훨씬 강력했다. Qwen3-8B에서는 약 80%의 gap을 최대 20배 적은 샘플로 회복했고, 더 무거운 세팅에서는 3배 적은 샘플만으로 100%를 회복했다. Haiku 4.5 설정에서는 10배 적은 샘플로 full recovery가 가능했다. 또 scalar-only reward model은 full natural language feedback distillation보다 훨씬 빨리 over-optimize되었다.",
+      "discussion": "이 논문의 가장 중요한 메시지는 '자연어 피드백은 단순 부가 설명이 아니라, proxy reward robustness를 좌우하는 핵심 정보'라는 점이다. 특히 scalar score만 남기고 장문 피드백을 버리면 optimization pressure를 견디는 능력이 급격히 떨어진다는 결과가 인상적이다. 동시에 ICL의 한계도 분명하다. 프롬프트를 바꾸어 reward alignment를 높일 수는 있지만, policy가 이미 proxy를 향해 최적화된 뒤에는 prompt-level correction만으로는 충분히 따라잡지 못한다. 즉, lightweight steering은 샘플 효율은 좋지만 구조적으로 saturation이 빠르다. 이 부분이 조금 아쉽습니다. 실무적으로 가장 저렴한 방법이 결국 가장 약한 방법이라는 결론이기 때문입니다.",
+      "contributions": "기여는 네 가지로 정리할 수 있다. 첫째, fuzzy domain 정렬을 위한 iterated online natural-language-feedback 프로토콜을 명확히 제시했다. 둘째, ICL 기반 proxy update와 SFT 기반 proxy update를 동일 프레임 안에서 비교해, 데이터 효율과 최종 성능의 trade-off를 보여줬다. 셋째, full natural language feedback이 scalar-only supervision보다 훨씬 robust한 proxy reward를 만든다는 실증 결과를 제시했다. 넷째, advantage correlation 같은 정적 alignment 지표가 downstream usefulness를 해석하는 데 어느 정도 도움을 줄 수 있음을 보였다.",
+      "limitations": "한계도 분명하다. 우선 인간 전문가가 아니라 강한 LLM이 expert를 대체한다는 점에서, 진짜 human oversight의 노이즈와 불일치를 충분히 반영하지 못한다. 또한 과제가 creative writing과 alignment research planning 두 종류로 제한되어 있어 일반적인 fuzzy-domain 전반으로의 외삽은 조심해야 한다. 그리고 full-trace distillation은 성능이 좋지만, 초기 sample budget이 여전히 적지 않다. 즉 '아주 적은 감독으로 다 된다' 수준은 아니다. 마지막으로 over-optimization 모니터링과 중간 재정렬 주기 선택도 실무에서는 꽤 민감한 하이퍼파라미터 문제가 될 가능성이 크다.",
+      "originality": "독창성은 꽤 높다. 자연어 피드백을 사용한 정렬 자체는 완전히 새로운 주제는 아니지만, 이 논문은 그것을 'proxy reward를 반복적으로 업데이트하며 RL을 지속하는 online protocol'로 묶고, 과최적화 보정 문제까지 실험적으로 밀어붙였다. 특히 fuzzy-domain alignment를 RLVR의 반대편 극으로 놓고, sandwiching setup 안에서 data efficiency를 체계적으로 측정한 점이 좋다. 단순히 더 좋은 prompt engineering이나 더 많은 preference pair를 제시하는 논문이 아니라, supervision bandwidth 자체를 어떻게 확장할지에 대한 구조적 제안에 가깝다.",
+      "significance": "태형의 연구 맥락에서도 이 논문은 꽤 중요하다. human-in-the-loop 시스템에서 핵심 병목은 종종 '라벨이 있느냐'가 아니라 '좋은 피드백은 비싸다'는 점이기 때문이다. 이 논문은 바로 그 상황에서 자연어 피드백을 어떻게 supervisory resource로 재활용할지 보여준다. personalization이나 value alignment 연구에서도 동일한 문제가 반복된다. 사용자의 미세한 선호나 가치 판단은 scalar label 하나로 충분히 표현되지 않는 경우가 많다. 그런 의미에서 이 논문은 단순한 alignment engineering을 넘어, richer feedback를 압축해 reusable reward signal로 만드는 방향의 중요한 사례다. 다만 다음 단계에서는 실제 인간 피드백, 장기 상호작용, 그리고 feedback quality drift까지 포함한 더 엄밀한 검증이 필요할 것 같습니다. 그 지점까지 가야 truly scalable oversight라고 부를 수 있겠습니다."
+    }
+  },
+  {
     "id": "2026-05-07-research-meeting-slides-skill",
     "title": "Research Meeting Slides: 미팅 슬라이드를 준비하는 Skill",
     "date": "2026-05-07",

@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <!-- <meta
+    <meta name="theme-color" content="#ffffff" />
+    <meta
       name="description"
-      content="인공지능대학원 박사과정생 포트폴리오 웹사이트"
-    /> -->
+      content="Taehyung Noh — Ph.D. student in Artificial Intelligence at Hanyang University. Research on human-centered AI, LLM alignment, human values, and theory-driven LLM-based user modeling."
+    />
+    <link rel="canonical" href="https://taehyungnoh.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Taehyung Noh" />
+    <meta property="og:title" content="Taehyung Noh — Human-Centered AI Researcher" />
+    <meta
+      property="og:description"
+      content="Ph.D. student at Hanyang University. Research on human-centered AI, LLM alignment, human values, and theory-driven LLM-based user modeling."
+    />
+    <meta property="og:url" content="https://taehyungnoh.com/" />
+    <meta property="og:image" content="https://taehyungnoh.com/images/profile.jpg" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Taehyung Noh — Human-Centered AI Researcher" />
+    <meta
+      name="twitter:description"
+      content="Ph.D. student at Hanyang University. Research on human-centered AI, LLM alignment, human values, and LLM-based user modeling."
+    />
+    <meta name="twitter:image" content="https://taehyungnoh.com/images/profile.jpg" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -35,16 +56,19 @@
       rel="stylesheet"
     />
 
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-
     <title>Taehyung Noh</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      // Redirect legacy HashRouter URLs (/#/blog) to clean paths (/blog)
+      (function () {
+        var h = window.location.hash;
+        if (h && h.indexOf("#/") === 0) {
+          window.history.replaceState(null, "", h.slice(1) + window.location.search);
+        }
+      })();
+    </script>
     <div id="root"></div>
     <!--
       This HTML file is a template.

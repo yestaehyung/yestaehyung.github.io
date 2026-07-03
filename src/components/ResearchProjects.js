@@ -7,8 +7,12 @@ const ResearchProjects = () => {
   const [isChaos, setIsChaos] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const [hoveredTitle, setHoveredTitle] = useState(null);
-  const [hoveredDescription, setHoveredDescription] = useState(null);
+  const [expandedId, setExpandedId] = useState(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+
+  const toggleExpanded = (id) => {
+    setExpandedId((current) => (current === id ? null : id));
+  };
 
   // Sort: ongoing first
   const sortedProjects = [...projectsDataRaw].sort((a, b) => {
@@ -77,9 +81,18 @@ const ResearchProjects = () => {
                 </span>
               </div>
               <p
-                className="project-description"
-                onMouseEnter={(e) => { setHoveredDescription(project.description); setTooltipPosition({ x: e.currentTarget.getBoundingClientRect().left, y: e.currentTarget.getBoundingClientRect().top }); }}
-                onMouseLeave={() => setHoveredDescription(null)}
+                className={`project-description ${expandedId === project.id ? "expanded" : ""}`}
+                role="button"
+                tabIndex={0}
+                aria-expanded={expandedId === project.id}
+                aria-label={`${project.title} description, press to expand`}
+                onClick={() => toggleExpanded(project.id)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    toggleExpanded(project.id);
+                  }
+                }}
               >
                 {project.description}
               </p>
@@ -105,11 +118,6 @@ const ResearchProjects = () => {
       {hoveredTitle && (
         <div className="tooltip tooltip-below" style={{ position: "fixed", left: `${tooltipPosition.x}px`, top: `${tooltipPosition.y + 30}px` }}>
           {hoveredTitle}
-        </div>
-      )}
-      {hoveredDescription && (
-        <div className="tooltip tooltip-below" style={{ position: "fixed", left: `${tooltipPosition.x}px`, top: `${tooltipPosition.y + 25}px` }}>
-          {hoveredDescription}
         </div>
       )}
     </section>

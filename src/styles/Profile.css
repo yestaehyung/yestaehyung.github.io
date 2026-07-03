@@ -54,18 +54,21 @@
   color: #333;
 }
 
-.social-link i {
-  width: 20px;
+.social-link svg {
+  width: 16px;
+  height: 16px;
   margin-right: 10px;
-  color: #555;
+  fill: #555;
+  flex-shrink: 0;
+  transition: fill 0.2s ease;
 }
 
 .social-link:hover {
   color: #0366d6;
 }
 
-.social-link:hover i {
-  color: #0366d6;
+.social-link:hover svg {
+  fill: #0366d6;
 }
 
 .cv-link {
