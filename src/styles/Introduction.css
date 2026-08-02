@@ -9,14 +9,29 @@
 
 .intro-toggle {
   display: none;
+  align-items: center;
+  min-height: 40px;
   background: none;
   border: none;
-  padding: 10px 0;
+  padding: 0;
   color: #0366d6;
   font-family: inherit;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
+  transition-property: color, transform;
+  transition-duration: 0.2s, 0.15s;
+  transition-timing-function: ease;
+}
+
+.intro-toggle:active {
+  transform: scale(0.96);
+}
+
+.intro-toggle:focus-visible {
+  outline: 2px solid #0366d6;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 @media (max-width: 768px) {
@@ -25,7 +40,7 @@
   }
 
   .intro-toggle {
-    display: inline-block;
+    display: inline-flex;
   }
 }
 

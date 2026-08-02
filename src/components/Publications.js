@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/filters.css";
 import "../styles/Publications.css";
 
 const Publications = () => {

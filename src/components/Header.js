@@ -61,14 +61,6 @@ const Header = () => {
                 Publications
               </a>
             </li>
-            <li>
-              <Link
-                to="/blog"
-                className={location.pathname.startsWith("/blog") ? "active" : ""}
-              >
-                Blog
-              </Link>
-            </li>
           </ul>
         </nav>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/filters.css";
 import "../styles/ResearchProjects.css";
 import projectsDataRaw, { topicMap, topics } from "../data/projectsData";
 

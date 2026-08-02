@@ -6,60 +6,64 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* 5px, not the h2's 10px: the row is 40px tall (set by the view-all link's
+     touch target) while the heading text is ~31px, so the row already carries
+     ~4px of slack below the text. This lands the rule the same optical
+     distance below the heading as the one under Publications. */
+  padding-bottom: 5px;
   margin-bottom: 24px;
+  /* Carry the section rule on the row, not the h2 — as a flex item the h2 is
+     only as wide as its text, which left this section's rule visibly shorter
+     than the one under Publications. */
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
 }
 
 .featured-header h2 {
   margin: 0;
+  padding-bottom: 0;
+  box-shadow: none;
 }
 
 .view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
   color: #1976d2;
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
-  transition: opacity 0.2s;
+  transition-property: opacity, transform;
+  transition-duration: 0.2s, 0.15s;
+  transition-timing-function: ease;
 }
 
 .view-all-link:hover {
   opacity: 0.7;
 }
 
-.featured-filters {
-  display: inline-flex;
-  gap: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  border-radius: 12px;
-  padding: 4px;
-}
-
-.featured-filters .filter-button {
-  padding: 10px 24px;
-  border: none;
-  background-color: transparent;
-  color: #6f6f6f;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
-  font-family: "Google Sans Flex", "SUIT", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-.featured-filters .filter-button:hover {
-  color: #666;
-}
-
-.featured-filters .filter-button:active {
+.view-all-link:active {
   transform: scale(0.96);
 }
 
-.featured-filters .filter-button.active {
-  background-color: #fff;
-  color: #333;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+.view-all-link:focus-visible {
+  outline: 2px solid #0366d6;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
+
+/* The arrow leads the eye toward the destination on hover. */
+.view-all-arrow {
+  transition-property: transform;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.view-all-link:hover .view-all-arrow {
+  transform: translateX(3px);
+}
+
+/* Filter pills live in styles/filters.css — shared with Projects/Publications. */
 
 .featured-list {
   display: flex;
@@ -81,7 +85,9 @@
   border-radius: 8px;
   overflow: hidden;
   background-color: #f5f5f5;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 10px -2px rgba(0, 0, 0, 0.08);
 }
 
 .featured-image::after {
@@ -127,16 +133,18 @@
   white-space: nowrap;
 }
 
+/* Inset ring instead of a border: keeps the status pill exactly the same box
+   size as the neighbouring keyword pills, which carry no border. */
 .featured-status.ongoing {
   background-color: #f0f0f0;
   color: #666;
-  border: 1px solid #ddd;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 .featured-status.completed {
   background-color: #f0f0f0;
   color: #6f6f6f;
-  border: 1px solid #ddd;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 .featured-description {
@@ -201,18 +209,6 @@
 }
 
 @media (max-width: 768px) {
-  .featured-filters {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    flex-wrap: nowrap;
-  }
-
-  .featured-filters .filter-button {
-    flex-shrink: 0;
-    padding: 8px 16px;
-    font-size: 0.82rem;
-  }
-
   .featured-project {
     flex-direction: column;
     gap: 12px;

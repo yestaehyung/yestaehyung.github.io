@@ -9,7 +9,6 @@ import FeaturedProjects from './components/FeaturedProjects';
 import ResearchProjects from './components/ResearchProjects';
 import Publications from './components/Publications';
 import Footer from './components/Footer';
-import Blog from './components/Blog';
 
 function HomePage() {
   return (
@@ -49,8 +48,6 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/blog" element={<div className="blog-page-wrapper"><Blog /></div>} />
-            <Route path="/blog/:postId" element={<div className="blog-page-wrapper"><Blog /></div>} />
           </Routes>
           <Footer />
         </div>

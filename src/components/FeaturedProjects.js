@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "../styles/filters.css";
 import "../styles/FeaturedProjects.css";
 import projectsDataRaw, { topicMap, topics } from "../data/projectsData";
 
@@ -31,7 +32,10 @@ const FeaturedProjects = () => {
       <div className="featured-header">
         <h2>Research Projects</h2>
         <Link to="/projects" className="view-all-link">
-          All Projects →
+          All Projects
+          <span className="view-all-arrow" aria-hidden="true">
+            →
+          </span>
         </Link>
       </div>
 

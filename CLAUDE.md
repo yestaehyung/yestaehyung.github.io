@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `npm start` — local dev server at http://localhost:3000
 - `npm run build` — production build to `build/`
-- `npm test` — run tests (interactive watch mode); `npm test -- --testPathPattern=Blog` runs a single suite, `CI=true npm test` runs once non-interactively
+- `npm test` — run tests (interactive watch mode); `npm test -- --testPathPattern=pretext` runs a single suite, `CI=true npm test` runs once non-interactively
 - `npm run deploy` — builds and publishes `build/` to the `gh-pages` branch via the `gh-pages` package (manual fallback for the legacy GitHub Pages site at yestaehyung.github.io)
 
 ## Deployment
@@ -17,23 +17,24 @@ The `gh-pages` branch holds an old GitHub Pages snapshot at https://yestaehyung.
 
 ## Architecture
 
-Single-page React app (Create React App, React 19) — academic personal website with a research blog.
+Single-page React app (Create React App, React 19) — academic personal website.
 
 ### Routing (`src/App.js`)
 Uses **BrowserRouter** with clean URLs. SPA fallback: `vercel.json` rewrites all paths to `/index.html` on Vercel; a `postbuild` script copies `index.html` to `404.html` for the legacy GitHub Pages snapshot. `public/index.html` contains a small script that redirects legacy `/#/path` hash URLs to `/path`.
 - `/` — `HomePage`: two-column top (`Profile` / `Introduction`), then full-width `FeaturedProjects`, `Publications`
 - `/projects` — `ResearchProjects` (the full filterable project list lives here, not on the home page)
-- `/blog` and `/blog/:postId` — `Blog`
+
+The blog was removed; `vercel.json` permanently redirects `/blog` and `/blog/*` to `/` so old links don't land on a blank SPA shell.
 
 ### Data sources
 - **Projects**: `src/data/projectsData.js` (single source consumed by both `FeaturedProjects` and `ResearchProjects`). Adding a project = editing this file.
 - **Publications**: hard-coded array inside `src/components/Publications.js`. Bold author = this author.
-- **Blog posts**: `public/blog/posts.json` — fetched at runtime by `Blog.js`. Each post has structured Korean/English research-paper sections (background, motivation, gap, methodology, results, etc.) keyed by name; `Blog.js` maps those keys to display labels.
 
 ### Notable subsystems
-- **Typography balancing** (`src/lib/pretextLayout.js` + `src/components/PretextBalancedText.js`) wraps `@chenglou/pretext` to balance multi-line headings/cards. Tests live next to the source.
-- **Blog presentation** (`src/lib/blogPresentation.js`) derives hero summaries, rhythm sections, and TOC entries from a post's structured fields. Used by `BlogPostHero` and `BlogRhythmSection`.
+- **Shared filter pills** (`src/styles/filters.css`) — the segmented `.filter-button` control used by `FeaturedProjects`, `ResearchProjects`, and `Publications`. Edit here, not per-component, or the three bars drift apart.
+- **Typography balancing** (`src/lib/pretextLayout.js` + `src/components/PretextBalancedText.js`) wraps `@chenglou/pretext` to balance multi-line headings/cards. Tests live next to the source. Currently **unused** — its only consumer was the blog; kept for future use.
 - **Easter egg**: triple-clicking section titles in `ResearchProjects`/`Publications` triggers a "chaos mode" animation.
+- **Motion**: page sections fade up on mount with a staggered delay (`src/App.css`); all motion is disabled under `prefers-reduced-motion: reduce`.
 
 ### Standalone project sub-sites
 `public/aaai26-triple/`, `public/cikm25-triple/`, `public/chi23-mos/` are self-contained Bulma-based paper landing pages served as static assets under their own paths (no React integration). When a project page is "imported", it's dropped into `public/` rather than rebuilt as a React route.
