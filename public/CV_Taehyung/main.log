@@ -1,6 +1,6 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.2.15)  16 JUN 2026 10:18
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.2.15)  15 AUG 2026 22:33
 entering extended mode
- \write18 enabled.
+ restricted \write18 enabled.
  %&-line parsing enabled.
 **main.tex
 (./main.tex
@@ -526,11 +526,6 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 168.
 
-Overfull \hbox (85.85944pt too wide) in alignment at lines 248--248
-[] [] 
- []
-
-
 
 [1
 
@@ -553,10 +548,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  14226 strings out of 475366
  270073 string characters out of 5762339
- 746179 words of memory out of 5000000
+ 747188 words of memory out of 5000000
  37039 multiletter control sequences out of 15000+600000
  560308 words of font info for 65 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  79i,11n,93p,759b,569s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (3 pages).
+Output written on main.xdv (3 pages, 101968 bytes).

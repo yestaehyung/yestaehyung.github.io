@@ -1,5 +1,15 @@
 const projectsData = [
   {
+    id: 9,
+    title: "PALETTE: Value-Based User Understanding (CIKM 2026)",
+    description:
+      "PALETTE is a theory-driven benchmark, grounded in Schwartz's Theory of Basic Human Values, that evaluates whether LLMs can infer a user's latent values from behavioral cues and transfer that understanding to entirely new contexts. Spanning 25,200 dialogues across 400 personas and two tasks (Dialogue-Based Understanding and New-Context Application), it decouples surface-level preference matching from genuine value-based user understanding, revealing that LLMs often produce contextually appropriate responses without truly grasping the values driving them.",
+    role: "First Author",
+    keywords: ["LLM", "Personalization", "Benchmark"],
+    status: "completed",
+    links: [],
+  },
+  {
     id: 8,
     title: "LLM Deceptive Persuasion (CHI 2026)",
     description:

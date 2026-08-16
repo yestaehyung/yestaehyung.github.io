@@ -9,6 +9,21 @@ const Publications = () => {
 
   const publicationsData = [
     {
+      id: 9,
+      title:
+        "From Preferences to Values: Evaluating Latent User Understanding and Transfer in LLMs",
+      authors: [
+        { name: "Taehyung Noh", isAuthor: true },
+        { name: "Haein Yeo", isAuthor: false },
+        { name: "Beejin Son", isAuthor: false },
+        { name: "Kyungsik Han", isAuthor: false },
+      ],
+      venue: "ACM CIKM 2026 (short paper)",
+      type: "conference",
+      image: null,
+      links: [],
+    },
+    {
       id: 8,
       title:
         '"Can LLMs Persuade Humans with Deception?": From a Deceptive Strategy Taxonomy to a Large-Scale Empirical Study',
