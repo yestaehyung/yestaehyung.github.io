@@ -7,7 +7,12 @@ const projectsData = [
     role: "First Author",
     keywords: ["LLM", "Personalization", "Benchmark"],
     status: "completed",
-    links: [],
+    links: [
+      {
+        url: "https://taehyungnoh.com/cikm26-palette/",
+        text: "Project Page",
+      },
+    ],
   },
   {
     id: 8,

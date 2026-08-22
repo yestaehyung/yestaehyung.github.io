@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Project page for PALETTE: From Preferences to Values — Evaluating Latent User Understanding and Transfer in LLMs."
+    />
+    <meta
+      name="keywords"
+      content="Personalization, User Understanding, LLM, User Values, Schwartz, Benchmark, PALETTE"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      From Preferences to Values: Evaluating Latent User Understanding and Transfer in LLMs
+    </title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+    <link rel="stylesheet" href="./static/css/index.css" />
+    <link rel="icon" href="./static/images/favicon.svg" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" style="background-color: #fff; box-shadow: none;">
+      <div class="container is-flex is-justify-content-center">
+        <div class="navbar-item">
+          <a href="https://taehyungnoh.com/" title="Home" style="color: #363636;">
+            <span class="icon is-medium">
+              <i class="fas fa-home fa-lg"></i>
+            </span>
+          </a>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://taehyungnoh.com/aaai26-triple/">
+              TRIPLE (AAAI)
+            </a>
+            <a class="navbar-item" href="https://taehyungnoh.com/cikm25-triple/">
+              TRIPLE (CIKM)
+            </a>
+            <a class="navbar-item" href="https://taehyungnoh.com/coling25-pado/">
+              PADO
+            </a>
+            <a class="navbar-item" href="https://taehyungnoh.com/chi26-deception/">
+              Deception (CHI)
+            </a>
+            <a class="navbar-item" href="https://taehyungnoh.com/chi23-mos/">
+              MOS
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero" style="padding-top: 52px;">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                From Preferences to Values: Evaluating Latent User Understanding and Transfer in LLMs
+              </h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  Taehyung Noh<sup>1</sup>,</span>
+                <span class="author-block">
+                  Haein Yeo<sup>1</sup>,</span>
+                <span class="author-block">
+                  Beejin Son<sup>1</sup>,</span>
+                <span class="author-block">
+                  Kyungsik Han<sup>1,*</sup></span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>1</sup>Hanyang University</span>
+                <span class="author-block"><sup>*</sup>Corresponding Author</span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- Dataset Link -->
+                  <span class="link-block">
+                    <a
+                      href="https://figshare.com/s/9f095fd405e8a3a15843"
+                      class="external-link button is-normal is-rounded is-dark"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-database"></i>
+                      </span>
+                      <span>Dataset</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teaser section -->
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <!-- Framework overview image: place palette_overview.png in ./static/images/ -->
+          <h2 class="subtitle has-text-centered">
+            <b>PALETTE</b> evaluates whether LLMs can infer a user's hidden
+            <b>value</b> and <b>situational preference</b> from implicit
+            behavioral cues during an ongoing dialogue (<em>Task 1: Dialogue-Based Understanding</em>),
+            and subsequently apply this inferred understanding to generate
+            appropriate responses in a topically distinct new context
+            (<em>Task 2: New-Context Application</em>).
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Abstract -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Personalized LLM agents should adapt to users who often reveal
+                preferences through behavioral cues rather than explicit statements.
+                Because existing benchmarks mainly evaluate surface-level profile
+                matching, we propose <strong>PALETTE</strong>, a theory-driven
+                benchmark designed to evaluate value-based user understanding in LLMs.
+                Grounded in Schwartz's ten basic values, PALETTE contains 25,200
+                dialogues across 400 personas, pairing a historical dialogue that
+                reveals a situational preference with a new context request that
+                necessitates the same underlying value. We evaluate models on
+                <em>Dialogue-Based Understanding</em> and <em>New-Context Application</em>
+                to examine whether they can infer latent values from behavioral signals
+                and generalize them across contexts. Our experiments with seven LLMs
+                demonstrate that while models generate contextually appropriate dialog
+                responses, they struggle to project an understanding of hidden values
+                onto new contexts. PALETTE thus provides a diagnostic framework for
+                verifying whether personalized agents can move beyond mere preference
+                matching toward genuine, value-based user understanding.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key Contributions -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Key Contributions</h2>
+            <div class="content has-text-justified">
+              <ul>
+                <li>
+                  We <strong>redefine the personalization problem</strong> by
+                  distinguishing surface-level situational preferences from
+                  trans-situational latent values, introducing the concept of
+                  <em>value transfer</em> to the LLM evaluation literature.
+                </li>
+                <li>
+                  We develop a <strong>rigorously decoupled dataset</strong> of
+                  25,200 dialogues grounded in social science theory to benchmark
+                  value-driven user understanding without shortcut exploitation.
+                </li>
+                <li>
+                  We conduct a <strong>comprehensive audit</strong> of multiple
+                  LLMs, revealing a critical gap between conversational
+                  appropriateness and latent value comprehension, offering
+                  actionable directions for future personalized agent architectures.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Task Formulation -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Task Formulation</h2>
+            <div class="content has-text-justified">
+              <p>
+                Each PALETTE scenario is formulated as
+                &#10216;<em>p, v*, &pi;*, s, h</em>&#10217;: user persona <em>p</em>,
+                latent value <em>v*</em>, situational preference <em>&pi;*</em>,
+                original setting <em>s</em>, and new context <em>h</em>.
+                We evaluate via two sequential tasks:
+              </p>
+
+              <h3 class="title is-4">Task 1: Dialogue-Based Understanding</h3>
+              <div
+                class="box"
+                style="background-color: #e8f4f8; border-left: 4px solid #007bff;"
+              >
+                <p>
+                  The model interacts with a user agent in <em>s</em>, whose
+                  preferences are conveyed implicitly through behavioral cues.
+                  At each turn, the model generates a user-visible response and
+                  a hidden user-understanding prediction (inferring <em>&pi;*</em>
+                  and <em>v*</em>). Separating <em>v*</em> and <em>&pi;*</em> in
+                  this hidden prediction ensures we evaluate whether models infer
+                  the <strong>underlying value</strong> motivating a preference,
+                  rather than just recognizing the preference itself.
+                </p>
+              </div>
+
+              <h3 class="title is-4">Task 2: New-Context Application</h3>
+              <div
+                class="box"
+                style="background-color: #f0f8e8; border-left: 4px solid #28a745;"
+              >
+                <p>
+                  The model receives the <em>s</em> dialogue history and the
+                  new context <em>h</em> to generate a single-turn response and
+                  an updated inference. Because <em>s</em> and <em>h</em> are
+                  intentionally designed to be <strong>lexically and topically
+                  distinct</strong>, this task strictly assesses whether the model
+                  can adapt the inferred value to new situations without relying
+                  on surface matching.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dataset Summary -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Dataset Summary</h2>
+            <div class="content">
+              <table class="table is-bordered is-striped is-hoverable" style="margin: 0 auto;">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Count</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Personas</td><td>400</td><td>User personas</td></tr>
+                  <tr><td>Values per persona</td><td>3</td><td>Assigned Schwartz values</td></tr>
+                  <tr><td>Scenarios</td><td>1,200</td><td>Persona&ndash;value pairs</td></tr>
+                  <tr><td>Target models</td><td>7</td><td>Evaluated LLMs</td></tr>
+                  <tr><td>Dialogue records per model</td><td>3,600</td><td>Per-model records</td></tr>
+                  <tr><td>Total dialogue records</td><td>25,200</td><td>Full released records</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Results -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Experiment Results</h2>
+            <div class="content has-text-justified">
+              <p>
+                We evaluate seven LLMs across both tasks, reporting
+                <strong>Understanding Accuracy (UA)</strong> and
+                <strong>Response Appropriateness (RA)</strong>.
+                RA&ndash;UA measures the inference-response discrepancy within each
+                task. &Delta;RA (New-context RA &minus; Dialogue RA) measures the
+                retention of response appropriateness across contexts.
+              </p>
+              <div style="overflow-x: auto;">
+                <table class="table is-bordered is-striped is-hoverable" style="margin: 0 auto; font-size: 0.95em;">
+                  <thead>
+                    <tr>
+                      <th rowspan="2">Model</th>
+                      <th colspan="3" style="text-align: center;">Dialogue-Based Understanding</th>
+                      <th colspan="3" style="text-align: center;">New-Context Application</th>
+                      <th style="text-align: center;">Transfer</th>
+                    </tr>
+                    <tr>
+                      <th>UA&uarr;</th>
+                      <th>RA&uarr;</th>
+                      <th>RA&ndash;UA</th>
+                      <th>UA&uarr;</th>
+                      <th>RA&uarr;</th>
+                      <th>RA&ndash;UA</th>
+                      <th>&Delta;RA&uarr;</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Llama-3.1-8B</td>
+                      <td>32.7&plusmn;2.1</td>
+                      <td>51.4&plusmn;2.7</td>
+                      <td>+18.7</td>
+                      <td>32.9&plusmn;2.3</td>
+                      <td>26.3&plusmn;1.9</td>
+                      <td>-6.6</td>
+                      <td style="color: #dc3545; font-weight: bold;">-25.1</td>
+                    </tr>
+                    <tr>
+                      <td>Gpt-oss-20B</td>
+                      <td>41.6&plusmn;2.3</td>
+                      <td style="color: #007bff; font-weight: bold;">69.9&plusmn;2.7</td>
+                      <td style="color: #dc3545; font-weight: bold;">+28.3</td>
+                      <td>52.6&plusmn;2.2</td>
+                      <td>53.8&plusmn;2.4</td>
+                      <td>+1.2</td>
+                      <td>-16.1</td>
+                    </tr>
+                    <tr>
+                      <td>Gemma-3-27B</td>
+                      <td>48.6&plusmn;2.1</td>
+                      <td>66.1&plusmn;2.3</td>
+                      <td>+17.5</td>
+                      <td>54.4&plusmn;2.9</td>
+                      <td>54.4&plusmn;2.3</td>
+                      <td>0.0</td>
+                      <td>-11.7</td>
+                    </tr>
+                    <tr>
+                      <td>GLM-4-32B</td>
+                      <td>30.5&plusmn;1.6</td>
+                      <td>42.4&plusmn;2.9</td>
+                      <td>+11.9</td>
+                      <td>37.0&plusmn;2.9</td>
+                      <td>26.2&plusmn;2.0</td>
+                      <td style="color: #dc3545; font-weight: bold;">-10.8</td>
+                      <td>-16.2</td>
+                    </tr>
+                    <tr>
+                      <td>Llama-3.3-70B</td>
+                      <td>28.5&plusmn;3.9</td>
+                      <td>45.0&plusmn;4.0</td>
+                      <td>+16.5</td>
+                      <td>33.4&plusmn;3.3</td>
+                      <td>26.5&plusmn;1.2</td>
+                      <td>-6.9</td>
+                      <td>-18.5</td>
+                    </tr>
+                    <tr>
+                      <td>DeepSeek-V3.1</td>
+                      <td style="color: #007bff; font-weight: bold;">48.9&plusmn;2.8</td>
+                      <td>62.1&plusmn;2.6</td>
+                      <td>+13.2</td>
+                      <td style="color: #007bff; font-weight: bold;">62.1&plusmn;1.8</td>
+                      <td style="color: #007bff; font-weight: bold;">59.2&plusmn;2.2</td>
+                      <td>-2.9</td>
+                      <td style="color: #007bff; font-weight: bold;">-2.9</td>
+                    </tr>
+                    <tr>
+                      <td>Gpt-4o-mini</td>
+                      <td>34.7&plusmn;0.5</td>
+                      <td>46.7&plusmn;0.2</td>
+                      <td>+12.0</td>
+                      <td>39.2&plusmn;0.6</td>
+                      <td>32.7&plusmn;1.0</td>
+                      <td>-6.5</td>
+                      <td>-14.0</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style="margin-top: 1rem;">
+                In <em>Dialogue-Based Understanding</em>, RA consistently exceeds
+                UA&mdash;reaching 70% for RA compared to 49% for UA&mdash;suggesting
+                that models can generate superficially appropriate dialogue responses
+                without accurately inferring the user's latent values. In
+                <em>New-Context Application</em>, response appropriateness drops by
+                up to <strong>25.1 percentage points</strong> when models are
+                transitioned into decoupled domains, exposing a critical
+                vulnerability in current agent alignment paradigms.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key Finding -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Key Finding</h2>
+            <div class="content has-text-justified">
+              <div
+                class="box"
+                style="background-color: #fff8e1; border-left: 4px solid #ff9800;"
+              >
+                <p>
+                  While modern LLMs are remarkably adept at maintaining
+                  conversational fluency and surface appropriateness, they
+                  <strong>struggle with true latent inference and cross-context
+                  value transfer</strong>. In particular, response appropriateness
+                  drops by up to 25.1% points when models are transitioned into
+                  decoupled domains, exposing a critical vulnerability in current
+                  agent alignment paradigms.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@inproceedings{noh2026palette,
+  author    = {Noh, Taehyung and Yeo, Haein and Son, Beejin and Han, Kyungsik},
+  title     = {From Preferences to Values: Evaluating Latent User Understanding and Transfer in LLMs},
+  booktitle = {Proceedings of the 35th ACM International Conference on Information and Knowledge Management (CIKM '26)},
+  year      = {2026},
+  publisher = {ACM},
+}</code></pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <div class="is-flex is-justify-content-center is-align-items-center" style="gap: 1.5rem;">
+            <p style="margin: 0;">
+              This website is adapted from
+              <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and
+              <a href="https://mathvista.github.io/">MathVista</a>, licensed under a
+              <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

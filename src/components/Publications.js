@@ -21,7 +21,12 @@ const Publications = () => {
       venue: "ACM CIKM 2026 (short paper)",
       type: "conference",
       image: null,
-      links: [],
+      links: [
+        {
+          url: "https://taehyungnoh.com/cikm26-palette/",
+          text: "Project Page",
+        },
+      ],
     },
     {
       id: 8,
