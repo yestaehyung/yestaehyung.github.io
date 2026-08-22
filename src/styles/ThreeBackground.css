@@ -1,0 +1,64 @@
+.three-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0;
+  animation: three-fade-in 800ms ease-out forwards;
+}
+
+.three-background canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@keyframes three-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+.three-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  font-family: "Google Sans Flex", "SUIT", -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #555;
+  letter-spacing: 0.02em;
+  transition-property: scale, box-shadow;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-out;
+}
+
+.three-toggle:hover {
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.three-toggle:active {
+  scale: 0.96;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .three-background {
+    animation: none;
+    opacity: 1;
+  }
+}

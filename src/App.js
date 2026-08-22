@@ -9,6 +9,7 @@ import FeaturedProjects from './components/FeaturedProjects';
 import ResearchProjects from './components/ResearchProjects';
 import Publications from './components/Publications';
 import Footer from './components/Footer';
+import ThreeBackground from './components/ThreeBackground';
 
 function HomePage() {
   return (
@@ -52,6 +53,7 @@ function App() {
           <Footer />
         </div>
       </div>
+      <ThreeBackground />
       <Analytics />
     </Router>
   );
