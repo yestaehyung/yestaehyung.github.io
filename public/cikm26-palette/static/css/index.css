@@ -173,14 +173,89 @@ body {
 }
 
 .link-block .button {
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition-property: background-color, scale;
+  transition-duration: 0.2s, 0.15s;
+  transition-timing-function: ease, ease-out;
 }
 
 .link-block .button:active {
-  transform: scale(0.96);
+  scale: 0.96;
 }
 
 .stat-card .stat-value,
 table td {
   font-variant-numeric: tabular-nums;
+}
+
+/* Navbar subtle shadow for depth */
+.navbar.is-fixed-top {
+  box-shadow:
+    0 1px 2px -1px rgba(0, 0, 0, 0.06),
+    0 2px 4px 0 rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Accent boxes — shadow for depth instead of flat background */
+.box[style*="border-left"] {
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 1px 2px -1px rgba(0, 0, 0, 0.06),
+    0 2px 4px 0 rgba(0, 0, 0, 0.04);
+}
+
+/* BibTeX block */
+section#BibTeX pre {
+  border-radius: 10px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 1px 2px -1px rgba(0, 0, 0, 0.06),
+    0 2px 4px 0 rgba(0, 0, 0, 0.04);
+  border: none;
+}
+
+/* Results table — softer borders */
+.table.is-bordered td,
+.table.is-bordered th {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Staggered enter animations */
+.hero-body,
+.section > .container > .columns {
+  opacity: 0;
+  transform: translateY(12px);
+  filter: blur(4px);
+  animation: fadeInUp 400ms ease-out forwards;
+}
+
+.hero-body { animation-delay: 0ms; }
+.section > .container > .columns:nth-child(1) { animation-delay: 100ms; }
+.section > .container > .columns:nth-child(2) { animation-delay: 200ms; }
+.section > .container > .columns:nth-child(3) { animation-delay: 300ms; }
+.section > .container > .columns:nth-child(4) { animation-delay: 400ms; }
+.section > .container > .columns:nth-child(5) { animation-delay: 500ms; }
+section#BibTeX .content {
+  opacity: 0;
+  transform: translateY(12px);
+  filter: blur(4px);
+  animation: fadeInUp 400ms ease-out 600ms forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-body,
+  .section > .container > .columns,
+  section#BibTeX .content {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
 }
