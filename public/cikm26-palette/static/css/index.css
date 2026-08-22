@@ -218,6 +218,13 @@ section#BibTeX pre {
   border-color: rgba(0, 0, 0, 0.08);
 }
 
+/* Image outlines */
+.teaser img,
+.content img {
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+  outline-offset: -1px;
+}
+
 /* Staggered enter animations */
 .hero-body,
 .section > .container > .columns {
