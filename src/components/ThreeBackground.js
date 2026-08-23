@@ -24,6 +24,12 @@ const ThreeBackground = () => {
     } catch {}
   }, [enabled]);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("three-mode", enabled);
+    return () => root.classList.remove("three-mode");
+  }, [enabled]);
+
   return (
     <>
       <button
