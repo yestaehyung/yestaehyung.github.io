@@ -19,4 +19,12 @@ describe("Publications focus from the research graph", () => {
       container.querySelector(`#${publicationAnchorId(10)}`),
     ).not.toBeNull();
   });
+
+  it("shows the paper's research topics as chips", () => {
+    const { container } = render(<Publications />);
+    const chips = [
+      ...container.querySelectorAll(`#${publicationAnchorId(8)} .topic-chip`),
+    ].map((c) => c.textContent);
+    expect(chips).toEqual(["Human–AI Interaction", "LLM Safety"]);
+  });
 });

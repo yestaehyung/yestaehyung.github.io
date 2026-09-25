@@ -88,6 +88,27 @@
   color: #ccc;
 }
 
+/* Research-topic chips: same colours as the ResearchGraph topics. */
+.topic-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.topic-chips .topic-chip {
+  margin: 0;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--topic-color);
+  background-color: color-mix(in srgb, var(--topic-color) 9%, #fff);
+}
+
 /* Flash when a ResearchGraph node jumps here. The negative margin keeps the
    tinted box from shifting the text. */
 .publication.is-highlighted {

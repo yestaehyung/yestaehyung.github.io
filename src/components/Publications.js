@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react";
 import "../styles/filters.css";
 import "../styles/Publications.css";
 import publicationsData from "../data/publicationsData";
+import researchTopics from "../data/researchTopics";
 
 const HIGHLIGHT_MS = 2200;
+
+// Topic chips use the ResearchGraph's topic order and colours, so a paper's
+// chips always match the clusters it sits in on the graph.
+const topicsOf = (publication) =>
+  researchTopics.filter((t) => publication.topics.includes(t.id));
 
 export const publicationAnchorId = (id) => `pub-${id}`;
 
@@ -137,6 +143,17 @@ const Publications = ({ focusRequest = null }) => {
                   </a>
                 ))}
               </div>
+              <ul className="topic-chips" aria-label="Research topics">
+                {topicsOf(publication).map((topic) => (
+                  <li
+                    key={topic.id}
+                    className="topic-chip"
+                    style={{ "--topic-color": topic.color }}
+                  >
+                    {topic.label}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         ))}
