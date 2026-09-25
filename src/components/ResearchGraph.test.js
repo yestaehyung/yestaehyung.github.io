@@ -78,4 +78,85 @@ describe("ResearchGraph", () => {
     fireEvent.mouseEnter(screen.getByRole("button", { name: /Paper One/ }));
     expect(screen.getByText("Paper One")).toBeInTheDocument();
   });
+
+  describe("pinning", () => {
+    const originalMatchMedia = window.matchMedia;
+
+    const mockPointer = ({ canHover }) => {
+      window.matchMedia = jest.fn((query) => ({
+        matches: query.includes("hover: hover") ? canHover : false,
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+      }));
+    };
+
+    afterEach(() => {
+      window.matchMedia = originalMatchMedia;
+    });
+
+    const paperTwo = () => screen.getByRole("button", { name: /Paper Two/ });
+    const userModeling = () =>
+      screen.getByRole("button", { name: /User Modeling/ });
+
+    it("does not pin a topic on click when the device can hover", () => {
+      mockPointer({ canHover: true });
+      renderGraph();
+      fireEvent.click(userModeling());
+      fireEvent.mouseLeave(userModeling());
+      fireEvent.blur(userModeling());
+      expect(paperTwo()).not.toHaveClass("is-dimmed");
+    });
+
+    it("pins a topic on tap on touch devices", () => {
+      mockPointer({ canHover: false });
+      renderGraph();
+      fireEvent.click(userModeling());
+      expect(paperTwo()).toHaveClass("is-dimmed");
+    });
+
+    it("ignores emulated hover on touch devices", () => {
+      mockPointer({ canHover: false });
+      renderGraph();
+      fireEvent.mouseEnter(userModeling());
+      expect(paperTwo()).not.toHaveClass("is-dimmed");
+    });
+
+    it("releases the pin when the same topic is tapped again", () => {
+      mockPointer({ canHover: false });
+      renderGraph();
+      fireEvent.click(userModeling());
+      fireEvent.click(userModeling());
+      expect(paperTwo()).not.toHaveClass("is-dimmed");
+    });
+
+    it("releases the pin on a tap on empty graph space", () => {
+      mockPointer({ canHover: false });
+      const { container } = render(
+        <ResearchGraph
+          publications={publications}
+          topics={topics}
+          onSelectPaper={jest.fn()}
+        />,
+      );
+      fireEvent.click(userModeling());
+      fireEvent.click(container.querySelector("svg"));
+      expect(paperTwo()).not.toHaveClass("is-dimmed");
+    });
+
+    it("releases the pin on a tap outside the graph", () => {
+      mockPointer({ canHover: false });
+      renderGraph();
+      fireEvent.click(userModeling());
+      fireEvent.pointerDown(document.body);
+      expect(paperTwo()).not.toHaveClass("is-dimmed");
+    });
+
+    it("releases the pin on Escape", () => {
+      mockPointer({ canHover: false });
+      renderGraph();
+      fireEvent.click(userModeling());
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(paperTwo()).not.toHaveClass("is-dimmed");
+    });
+  });
 });

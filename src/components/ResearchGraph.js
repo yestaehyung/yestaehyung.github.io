@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import "../styles/ResearchGraph.css";
 import { buildGraph, layoutGraph, topicNodeId } from "../lib/researchGraph";
 
@@ -6,6 +6,8 @@ const WIDE = { width: 860, height: 460, padding: 60 };
 const NARROW = { width: 340, height: 620, padding: 56 };
 const ROOT_LABEL = "Human-Centered AI";
 const NARROW_QUERY = "(max-width: 600px)";
+// Mouse/trackpad devices highlight on hover; touch devices pin on tap instead.
+const HOVER_QUERY = "(hover: hover) and (pointer: fine)";
 const TOPIC_RADIUS = 11;
 // Soft colour wash behind each topic cluster (radius in viewBox units).
 const GLOW_RADIUS = { wide: 150, narrow: 90 };
@@ -32,24 +34,24 @@ function paperLabelProps(angle, isNarrow) {
   };
 }
 
-function useIsNarrow() {
+function useMediaQuery(queryString, fallback) {
   const query = useMemo(
     () =>
       typeof window !== "undefined" && window.matchMedia
-        ? window.matchMedia(NARROW_QUERY)
+        ? window.matchMedia(queryString)
         : null,
-    [],
+    [queryString],
   );
-  const [isNarrow, setIsNarrow] = useState(query ? query.matches : false);
+  const [matches, setMatches] = useState(query ? query.matches : fallback);
 
   useEffect(() => {
     if (!query) return undefined;
-    const onChange = (e) => setIsNarrow(e.matches);
+    const onChange = (e) => setMatches(e.matches);
     query.addEventListener("change", onChange);
     return () => query.removeEventListener("change", onChange);
   }, [query]);
 
-  return isNarrow;
+  return matches;
 }
 
 // Node ids connected to the active node, including itself. null = no focus.
@@ -112,10 +114,42 @@ function PaperLabel({ node, isNarrow }) {
 }
 
 const ResearchGraph = ({ publications, topics, onSelectPaper }) => {
-  const isNarrow = useIsNarrow();
+  const isNarrow = useMediaQuery(NARROW_QUERY, false);
+  const canHover = useMediaQuery(HOVER_QUERY, true);
   const size = isNarrow ? NARROW : WIDE;
   const [hoverId, setHoverId] = useState(null);
   const [pinnedId, setPinnedId] = useState(null);
+  const sectionRef = useRef(null);
+
+  // A pinned topic is released by Escape or by a tap anywhere outside the
+  // graph section (taps on empty graph space are handled on the <svg>).
+  useEffect(() => {
+    if (pinnedId === null) return undefined;
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setPinnedId(null);
+    };
+    const onPointerDown = (e) => {
+      if (!sectionRef.current?.contains(e.target)) setPinnedId(null);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [pinnedId]);
+
+  // Touch browsers emulate mouseenter/focus on tap and never undo them, which
+  // would leave a highlight stuck on. Only real hover/keyboard focus counts.
+  const hoverHandlers = (node) =>
+    canHover
+      ? {
+          onMouseEnter: () => setHoverId(node.id),
+          onMouseLeave: () => setHoverId(null),
+          onFocus: () => setHoverId(node.id),
+          onBlur: () => setHoverId(null),
+        }
+      : {};
 
   const topicColor = useMemo(
     () => new Map(topics.map((t) => [t.id, t.color])),
@@ -143,7 +177,9 @@ const ResearchGraph = ({ publications, topics, onSelectPaper }) => {
       onSelectPaper(node.paperId);
       return;
     }
-    // Topics toggle a pinned highlight so touch screens (no hover) can use it.
+    // Hover already highlights topics on mouse devices; touch screens have no
+    // hover, so there a tap toggles a pinned highlight instead.
+    if (canHover) return;
     setPinnedId((current) => (current === node.id ? null : node.id));
   };
 
@@ -161,13 +197,20 @@ const ResearchGraph = ({ publications, topics, onSelectPaper }) => {
   };
 
   return (
-    <section className="research-graph" aria-labelledby="research-graph-title">
+    <section
+      ref={sectionRef}
+      className="research-graph"
+      aria-labelledby="research-graph-title"
+    >
       <h2 id="research-graph-title">Research Map</h2>
 
       <svg
         className="rg-canvas"
         viewBox={`0 0 ${size.width} ${size.height}`}
         onMouseLeave={() => setHoverId(null)}
+        onClick={(e) => {
+          if (!e.target.closest(".rg-node")) setPinnedId(null);
+        }}
       >
         <defs>
           {topics.map((t) => (
@@ -243,16 +286,13 @@ const ResearchGraph = ({ publications, topics, onSelectPaper }) => {
                 role="button"
                 tabIndex={0}
                 aria-label={nodeLabel(node)}
-                aria-pressed={isTopic ? pinnedId === node.id : undefined}
+                aria-pressed={isTopic && !canHover ? pinnedId === node.id : undefined}
                 className={`rg-node rg-${node.kind} ${
                   activeId === node.id ? "is-active" : ""
                 } ${isDimmed(node.id) ? "is-dimmed" : ""}`}
                 transform={`translate(${node.x} ${node.y})`}
                 style={{ "--node-color": color }}
-                onMouseEnter={() => setHoverId(node.id)}
-                onMouseLeave={() => setHoverId(null)}
-                onFocus={() => setHoverId(node.id)}
-                onBlur={() => setHoverId(null)}
+                {...hoverHandlers(node)}
                 onClick={() => activate(node)}
                 onKeyDown={onKeyDown(node)}
               >

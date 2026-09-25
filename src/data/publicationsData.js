@@ -8,9 +8,9 @@
 const publicationsData = [
   {
     id: 10,
-    name: "Dynamic Context",
+    name: "Dycon",
     short: "NeurIPS ’26",
-    topics: ["um", "health"],
+    topics: ["um"],
     title:
       "Dynamic Context Modeling for Longitudinal Mental Health Monitoring under Distribution Shift",
     authors: [
