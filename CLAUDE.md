@@ -21,17 +21,17 @@ Single-page React app (Create React App, React 19) — academic personal website
 
 ### Routing (`src/App.js`)
 Uses **BrowserRouter** with clean URLs. SPA fallback: `vercel.json` rewrites all paths to `/index.html` on Vercel; a `postbuild` script copies `index.html` to `404.html` for the legacy GitHub Pages snapshot. `public/index.html` contains a small script that redirects legacy `/#/path` hash URLs to `/path`.
-- `/` — `HomePage`: two-column top (`Profile` / `Introduction`), then full-width `FeaturedProjects`, `Publications`
+- `/` — `HomePage`: two-column top (`Profile` / `Introduction`), then full-width `Publications`
 - `/projects` — `ResearchProjects` (the full filterable project list lives here, not on the home page)
 
 The blog was removed; `vercel.json` permanently redirects `/blog` and `/blog/*` to `/` so old links don't land on a blank SPA shell.
 
 ### Data sources
-- **Projects**: `src/data/projectsData.js` (single source consumed by both `FeaturedProjects` and `ResearchProjects`). Adding a project = editing this file.
+- **Projects**: `src/data/projectsData.js` (consumed by `ResearchProjects`). Adding a project = editing this file.
 - **Publications**: hard-coded array inside `src/components/Publications.js`. Bold author = this author.
 
 ### Notable subsystems
-- **Shared filter pills** (`src/styles/filters.css`) — the segmented `.filter-button` control used by `FeaturedProjects`, `ResearchProjects`, and `Publications`. Edit here, not per-component, or the three bars drift apart.
+- **Shared filter pills** (`src/styles/filters.css`) — the segmented `.filter-button` control used by `ResearchProjects` and `Publications`. Edit here, not per-component, or the bars drift apart.
 - **Typography balancing** (`src/lib/pretextLayout.js` + `src/components/PretextBalancedText.js`) wraps `@chenglou/pretext` to balance multi-line headings/cards. Tests live next to the source. Currently **unused** — its only consumer was the blog; kept for future use.
 - **Easter egg**: triple-clicking section titles in `ResearchProjects`/`Publications` triggers a "chaos mode" animation.
 - **Motion**: page sections fade up on mount with a staggered delay (`src/App.css`); all motion is disabled under `prefers-reduced-motion: reduce`.

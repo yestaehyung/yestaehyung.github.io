@@ -5,7 +5,6 @@ import './App.css';
 import Header from './components/Header';
 import Profile from './components/Profile';
 import Introduction from './components/Introduction';
-import FeaturedProjects from './components/FeaturedProjects';
 import ResearchProjects from './components/ResearchProjects';
 import Publications from './components/Publications';
 import Footer from './components/Footer';
@@ -20,9 +19,6 @@ function HomePage() {
         <div className="right-column">
           <Introduction />
         </div>
-      </div>
-      <div className="full-width-section">
-        <FeaturedProjects />
       </div>
       <div className="full-width-section">
         <Publications />

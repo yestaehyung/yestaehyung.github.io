@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Introduction.css";
 
 const Introduction = () => {
@@ -71,6 +72,11 @@ const Introduction = () => {
             LLM Bias
           </p>
         </div>
+
+        <p className="projects-pointer">
+          Ongoing work, including projects not yet published, is on the{" "}
+          <Link to="/projects">Projects</Link> page.
+        </p>
       </div>
     </section>
   );

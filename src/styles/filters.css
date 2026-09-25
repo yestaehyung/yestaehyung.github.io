@@ -1,12 +1,11 @@
 /*
- * Segmented filter pills, shared by FeaturedProjects, ResearchProjects and
- * Publications. These rules used to be copy-pasted into all three stylesheets;
- * every rule for the control now lives here so the three bars cannot drift.
+ * Segmented filter pills, shared by ResearchProjects and Publications. These
+ * rules used to be copy-pasted into each stylesheet; every rule for the
+ * control now lives here so the bars cannot drift.
  *
  * Concentric radius: track 12px = button 8px + 4px track padding.
  */
 
-.featured-filters,
 .project-filters,
 .publication-filters {
   display: inline-flex;
@@ -16,11 +15,7 @@
   padding: 4px;
 }
 
-/* Per-section spacing — the only thing that differs between the three bars. */
-.featured-filters {
-  margin-bottom: 20px;
-}
-
+/* Per-section spacing — the only thing that differs between the bars. */
 .project-filters {
   margin-bottom: 12px;
   width: fit-content;
@@ -72,7 +67,6 @@
 }
 
 @media (max-width: 768px) {
-  .featured-filters,
   .project-filters,
   .publication-filters {
     overflow-x: auto;
