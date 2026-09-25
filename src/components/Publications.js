@@ -9,6 +9,22 @@ const Publications = () => {
 
   const publicationsData = [
     {
+      id: 10,
+      title:
+        "Dynamic Context Modeling for Longitudinal Mental Health Monitoring under Distribution Shift",
+      authors: [
+        { name: "Seungwan Jin", isAuthor: false },
+        { name: "Taehyung Noh", isAuthor: true },
+        { name: "Junghyun Kim", isAuthor: false },
+        { name: "Uichin Lee", isAuthor: false },
+        { name: "Kyungsik Han", isAuthor: false },
+      ],
+      venue: "NeurIPS 2026",
+      type: "conference",
+      image: null,
+      links: [],
+    },
+    {
       id: 9,
       title:
         "From Preferences to Values: Evaluating Latent User Understanding and Transfer in LLMs",
