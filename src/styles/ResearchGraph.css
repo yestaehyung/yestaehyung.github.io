@@ -1,0 +1,214 @@
+.research-graph {
+  margin-bottom: 50px;
+}
+
+.rg-canvas {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+/* Soft colour wash behind each topic; brightens when its topic is active. */
+.rg-glow {
+  pointer-events: none;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.rg-glow.is-active {
+  opacity: 1;
+}
+
+.rg-glow.is-dimmed {
+  opacity: 0.35;
+}
+
+/* Links: faint by default, tinted with their topic colour when focused. */
+.rg-link {
+  stroke-width: 1.25;
+  stroke-opacity: 0.22;
+  transition:
+    stroke-opacity 0.2s ease,
+    stroke-width 0.2s ease;
+}
+
+.rg-link.is-active {
+  stroke-opacity: 0.8;
+  stroke-width: 2;
+}
+
+.rg-link.is-dimmed {
+  stroke-opacity: 0.06;
+}
+
+.rg-node {
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.2s ease;
+}
+
+.rg-node.is-dimmed {
+  opacity: 0.22;
+}
+
+/* Invisible, larger circle so small nodes are easy to hit. */
+.rg-hit {
+  fill: transparent;
+}
+
+.rg-halo {
+  fill: var(--node-color);
+  fill-opacity: 0.12;
+  transition: fill-opacity 0.2s ease;
+}
+
+.rg-topic .rg-dot {
+  fill: var(--node-color);
+}
+
+.rg-paper .rg-dot {
+  fill: #fff;
+  stroke: var(--node-color);
+  stroke-width: 2;
+  transition: fill 0.2s ease;
+}
+
+.rg-node .rg-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.rg-node.is-active .rg-dot,
+.rg-node:hover .rg-dot {
+  transform: scale(1.25);
+}
+
+.rg-paper.is-active .rg-dot,
+.rg-paper:hover .rg-dot {
+  fill: var(--node-color);
+}
+
+.rg-topic.is-active .rg-halo,
+.rg-topic:hover .rg-halo {
+  fill-opacity: 0.22;
+}
+
+.rg-node:focus-visible .rg-dot {
+  stroke: #0366d6;
+  stroke-width: 3;
+}
+
+.rg-root {
+  transition: opacity 0.2s ease;
+}
+
+.rg-root.is-dimmed {
+  opacity: 0.3;
+}
+
+.rg-root circle {
+  fill: #333;
+}
+
+.rg-root text {
+  font-size: 13px;
+  font-weight: 600;
+  fill: #333;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.rg-label {
+  font-size: 12px;
+  fill: #555;
+  pointer-events: none;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.rg-label-name {
+  font-weight: 600;
+  fill: #333;
+}
+
+.rg-topic .rg-label {
+  font-size: 13px;
+  font-weight: 600;
+  fill: var(--node-color);
+}
+
+.rg-caption {
+  min-height: 3em;
+  margin: 8px auto 0;
+  max-width: 760px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.rg-caption-meta {
+  color: #6f6f6f;
+}
+
+.rg-caption-title {
+  font-weight: 600;
+}
+
+.rg-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.rg-legend-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 999px;
+  background: #fff;
+  color: #333;
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.rg-legend-chip::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--node-color);
+}
+
+.rg-legend-chip.is-active {
+  background: color-mix(in srgb, var(--node-color) 12%, #fff);
+  border-color: var(--node-color);
+}
+
+.rg-legend-chip:active {
+  transform: scale(0.96);
+}
+
+/* Phones: let the canvas use the section's side padding too. */
+@media (max-width: 600px) {
+  .rg-canvas {
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+  }
+}

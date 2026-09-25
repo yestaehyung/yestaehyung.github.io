@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import './App.css';
@@ -7,9 +7,16 @@ import Profile from './components/Profile';
 import Introduction from './components/Introduction';
 import ResearchProjects from './components/ResearchProjects';
 import Publications from './components/Publications';
+import ResearchGraph from './components/ResearchGraph';
+import publicationsData from './data/publicationsData';
+import researchTopics from './data/researchTopics';
 import Footer from './components/Footer';
 
 function HomePage() {
+  const [focusRequest, setFocusRequest] = useState(null);
+  // A fresh object per click, so selecting the same paper twice re-triggers.
+  const focusPublication = (id) => setFocusRequest({ id });
+
   return (
     <>
       <div className="main-content">
@@ -21,7 +28,14 @@ function HomePage() {
         </div>
       </div>
       <div className="full-width-section">
-        <Publications />
+        <ResearchGraph
+          publications={publicationsData}
+          topics={researchTopics}
+          onSelectPaper={focusPublication}
+        />
+      </div>
+      <div className="full-width-section">
+        <Publications focusRequest={focusRequest} />
       </div>
     </>
   );
