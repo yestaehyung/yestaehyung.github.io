@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `npm start` — local dev server at http://localhost:3000
 - `npm run build` — production build to `build/`
-- `npm test` — run tests (interactive watch mode); `npm test -- --testPathPattern=pretext` runs a single suite, `CI=true npm test` runs once non-interactively
+- `npm test` — run tests (Jest 27 can't resolve react-router v7's exports, so `package.json` `jest.moduleNameMapper` points it at the built files and `src/setupTests.js` polyfills `TextEncoder`) (interactive watch mode); `npm test -- --testPathPattern=pretext` runs a single suite, `CI=true npm test` runs once non-interactively
 - `npm run deploy` — builds and publishes `build/` to the `gh-pages` branch via the `gh-pages` package (manual fallback for the legacy GitHub Pages site at yestaehyung.github.io)
 
 ## Deployment
@@ -22,7 +22,7 @@ Single-page React app (Create React App, React 19) — academic personal website
 ### Routing (`src/App.js`)
 Uses **BrowserRouter** with clean URLs. SPA fallback: `vercel.json` rewrites all paths to `/index.html` on Vercel; a `postbuild` script copies `index.html` to `404.html` for the legacy GitHub Pages snapshot. `public/index.html` contains a small script that redirects legacy `/#/path` hash URLs to `/path`.
 - `/` — `HomePage`: two-column top (`Profile` / `Introduction`), then full-width `ResearchGraph` and `Publications`
-- `/projects` — `ProjectsDesktop` (`src/components/projects/`): a macOS-style desktop with one folder per research topic; a folder opens a Finder window of projects, a project opens a detail window
+- `/projects` — `ProjectsDesktop` (`src/components/projects/`): a macOS-style desktop with one folder per research topic; a folder opens a Finder window of projects, a project opens a detail window. The open folder/project is kept in the URL (`?folder=um&project=pado`) so windows are linkable and Back closes them; Publications entries link there via a "Details" badge. Windows drag by the title bar, maximize with the green light, and stack by last click; a Dock holds the main links
 
 The blog was removed; `vercel.json` permanently redirects `/blog` and `/blog/*` to `/` so old links don't land on a blank SPA shell.
 

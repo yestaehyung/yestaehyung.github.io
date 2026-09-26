@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../styles/filters.css";
 import "../styles/Publications.css";
+import { Link } from "react-router-dom";
 import publicationsData from "../data/publicationsData";
+import projectsData from "../data/projectsData";
+import { projectPath } from "../lib/projectFolders";
 import researchTopics from "../data/researchTopics";
 
 const HIGHLIGHT_MS = 2200;
@@ -10,6 +13,14 @@ const HIGHLIGHT_MS = 2200;
 // chips always match the clusters it sits in on the graph.
 const topicsOf = (publication) =>
   researchTopics.filter((t) => publication.topics.includes(t.id));
+
+// Papers with an entry on the Projects desktop link straight to its window.
+const detailsPathOf = (publication) => {
+  const project = projectsData.find((p) => p.publicationId === publication.id);
+  return project
+    ? projectPath(project, publicationsData, researchTopics)
+    : null;
+};
 
 export const publicationAnchorId = (id) => `pub-${id}`;
 
@@ -142,6 +153,14 @@ const Publications = ({ focusRequest = null }) => {
                     {link.text}
                   </a>
                 ))}
+                {detailsPathOf(publication) && (
+                  <Link
+                    to={detailsPathOf(publication)}
+                    className="link-badge"
+                  >
+                    Details
+                  </Link>
+                )}
               </div>
               <ul className="topic-chips" aria-label="Research topics">
                 {topicsOf(publication).map((topic) => (

@@ -1,4 +1,9 @@
-import { buildFolders, projectTopics } from "./projectFolders";
+import {
+  buildFolders,
+  projectPath,
+  projectSlug,
+  projectTopics,
+} from "./projectFolders";
 
 const topics = [
   { id: "um", label: "User Modeling", color: "#111" },
@@ -60,5 +65,20 @@ describe("buildFolders", () => {
     const before = JSON.stringify(projects);
     buildFolders(projects, publications, topics);
     expect(JSON.stringify(projects)).toBe(before);
+  });
+});
+
+describe("projectSlug", () => {
+  it("lowercases and hyphenates the project name", () => {
+    expect(projectSlug({ name: "TRIPLE (AAAI)" })).toBe("triple-aaai");
+    expect(projectSlug({ name: "Fashion-FINE" })).toBe("fashion-fine");
+  });
+});
+
+describe("projectPath", () => {
+  it("opens the project inside its first topic folder, in topic order", () => {
+    expect(projectPath(projects[1], publications, topics)).toBe(
+      "/projects?folder=um&project=b",
+    );
   });
 });

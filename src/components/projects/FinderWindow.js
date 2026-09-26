@@ -29,8 +29,22 @@ const FileIcon = ({ project, color, onOpen }) => {
 
 // Finder window for one topic folder: a sidebar to hop between folders and a
 // grid of project files.
-const FinderWindow = ({ folders, folder, onSelectFolder, onOpenProject, onClose }) => (
-  <WindowFrame title={folder.topic.label} className="pd-finder" onClose={onClose}>
+const FinderWindow = ({
+  folders,
+  folder,
+  isFront,
+  onActivate,
+  onSelectFolder,
+  onOpenProject,
+  onClose,
+}) => (
+  <WindowFrame
+    title={folder.topic.label}
+    className="pd-finder"
+    isFront={isFront}
+    onActivate={onActivate}
+    onClose={onClose}
+  >
     <nav className="pd-sidebar" aria-label="Topics">
       <p className="pd-sidebar-heading">Topics</p>
       {folders.map(({ topic }) => (
@@ -52,7 +66,7 @@ const FinderWindow = ({ folders, folder, onSelectFolder, onOpenProject, onClose 
           key={project.id}
           project={project}
           color={folder.topic.color}
-          onOpen={() => onOpenProject(project.id)}
+          onOpen={() => onOpenProject(project)}
         />
       ))}
     </div>

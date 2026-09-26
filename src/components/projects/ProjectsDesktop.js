@@ -4,10 +4,12 @@ import projectsData from "../../data/projectsData";
 import publicationsData from "../../data/publicationsData";
 import researchTopics from "../../data/researchTopics";
 import { buildFolders } from "../../lib/projectFolders";
+import { useDesktopRoute } from "./useDesktopRoute";
 import MenuBar from "./MenuBar";
 import FolderIcon from "./FolderIcon";
 import FinderWindow from "./FinderWindow";
 import ProjectWindow from "./ProjectWindow";
+import Dock from "./Dock";
 
 // Projects page as a macOS-style desktop: topic folders on a wallpaper; a
 // folder opens a Finder window of project files; a file opens its details.
@@ -16,41 +18,35 @@ const ProjectsDesktop = () => {
     () => buildFolders(projectsData, publicationsData, researchTopics),
     [],
   );
-  const [openTopicId, setOpenTopicId] = useState(null);
-  const [openProjectId, setOpenProjectId] = useState(null);
+  const { folder, project, openFolder, openProject, closeProject, closeFolder } =
+    useDesktopRoute(folders);
 
-  const folder = folders.find((f) => f.topic.id === openTopicId) || null;
-  const project =
-    folder?.projects.find((p) => p.id === openProjectId) || null;
-
-  const closeFinder = () => {
-    setOpenProjectId(null);
-    setOpenTopicId(null);
-  };
-
-  const selectFolder = (topicId) => {
-    setOpenProjectId(null);
-    setOpenTopicId(topicId);
-  };
+  // Which window is in front. A newly opened project window starts in front.
+  const [front, setFront] = useState("project");
+  const projectKey = project?.id;
+  useEffect(() => {
+    if (projectKey !== undefined) setFront("project");
+  }, [projectKey]);
+  const finderInFront = !project || front === "finder";
 
   // Escape closes only the topmost window.
   useEffect(() => {
     if (!folder) return undefined;
     const onKeyDown = (e) => {
       if (e.key !== "Escape") return;
-      if (project) setOpenProjectId(null);
-      else closeFinder();
+      if (project) closeProject();
+      else closeFolder();
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [folder, project]);
+  });
 
   return (
     <section className="projects-desktop" aria-labelledby="projects-title">
       <h2 id="projects-title" className="pd-heading">
         Projects
       </h2>
-      <div className="pd-screen">
+      <div className={`pd-screen ${folder ? "has-window" : ""}`}>
         <MenuBar activeTitle={project?.name || folder?.topic.label} />
         <div className="pd-desktop">
           <div className="pd-folders">
@@ -59,8 +55,8 @@ const ProjectsDesktop = () => {
                 key={topic.id}
                 topic={topic}
                 count={projects.length}
-                isOpen={topic.id === openTopicId}
-                onOpen={() => selectFolder(topic.id)}
+                isOpen={topic.id === folder?.topic.id}
+                onOpen={() => openFolder(topic.id)}
               />
             ))}
           </div>
@@ -68,9 +64,11 @@ const ProjectsDesktop = () => {
             <FinderWindow
               folders={folders}
               folder={folder}
-              onSelectFolder={selectFolder}
-              onOpenProject={setOpenProjectId}
-              onClose={closeFinder}
+              isFront={finderInFront}
+              onActivate={() => setFront("finder")}
+              onSelectFolder={openFolder}
+              onOpenProject={openProject}
+              onClose={closeFolder}
             />
           )}
           {project && (
@@ -78,9 +76,12 @@ const ProjectsDesktop = () => {
               key={project.id}
               project={project}
               color={folder.topic.color}
-              onClose={() => setOpenProjectId(null)}
+              isFront={!finderInFront}
+              onActivate={() => setFront("project")}
+              onClose={closeProject}
             />
           )}
+          <Dock />
         </div>
       </div>
     </section>

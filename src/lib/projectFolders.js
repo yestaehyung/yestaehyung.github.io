@@ -43,3 +43,22 @@ export function buildFolders(projects, publications, topics) {
     }))
     .filter((folder) => folder.projects.length > 0);
 }
+
+// URL-safe id for a project, e.g. "TRIPLE (AAAI)" -> "triple-aaai".
+export const projectSlug = (project) =>
+  project.name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+// Link that opens a project on the Projects desktop, inside the first of its
+// topic folders (in topic order, matching the folder layout).
+export function projectPath(project, publications, topics) {
+  const ids = projectTopics(project, publications);
+  const folder = topics.find((t) => ids.includes(t.id));
+  const params = new URLSearchParams({
+    ...(folder ? { folder: folder.id } : {}),
+    project: projectSlug(project),
+  });
+  return `/projects?${params}`;
+}

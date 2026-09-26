@@ -4,10 +4,16 @@ import WindowFrame from "./WindowFrame";
 // Roles like "..." are placeholders in projectsData and are not shown.
 const hasRole = (role) => Boolean(role) && /\w/.test(role);
 
-const ProjectWindow = ({ project, color, onClose }) => {
+const ProjectWindow = ({ project, color, isFront, onActivate, onClose }) => {
   const ongoing = project.status === "ongoing";
   return (
-    <WindowFrame title={project.name} className="pd-project" onClose={onClose}>
+    <WindowFrame
+      title={project.name}
+      className="pd-project"
+      isFront={isFront}
+      onActivate={onActivate}
+      onClose={onClose}
+    >
       <article className="pd-project-body" style={{ "--topic-color": color }}>
         <h4 className="pd-project-title">{project.title}</h4>
         <p className="pd-project-meta">
