@@ -5,7 +5,7 @@ import './App.css';
 import Header from './components/Header';
 import Profile from './components/Profile';
 import Introduction from './components/Introduction';
-import ResearchProjects from './components/ResearchProjects';
+import ProjectsDesktop from './components/projects/ProjectsDesktop';
 import Publications from './components/Publications';
 import ResearchGraph from './components/ResearchGraph';
 import publicationsData from './data/publicationsData';
@@ -44,7 +44,7 @@ function HomePage() {
 function ProjectsPage() {
   return (
     <div className="full-width-section">
-      <ResearchProjects />
+      <ProjectsDesktop />
     </div>
   );
 }

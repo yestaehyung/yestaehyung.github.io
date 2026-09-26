@@ -22,19 +22,19 @@ Single-page React app (Create React App, React 19) — academic personal website
 ### Routing (`src/App.js`)
 Uses **BrowserRouter** with clean URLs. SPA fallback: `vercel.json` rewrites all paths to `/index.html` on Vercel; a `postbuild` script copies `index.html` to `404.html` for the legacy GitHub Pages snapshot. `public/index.html` contains a small script that redirects legacy `/#/path` hash URLs to `/path`.
 - `/` — `HomePage`: two-column top (`Profile` / `Introduction`), then full-width `ResearchGraph` and `Publications`
-- `/projects` — `ResearchProjects` (the full filterable project list lives here, not on the home page)
+- `/projects` — `ProjectsDesktop` (`src/components/projects/`): a macOS-style desktop with one folder per research topic; a folder opens a Finder window of projects, a project opens a detail window
 
 The blog was removed; `vercel.json` permanently redirects `/blog` and `/blog/*` to `/` so old links don't land on a blank SPA shell.
 
 ### Data sources
-- **Projects**: `src/data/projectsData.js` (consumed by `ResearchProjects`). Adding a project = editing this file.
+- **Projects**: `src/data/projectsData.js`, grouped into folders by `src/lib/projectFolders.js`. A project with `publicationId` inherits that paper's `topics`; one without a paper sets its own `topics`. Adding a project = editing this file.
 - **Publications**: `src/data/publicationsData.js`, consumed by `Publications` and `ResearchGraph`. Each entry has `short` (graph node label) and `topics` (ids from `src/data/researchTopics.js`). Bold author = this author.
 
 ### Notable subsystems
-- **Shared filter pills** (`src/styles/filters.css`) — the segmented `.filter-button` control used by `ResearchProjects` and `Publications`. Edit here, not per-component, or the bars drift apart.
+- **Filter pills** (`src/styles/filters.css`) — the segmented `.filter-button` control used by `Publications`.
 - **Typography balancing** (`src/lib/pretextLayout.js` + `src/components/PretextBalancedText.js`) wraps `@chenglou/pretext` to balance multi-line headings/cards. Tests live next to the source. Currently **unused** — its only consumer was the blog; kept for future use.
 - **Research graph** (`src/lib/researchGraph.js` + `src/components/ResearchGraph.js`): radial topic→paper map above Publications, laid out deterministically with no dependency. Clicking a paper node scrolls to and flashes that entry in `Publications`. Topic order in `researchTopics.js` sets the clockwise order around the circle.
-- **Easter egg**: triple-clicking section titles in `ResearchProjects`/`Publications` triggers a "chaos mode" animation.
+- **Easter egg**: triple-clicking the `Publications` title triggers a "chaos mode" animation.
 - **Motion**: page sections fade up on mount with a staggered delay (`src/App.css`); all motion is disabled under `prefers-reduced-motion: reduce`.
 
 ### Standalone project sub-sites

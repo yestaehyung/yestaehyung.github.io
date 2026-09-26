@@ -1,0 +1,532 @@
+/*
+ * Projects page as a macOS-style desktop. The wallpaper is pure CSS gradients
+ * (no Apple artwork); windows are positioned inside .pd-desktop, never fixed
+ * to the viewport, so the sticky site header can't cover them.
+ */
+
+.projects-desktop {
+  margin-bottom: 50px;
+}
+
+.pd-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: clamp(540px, calc(100vh - 220px), 700px);
+  border-radius: 14px;
+  overflow: hidden;
+  color: #1d1d1f;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 20px 50px -20px rgba(15, 23, 42, 0.45);
+  background:
+    radial-gradient(90% 70% at 10% 110%, rgba(254, 215, 170, 0.6), transparent 60%),
+    radial-gradient(70% 60% at 95% 0%, rgba(199, 210, 254, 0.9), transparent 65%),
+    radial-gradient(80% 80% at 0% 0%, rgba(186, 230, 253, 0.9), transparent 60%),
+    radial-gradient(60% 60% at 75% 95%, rgba(251, 207, 232, 0.6), transparent 65%),
+    linear-gradient(160deg, #93b4ec 0%, #a7a3e8 55%, #d3a8d8 100%);
+}
+
+/* ---------- Menu bar ---------- */
+
+.pd-menubar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 28px;
+  padding: 0 16px;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.pd-menubar-app {
+  font-weight: 700;
+}
+
+.pd-menubar-clock {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Desktop + folders ---------- */
+
+.pd-desktop {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Folders sit centred on the wallpaper, four to a row. */
+.pd-folders {
+  position: absolute;
+  inset: 16px;
+  max-width: 560px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: 18px 16px;
+}
+
+.pd-folder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 112px;
+  padding: 8px 4px 6px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: #fff;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.pd-folder:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.pd-folder:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 1px;
+}
+
+.pd-folder-art {
+  width: 64px;
+  height: 52px;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.22));
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.pd-folder:active .pd-folder-art {
+  transform: scale(0.94);
+}
+
+.pd-folder.is-open .pd-folder-art {
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.22)) brightness(0.82);
+}
+
+.pd-folder-label {
+  display: block;
+  margin-top: 6px;
+  text-wrap: balance;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+.pd-folder.is-open .pd-folder-label {
+  background: #2563eb;
+  text-shadow: none;
+}
+
+.pd-folder-count {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+.pd-tag {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+
+/* ---------- Windows ---------- */
+
+@keyframes pd-window-open {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.pd-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.12),
+    0 24px 60px -12px rgba(0, 0, 0, 0.45);
+  animation: pd-window-open 0.22s cubic-bezier(0.2, 0, 0, 1);
+  outline: none;
+}
+
+.pd-finder {
+  top: 36px;
+  left: max(16px, calc((100% - 620px) / 2));
+  width: min(620px, calc(100% - 200px));
+  height: min(400px, calc(100% - 72px));
+}
+
+.pd-project {
+  top: 84px;
+  left: max(16px, calc((100% - 520px) / 2 + 60px));
+  width: min(520px, calc(100% - 180px));
+  max-height: calc(100% - 110px);
+  z-index: 1;
+}
+
+.pd-titlebar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 14px;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  /* Title bar is the drag handle: no text selection or touch scrolling. */
+  user-select: none;
+  touch-action: none;
+}
+
+.pd-traffic {
+  display: flex;
+  gap: 8px;
+}
+
+.pd-light {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.2);
+}
+
+.pd-light-close {
+  position: relative;
+  background: #ff5f57;
+  cursor: pointer;
+}
+
+/* Bigger invisible hit area around the 12px close light. */
+.pd-light-close::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+}
+
+.pd-light-close:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.pd-light-min {
+  background: #febc2e;
+}
+
+.pd-light-max {
+  background: #28c840;
+}
+
+.pd-window-title {
+  position: absolute;
+  left: 80px;
+  right: 80px;
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: center;
+  color: #3a3a3c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pd-window-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ---------- Finder ---------- */
+
+.pd-sidebar {
+  width: 168px;
+  flex-shrink: 0;
+  padding: 10px 8px;
+  overflow-y: auto;
+  background: rgba(240, 240, 245, 0.6);
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.pd-sidebar-heading {
+  margin: 4px 8px 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #8e8e93;
+}
+
+.pd-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 30px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 6px;
+  line-height: 1.3;
+  background: none;
+  color: #1d1d1f;
+  font-family: inherit;
+  font-size: 0.82rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pd-sidebar-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.pd-sidebar-item.is-active {
+  background: rgba(0, 0, 0, 0.09);
+  font-weight: 600;
+}
+
+.pd-files {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  align-content: start;
+  gap: 8px;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.pd-file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 4px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: #1d1d1f;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.pd-file:hover {
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.pd-file:focus-visible {
+  outline: 2px solid #2563eb;
+}
+
+.pd-file-art {
+  width: 44px;
+  height: 54px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.12));
+}
+
+.pd-file-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.pd-file-badge,
+.pd-status.is-ongoing {
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #047857;
+  background: #d1fae5;
+}
+
+/* ---------- Project window ---------- */
+
+.pd-project-body {
+  padding: 18px 22px 22px;
+  overflow-y: auto;
+}
+
+.pd-project-title {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: #1d1d1f;
+}
+
+.pd-project-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-size: 0.82rem;
+  color: var(--topic-color);
+  font-weight: 600;
+}
+
+.pd-status {
+  font-size: 0.75rem;
+  color: #6e6e73;
+  font-weight: 500;
+}
+
+.pd-project-desc {
+  margin: 0 0 14px;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #3a3a3c;
+}
+
+.pd-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.pd-keywords li {
+  margin: 0;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: #3a3a3c;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.pd-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pd-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff !important;
+  background: var(--topic-color);
+  text-decoration: none !important;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.pd-link:hover {
+  filter: brightness(1.1);
+}
+
+.pd-link:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Phones: folder grid on top, windows as full-width sheets ---------- */
+
+@media (max-width: 600px) {
+  /* Bleed into the section's side padding for a little more room. */
+  .pd-screen {
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+    height: 560px;
+    border-radius: 12px;
+  }
+
+  .pd-menubar-item {
+    display: none;
+  }
+
+  .pd-menubar-clock {
+    white-space: nowrap;
+  }
+
+  .pd-folder-label {
+    padding: 1px 2px;
+    font-size: 0.7rem;
+  }
+
+  .pd-folders {
+    inset: 16px 4px auto;
+    max-width: none;
+    gap: 6px 10px;
+  }
+
+  .pd-folder {
+    width: calc(33.333% - 7px);
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .pd-folder-count {
+    display: none;
+  }
+
+  .pd-finder,
+  .pd-project {
+    top: 8px;
+    left: 8px;
+    width: calc(100% - 16px);
+    height: auto;
+    max-height: calc(100% - 16px);
+  }
+
+  .pd-finder {
+    bottom: 8px;
+  }
+
+  .pd-finder .pd-window-body {
+    flex-direction: column;
+  }
+
+  .pd-sidebar {
+    width: auto;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .pd-sidebar-heading {
+    display: none;
+  }
+
+  .pd-sidebar-item {
+    width: auto;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pd-window {
+    animation: none;
+  }
+}

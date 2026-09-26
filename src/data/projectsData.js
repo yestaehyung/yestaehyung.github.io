@@ -1,6 +1,14 @@
+/*
+ * Projects shown as files in the Projects desktop's topic folders.
+ * `name` is the file label. A project backed by a paper sets `publicationId`
+ * (an id in publicationsData.js) and inherits that paper's topics; one with
+ * no paper sets its own `topics` (ids from researchTopics.js).
+ */
 const projectsData = [
   {
     id: 9,
+    name: "PALETTE",
+    publicationId: 9,
     title: "PALETTE: Value-Based User Understanding (CIKM 2026)",
     description:
       "PALETTE is a theory-driven benchmark, grounded in Schwartz's Theory of Basic Human Values, that evaluates whether LLMs can infer a user's latent values from behavioral cues and transfer that understanding to entirely new contexts. Spanning 25,200 dialogues across 400 personas and two tasks (Dialogue-Based Understanding and New-Context Application), it decouples surface-level preference matching from genuine value-based user understanding, revealing that LLMs often produce contextually appropriate responses without truly grasping the values driving them.",
@@ -16,6 +24,8 @@ const projectsData = [
   },
   {
     id: 8,
+    name: "LLM Deception",
+    publicationId: 8,
     title: "LLM Deceptive Persuasion (CHI 2026)",
     description:
       "This project investigates whether Large Language Models can persuade humans using deceptive strategies. We develop a taxonomy of deceptive persuasion strategies and conduct a large-scale empirical study to analyze how LLMs leverage these strategies in persuasive interactions, providing insights into AI safety and human-AI trust.",
@@ -36,6 +46,8 @@ const projectsData = [
   },
   {
     id: 1,
+    name: "Industrial AI Platform",
+    topics: ["platform"],
     title: "Industrial AI Data Preprocessing Platform",
     description:
       "Developing an AI data preprocessing platform for industrial applications. This project provides an integrated solution for efficiently processing and analyzing data across various industrial domains.",
@@ -52,6 +64,8 @@ const projectsData = [
   },
   {
     id: 2,
+    name: "TRIPLE (AAAI)",
+    publicationId: 1,
     title: "TRIPLE (AAAI)",
     description:
       "TRIPLE (Theory-guided Reasoning for Intent and habIt Profiling with LLMs for pErsonalization) is a novel framework that integrates dual-process theory and the Theory of Planned Behavior (TPB) into LLM-based user modeling. It constructs both habitual and intentional behavior profiles, then generates behavioral rationale that explains the interaction between these processes to predict user behavior.",
@@ -72,6 +86,8 @@ const projectsData = [
   },
   {
     id: 3,
+    name: "TRIPLE (CIKM)",
+    publicationId: 2,
     title: "TRIPLE (CIKM)",
     description:
       "TRIPLE is a profiling technology that combines the Theory of Planned Behavior (TPB) with Large Language Models (LLMs). It uses LLMs to understand a user's psychological motivations and refines their profile by comparing predictions with actual behavior, dramatically improving personalization services.",
@@ -92,6 +108,8 @@ const projectsData = [
   },
   {
     id: 4,
+    name: "LLM Attacks",
+    publicationId: 4,
     title: "LLM 유해성 공격 전략에 대한 실증적 분석",
     description:
       "This project analyzes real-world LLM vulnerabilities using attack data from the 2023 DEF CON 31 Generative AI Red Teaming Challenge. We preprocess and relabel the dataset to identify which target categories are most susceptible to harmful-content attacks and what prompt strategies attackers commonly use.",
@@ -108,6 +126,8 @@ const projectsData = [
   },
   {
     id: 5,
+    name: "PADO",
+    publicationId: 5,
     title: "Multi-Agent Personality Detection System (PADO 🌊)",
     description:
       "PADO is a multi-agent system that detects personality traits (OCEAN) from user-generated text. Multiple specialized agents collaborate to perform more accurate personality analysis, with each agent focusing on specific personality dimensions.",
@@ -128,6 +148,8 @@ const projectsData = [
   },
   {
     id: 6,
+    name: "Fashion-FINE",
+    publicationId: 6,
     title: "Fashion-FINE",
     description:
       "Fashion-FINE is a Vision-Language Pre-training model for fine-grained fashion retrieval. It introduces three key innovations: a modality-agnostic adapter for learning integrated representations from global and local features, hard negative mining with focal loss for better cross-modal alignment, and comprehensive cross-modal alignment to extract multi-level fashion information.",
@@ -144,6 +166,8 @@ const projectsData = [
   },
   {
     id: 7,
+    name: "MOS",
+    publicationId: 7,
     title: "My Own Style (MOS)",
     description:
       "Recommender systems widely support user decision-making, yet users differ in how they understand and evaluate algorithmic results. This study investigates how domain expertise shapes user perception and satisfaction with fashion-recommendation outcomes.",
@@ -159,15 +183,5 @@ const projectsData = [
     ],
   },
 ];
-
-export const topicMap = {
-  LLM: ["LLM"],
-  Personalization: ["Personalization"],
-  "AI Safety": ["AI Safety", "Bias", "Attack", "Persuasion"],
-  HCI: ["HCI", "Personality Detection", "OCEAN", "Multi-Agent"],
-  Fashion: ["Fashion", "Retrieval"],
-};
-
-export const topics = ["all", "LLM", "Personalization", "AI Safety", "HCI", "Fashion"];
 
 export default projectsData;
