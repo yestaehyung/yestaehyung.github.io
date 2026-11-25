@@ -1,430 +1,432 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRIPLE · AAAI 2026</title>
     <meta
       name="description"
-      content="TRIPLE: Theory-Driven Integration of Planned and Habitual Behaviors for LLM-based Personalization"
+      content="TRIPLE models users with a habitual profile and an intentional profile grounded in dual-process theory, then explains each prediction with a behavioral rationale. AAAI 2026."
     />
     <meta
-      name="keywords"
-      content="User Modeling, Personalization, LLM, Dual-Process Theory, Habit Theory, Theory of Planned Behavior, TRIPLE"
+      property="og:title"
+      content="TRIPLE: Theory-Driven Integration of Planned and Habitual Behaviors for LLM-based Personalization (AAAI 2026)"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      TRIPLE: Theory-Driven Integration of Planned and Habitual Behaviors for
-      LLM-based Personalization
-    </title>
+    <meta
+      property="og:description"
+      content="Modeling users' habits and intentions separately makes LLM personalization more accurate and easier to explain."
+    />
+    <meta property="og:url" content="https://taehyungnoh.com/aaai26-triple/" />
+    <meta property="og:type" content="article" />
+    <link rel="canonical" href="https://taehyungnoh.com/aaai26-triple/" />
+    <link rel="icon" href="/favicon.ico" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,100..1000&display=swap"
       rel="stylesheet"
     />
-
-    <link rel="stylesheet" href="./static/css/bulma.min.css" />
-    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
-    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
     <link
+      href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
     />
-    <link rel="stylesheet" href="./static/css/index.css" />
-    <link rel="icon" href="./static/images/favicon.svg" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src="./static/js/fontawesome.all.min.js"></script>
-    <script src="./static/js/bulma-carousel.min.js"></script>
-    <script src="./static/js/bulma-slider.min.js"></script>
-    <script src="./static/js/index.js"></script>
+    <link rel="stylesheet" href="/paper-kit/paper.css" />
+    <script defer src="/paper-kit/paper.js"></script>
+    <style>
+      /* Page-local: quoted model output and the related-paper note. */
+      .quote {
+        margin: 0;
+        padding: 20px 24px;
+        background: var(--surface);
+        border-radius: 14px;
+        font-size: 17px;
+        line-height: 1.6;
+      }
+      .quote p {
+        margin: 0 0 12px;
+      }
+      .quote p:last-child {
+        margin-bottom: 0;
+      }
+      .related {
+        font-size: 15px;
+        margin: 0 0 20px;
+      }
+    </style>
   </head>
   <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" style="background-color: #fff;">
-      <div class="container is-flex is-justify-content-center">
-        <div class="navbar-item">
-          <a href="https://taehyungnoh.com/" title="Home" style="color: #363636;">
-            <span class="icon is-medium">
-              <i class="fas fa-home fa-lg"></i>
-            </span>
-          </a>
-        </div>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            More Research
-          </a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="https://taehyungnoh.com/cikm25-triple/">
-              TRIPLE (CIKM)
-            </a>
-            <a class="navbar-item" href="https://taehyungnoh.com/coling25-pado/">
-              PADO
-            </a>
-            <a class="navbar-item" href="https://taehyungnoh.com/chi26-deception/">
-              Deception (CHI)
-            </a>
-            <a class="navbar-item" href="https://taehyungnoh.com/chi23-mos/">
-              MOS
-            </a>
-          </div>
-        </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="site-name" href="/">Taehyung Noh</a>
+        <nav aria-label="Site">
+          <a href="/projects">Projects</a>
+          <a href="/CV_Taehyung/main.pdf">CV</a>
+        </nav>
       </div>
-    </nav>
+    </header>
 
-    <section class="hero" style="padding-top: 52px;">
-      <div class="hero-body">
-        <div class="container is-max-desktop">
-          <div class="columns is-centered">
-            <div class="column has-text-centered">
-              <h1 class="title is-1 publication-title">
-                TRIPLE: Theory-Driven Integration of Planned and Habitual
-                Behaviors for LLM-based Personalization
-              </h1>
-              <div class="is-size-5 publication-authors">
-                <span class="author-block">
-                  Taehyung Noh<sup>1</sup>,</span
-                >
-                <span class="author-block">
-                  Seungwan Jin<sup>2</sup>,</span
-                >
-                <span class="author-block">
-                  Haein Yeo<sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  Kyungsik Han<sup>1,2,*</sup>
-                </span>
-              </div>
+    <main id="main">
+      <article>
+        <header class="hero column">
+          <a class="back-link" href="/projects?folder=um&amp;project=triple-aaai">← All projects</a>
+          <p class="eyebrow">AAAI 2026 · Oral</p>
+          <h1>
+            Modeling users' habits and intentions separately makes LLM
+            personalization more accurate and easier to explain
+          </h1>
+          <p class="authors">
+            <strong>Taehyung Noh</strong><sup>1</sup>, Seungwan Jin<sup>2</sup>,
+            Haein Yeo<sup>1</sup>, Kyungsik Han<sup>1,2,*</sup>
+          </p>
+          <p class="affiliations">
+            <sup>1</sup>Department of Artificial Intelligence, Hanyang University
+            &nbsp;·&nbsp; <sup>2</sup>Department of Data Science, Hanyang
+            University &nbsp;·&nbsp; <sup>*</sup>Corresponding author
+          </p>
+          <p class="deck">
+            Most LLM-based user profiles are built from heuristics: a summary of
+            past behavior with no account of why people act as they do. TRIPLE
+            draws on dual-process theory from social psychology. It keeps one
+            profile for a user's habits and one for their intentions, then writes
+            a rationale for how the two combine in a given situation.
+          </p>
+          <p class="related muted">
+            Related: our
+            <a href="/cikm25-triple/">CIKM 2025 short paper</a> on profiling
+            users with the Theory of Planned Behavior.
+          </p>
+          <ul class="links" aria-label="Resources">
+            <li><a href="./static/files/aaai_paper.pdf">Paper</a></li>
+            <li><a href="./static/files/aaai_paper_supp.pdf">Supplementary</a></li>
+            <li>
+              <a href="https://youtu.be/96bo422tDp4" target="_blank" rel="noopener noreferrer">Video</a>
+            </li>
+          </ul>
+          <ul class="chips" aria-label="Tags">
+            <li>First author</li>
+            <li>User modeling</li>
+            <li>Personalization</li>
+          </ul>
+        </header>
 
-              <div class="is-size-5 publication-authors">
-                <span class="author-block"
-                  ><sup>1</sup>Department of Artificial Intelligence, Hanyang
-                  University</span
-                >
-              </div>
-              <div class="is-size-5 publication-authors">
-                <span class="author-block"
-                  ><sup>2</sup>Department of Data Science, Hanyang
-                  University</span
-                >
-              </div>
-              <div class="is-size-6 publication-authors">
-                <span class="author-block"
-                  ><sup>*</sup>Corresponding Author</span
-                >
-              </div>
+        <nav class="toc column" aria-label="In this paper">
+          <p class="toc-title">In this paper</p>
+          <ol>
+            <li><a href="#problem"><span class="num">01</span>The problem</a></li>
+            <li><a href="#method"><span class="num">02</span>How TRIPLE works</a></li>
+            <li><a href="#findings"><span class="num">03</span>What we found</a></li>
+            <li><a href="#example"><span class="num">04</span>Reading a rationale</a></li>
+            <li><a href="#publication"><span class="num">05</span>Publication</a></li>
+          </ol>
+        </nav>
 
-              <div class="column has-text-centered">
-                <div class="publication-links">
-                  <!-- PDF Link -->
-                  <span class="link-block">
-                    <a
-                      href="./static/files/aaai_paper.pdf"
-                      class="external-link button is-normal is-rounded is-dark"
-                    >
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Paper</span>
-                    </a>
-                  </span>
-                  <span class="link-block">
-                    <a
-                      href="./static/files/aaai_paper_supp.pdf"
-                      class="external-link button is-normal is-rounded is-dark"
-                    >
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary Material</span>
-                    </a>
-                  </span>
-                  <!-- Video Link -->
-                  <span class="link-block">
-                    <a
-                      href="https://youtu.be/96bo422tDp4"
-                      class="external-link button is-normal is-rounded is-dark"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span class="icon">
-                        <i class="fab fa-youtube"></i>
-                      </span>
-                      <span>Video</span>
-                    </a>
-                  </span>
-                </div>
-              </div>
-            </div>
+        <figure class="figure wide" aria-labelledby="fig1-cap">
+          <p class="fig-label">FIG. 01</p>
+          <p class="fig-title">The TRIPLE framework</p>
+          <div class="fig-image">
+            <img
+              src="./static/images/aaai_framework.png"
+              alt="TRIPLE framework: a user's history is turned into a habitual profile and an intentional profile, which are combined into behavioral rationales and used, with the most relevant past example, to make a personalized prediction"
+              loading="lazy"
+            />
           </div>
-        </div>
-      </div>
-    </section>
+          <figcaption id="fig1-cap">
+            A sliding window over the user's history feeds two profiles: a
+            habitual profile of recurring cue–response patterns and an
+            intentional profile built from the Theory of Planned Behavior. Each
+            past behavior gets a rationale that explains it with both profiles.
+            At prediction time, the most relevant past behavior and its rationale
+            are retrieved as an example. Figure 2 of the paper.
+          </figcaption>
+        </figure>
 
-    <section class="section">
-      <div class="container is-max-desktop">
-        <!-- Abstract -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">Abstract</h2>
-            <div class="content has-text-justified">
-              <p>
-                While large language model (LLM)-based user profiling offers
-                significant potential for personalization, most existing
-                approaches rely on empirical heuristics and lack grounding in
-                the psychological mechanisms that drive human behavior. We
-                introduce
-                <strong>TRIPLE</strong> (<strong>T</strong>heory-guided
-                <strong>R</strong>easoning for <strong>I</strong>ntent and
-                hab<strong>I</strong>t <strong>P</strong>rofiling with
-                <strong>L</strong>LMs for p<strong>E</strong>rsonalization), a
-                novel framework that systematically integrates
-                <strong>dual-process theory</strong> from social psychology into
-                LLM-based user modeling. TRIPLE (1) constructs a
-                <strong>habitual behavior profile</strong> by identifying
-                repeated patterns over time to model automatic responses; (2)
-                builds an <strong>intentional behavior profile</strong> by
-                inferring user attitudes, subjective norms and perceived
-                behavioral control based on the Theory of Planned Behavior
-                (TPB); and (3) generates <strong>behavioral rationale</strong>
-                that reveal the interaction between habitual and intentional
-                processes to predict user behavior in context-specific
-                situations. We evaluate TRIPLE on five personalization tasks
-                from the LaMP benchmark using multiple open-source LLMs. Results
-                show that TRIPLE consistently outperforms existing in-context
-                learning methods, with especially pronounced gains on complex
-                generative tasks such as headline and title generation.
-                Qualitative analyses further demonstrate that the profiles and
-                reasoning paths generated by TRIPLE provide interpretable and
-                psychologically grounded explanations of user behavior.
-              </p>
-            </div>
+        <section id="problem" class="column section">
+          <h2><span class="num">01 /</span> The problem</h2>
+          <p>
+            Personalized services depend on understanding what drives a user's
+            behavior, not only what that behavior looks like. Older approaches
+            embed reviews and ratings into vectors, which work as black boxes and
+            make it hard to check whether a user's reasoning is captured at all.
+          </p>
+          <p>
+            <strong>LLM profiles help, but stay on the surface.</strong> Recent
+            methods ask an LLM to write a user profile in natural language: a
+            summary of the user's history (PAG), a list of inferred interests
+            (ONCE), a description of their style (GPG), or structured likes and
+            dislikes (PURE). These are easier to read, but they are empirical.
+            None rests on an established account of why people behave the way
+            they do.
+          </p>
+          <p>
+            <strong>Psychology already has such an account.</strong>
+            Dual-process theory separates two kinds of behavior.
+            <em>Habitual</em> behavior comes from actions repeated in stable
+            contexts and runs on automatic responses. <em>Intentional</em>
+            behavior comes from deliberate intentions, which the Theory of
+            Planned Behavior (TPB) traces to a person's attitudes, subjective
+            norms, and perceived behavioral control. The two work together, and
+            which one dominates depends on context.
+          </p>
+        </section>
+
+        <section id="method" class="column section">
+          <h2><span class="num">02 /</span> How TRIPLE works</h2>
+          <p>
+            TRIPLE (Theory-guided Reasoning for Intent and habIt Profiling with
+            LLMs for pErsonalization) builds both kinds of profile with an LLM
+            from a user's most recent <em>k</em> query–behavior pairs, then
+            connects them with written rationales. No model is fine-tuned.
+          </p>
+          <p>
+            <strong>Habitual profile.</strong> The LLM reads the whole window of
+            recent history at once and extracts situational cues and the
+            responses that consistently follow them. Older patterns drop out as
+            the window moves, so the profile keeps the habits that are currently
+            active.
+          </p>
+          <p>
+            <strong>Intentional profile.</strong> For each past behavior, the LLM
+            infers how the situation led to it in terms of the three TPB
+            components: <em>attitude</em> (the user's positive or negative
+            evaluation of the behavior), <em>subjective norm</em> (perceived
+            social pressure), and <em>perceived behavioral control</em> (how easy
+            or hard the behavior feels). This short-term profile is merged into
+            the long-term one, reinforcing consistent beliefs and revising
+            conflicting ones, much as deliberate beliefs settle over time.
+          </p>
+          <p>
+            <strong>Behavioral rationale.</strong> For each past behavior, the
+            LLM explains it in four steps: predict from habit, review that
+            prediction against the intentional profile, classify how well the
+            two agree (match, partial match, partial mismatch, or complete
+            mismatch), and conclude why the behavior happened. When they
+            conflict, the rationale says which intention overrode which habit.
+          </p>
+          <p>
+            <strong>Prediction.</strong> For a new query, TRIPLE retrieves the
+            most similar past behavior with BM25, along with its rationale, and
+            gives the LLM the query, both profiles, and that example. The model
+            returns a prediction and a rationale for it.
+          </p>
+        </section>
+
+        <section id="findings" class="column section">
+          <h2><span class="num">03 /</span> What we found</h2>
+          <p>
+            We tested TRIPLE on five tasks from the LaMP personalization
+            benchmark: news categorization (LaMP-2N), movie tagging (LaMP-2M),
+            product rating (LaMP-3), news headline generation (LaMP-4), and
+            scholarly title generation (LaMP-5). Profiles are built from past
+            data and evaluated on later data, following LaMP's time-based split.
+            We compared against PAG, ONCE, GPG, PURE, and a zero-shot baseline on
+            three open-source models: LLaMA-3.1-70B, LLaMA-3.1-8B, and
+            LLaMA-3.2-3B (all Instruct).
+          </p>
+          <p>
+            <strong>Largest gains on generation.</strong> TRIPLE was best or
+            highly competitive across tasks, and its lead was clearest on the
+            two generation tasks, where it scored highest on ROUGE-1, ROUGE-L,
+            and BLEU with every model. On LaMP-5 with LLaMA-3.1-70B, it reached
+            a BLEU of 11.467, against 7.341 for the next-best method (GPG). These
+            tasks depend on a user's style, which is where an account of habit
+            and intention appears to help most (FIG. 02).
+          </p>
+        </section>
+
+        <figure class="figure wide" aria-labelledby="fig2-cap">
+          <p class="fig-label">FIG. 02</p>
+          <p class="fig-title">Main results with LLaMA-3.1-70B-Instruct on LaMP</p>
+          <div class="table-scroll">
+            <table class="results">
+              <thead>
+                <tr>
+                  <th scope="col">Method</th>
+                  <th scope="col">2N Acc ↑</th>
+                  <th scope="col">2M Acc ↑</th>
+                  <th scope="col">3 MAE ↓</th>
+                  <th scope="col">4 ROUGE-L ↑</th>
+                  <th scope="col">5 BLEU ↑</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Zero-shot</td><td>0.690</td><td>0.310</td><td>0.349</td><td>0.117</td><td>4.048</td></tr>
+                <tr><td>PAG</td><td>0.720</td><td>0.585</td><td>0.316</td><td>0.086</td><td>1.200</td></tr>
+                <tr><td>ONCE</td><td>0.795</td><td>0.535</td><td>0.358</td><td>0.087</td><td>1.380</td></tr>
+                <tr><td>GPG</td><td>0.735</td><td>0.580</td><td>0.322</td><td>0.106</td><td>7.341</td></tr>
+                <tr><td>PURE</td><td>0.725</td><td>0.325</td><td>0.405</td><td>0.106</td><td>6.627</td></tr>
+                <tr class="is-ours"><td>TRIPLE</td><td>0.795</td><td>0.610</td><td>0.280</td><td>0.180</td><td>11.467</td></tr>
+              </tbody>
+            </table>
           </div>
-        </div>
+          <figcaption id="fig2-cap">
+            With the 70B model, TRIPLE is best or tied for best on each column
+            shown (it ties ONCE on LaMP-2N accuracy). With the smaller models
+            the picture is less uniform on the classification tasks. A selection
+            of Table 2 in the paper, which also reports F-1, RMSE, ROUGE-1 and
+            the 8B and 3B models.
+          </figcaption>
+        </figure>
 
-        <!-- Framework Overview -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">Framework Overview</h2>
-            <div class="content has-text-justified">
-              <p>
-                TRIPLE integrates <strong>Dual-Process Theory</strong> into
-                LLM-based personalization by modeling user behavior through two
-                complementary cognitive systems: habitual processes (automatic,
-                shaped by repeated experiences) and intentional processes
-                (driven by conscious deliberation). This theory-driven approach
-                enables TRIPLE to capture not only <em>what</em> users do, but
-                also <em>why</em> they do it.
-              </p>
+        <section class="column section section-continued">
+          <p>
+            <strong>The rationale is what makes the profiles work
+            together.</strong> An ablation with LLaMA-3.1-70B shows the habitual
+            profile alone is a strong baseline, and even beats the full model on
+            LaMP-2N. Adding the intentional profile without a rationale lowered
+            several scores compared with habit alone: the two profiles can send
+            conflicting signals, and nothing tells the model how to weigh them.
+            With the rationale added, the full model had the best scores on the
+            rating and both generation tasks (FIG. 03).
+          </p>
+        </section>
 
-              <!-- Framework Figure -->
-              <div class="has-text-centered" style="margin: 2rem 0">
-                <img
-                  src="./static/images/aaai_framework.png"
-                  alt="TRIPLE Framework Architecture"
-                  style="max-width: 100%; height: auto; border-radius: 8px;"
-                />
-                <p style="margin-top: 1rem; color: #666; font-size: 0.95em">
-                  <strong>Figure 2:</strong> TRIPLE Framework Architecture
-                </p>
-              </div>
-
-              <h3 class="title is-4">Core Components</h3>
-              <div class="columns">
-                <div class="column">
-                  <div
-                    class="box accent-box"
-                    style="height: 100%;"
-                  >
-                    <h4 class="title is-5">
-                      <i class="fas fa-sync-alt"></i> Habitual Behavior Profile
-                    </h4>
-                    <p>
-                      Captures <strong>automatic, routine behaviors</strong> by
-                      identifying repeated behavioral patterns from user
-                      history. Uses a sliding window approach to extract
-                      situational cues and their consistent responses, modeling
-                      unconscious tendencies that arise from long-term
-                      experience.
-                    </p>
-                  </div>
-                </div>
-                <div class="column">
-                  <div
-                    class="box accent-box"
-                    style="height: 100%;"
-                  >
-                    <h4 class="title is-5">
-                      <i class="fas fa-brain"></i> Intentional Behavior Profile
-                    </h4>
-                    <p>
-                      Models
-                      <strong>goal-directed, deliberate actions</strong> based
-                      on the Theory of Planned Behavior (TPB). Infers three key
-                      components: <em>Attitude</em> (evaluations),
-                      <em>Subjective Norm</em> (social pressure), and
-                      <em>Perceived Behavioral Control</em> (perceived
-                      capability). Updated incrementally as new behaviors occur.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="columns">
-                <div class="column is-full">
-                  <div
-                    class="box accent-box"
-                  >
-                    <h4 class="title is-5">
-                      <i class="fas fa-comments"></i> Behavioral Rationale
-                    </h4>
-                    <p>
-                      Synthesizes both profiles to generate
-                      <strong
-                        >interpretable explanations of user behavior</strong
-                      >. Through a 4-step reasoning process (habit-based
-                      prediction → intention-based review → self-verification →
-                      integrated reasoning), the rationale identifies which
-                      cognitive process dominates in specific contexts and
-                      explains how habitual and intentional factors interact.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <figure class="figure wide" aria-labelledby="fig3-cap">
+          <p class="fig-label">FIG. 03</p>
+          <p class="fig-title">Ablation of TRIPLE's components, LLaMA-3.1-70B-Instruct</p>
+          <div class="table-scroll">
+            <table class="results">
+              <thead>
+                <tr>
+                  <th scope="col">Components</th>
+                  <th scope="col">2N Acc ↑</th>
+                  <th scope="col">2M Acc ↑</th>
+                  <th scope="col">3 MAE ↓</th>
+                  <th scope="col">4 BLEU ↑</th>
+                  <th scope="col">5 BLEU ↑</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Raw history (10 most recent)</td><td>0.755</td><td>0.425</td><td>0.308</td><td>2.947</td><td>4.048</td></tr>
+                <tr><td>Habit</td><td>0.805</td><td>0.545</td><td>0.294</td><td>4.394</td><td>10.178</td></tr>
+                <tr><td>Intention</td><td>0.780</td><td>0.535</td><td>0.328</td><td>2.656</td><td>9.049</td></tr>
+                <tr><td>Habit + Intention</td><td>0.790</td><td>0.648</td><td>0.290</td><td>3.810</td><td>10.484</td></tr>
+                <tr class="is-ours"><td>Habit + Intention + Rationale</td><td>0.795</td><td>0.610</td><td>0.280</td><td>4.994</td><td>11.467</td></tr>
+              </tbody>
+            </table>
           </div>
-        </div>
+          <figcaption id="fig3-cap">
+            Combining the two profiles without a rationale scores below habit
+            alone on LaMP-2N accuracy and LaMP-4 BLEU. Adding the rationale gives
+            the best LaMP-3, LaMP-4, and LaMP-5 scores. A selection of Table 3 in
+            the paper.
+          </figcaption>
+        </figure>
 
-        <!-- Main Results -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">Main Results</h2>
-            <div class="content has-text-justified">
-              <p>
-                We evaluated TRIPLE on five personalization tasks from the
-                <a href="https://lamp-benchmark.github.io/">LaMP benchmark</a>:
-                news categorization (LaMP-2N), movie tagging (LaMP-2M), product
-                rating (LaMP-3), news headline generation (LaMP-4), and
-                scholarly title generation (LaMP-5). Experiments were conducted
-                using three LLaMA models (3.1-70B, 3.1-8B, 3.2-3B).
-              </p>
+        <section class="column section section-continued">
+          <p>
+            <strong>More history keeps helping.</strong> We also varied
+            <em>k</em>, the number of past behaviors used. TRIPLE started ahead
+            at <em>k</em> = 1, where there are no repeated patterns to find and
+            the intentional profile carries the prediction. The baselines
+            improved at first and then stalled beyond <em>k</em> = 4. TRIPLE had
+            the best performance at every <em>k</em> and kept improving,
+            especially in BLEU on the two generation tasks, so the gap widened as
+            more history became available.
+          </p>
+        </section>
 
-              <!-- Results Table -->
-              <div class="has-text-centered" style="margin: 2rem 0">
-                <img
-                  src="./static/images/results.png"
-                  alt="Performance Comparison on LaMP Benchmark"
-                  style="max-width: 100%; height: auto; border-radius: 8px;"
-                />
-                <p style="margin-top: 1rem; color: #666; font-size: 0.95em">
-                  <strong>Table 2:</strong> Performance Comparison on LaMP Benchmark
-                </p>
-              </div>
+        <section id="example" class="column section">
+          <h2><span class="num">04 /</span> Reading a rationale</h2>
+          <p>
+            Beyond accuracy, the profiles and rationales are meant to be read.
+            In one LaMP-5 example, a user's habitual profile shows they usually
+            open titles with action verbs such as "Exploring", "Understanding",
+            or "Extracting". The title they actually chose was formal: "On
+            Predicting Geolocation of Tweets using Convolutional Neural
+            Networks". TRIPLE's rationale explains the shift (FIG. 04).
+          </p>
+        </section>
 
-              <h3 class="title is-4">Key Findings</h3>
-              <ul style="font-size: 1.05em; line-height: 1.8">
-                <li>
-                  <strong>Superior Performance on Generative Tasks:</strong>
-                  TRIPLE achieves state-of-the-art results on LaMP-4 (news
-                  headline generation) and LaMP-5 (scholarly title generation),
-                  significantly outperforming baselines (PAG, ONCE, GPG, PURE)
-                  across all metrics (ROUGE-1, ROUGE-L, BLEU). For example, on
-                  LaMP-5 with LLaMA-3.1-70B, TRIPLE achieves 11.467 BLEU
-                  compared to 7.341 for the next-best baseline.
-                </li>
-                <li>
-                  <strong>Behavioral Rationale is Critical:</strong> Ablation
-                  studies show that combining both profiles <em>without</em> the
-                  behavioral rationale can hurt performance, as the two profiles
-                  may provide conflicting signals. The rationale acts as a
-                  reasoning scaffold that reconciles habitual and intentional
-                  processes, leading to consistent gains across tasks.
-                </li>
-                <li>
-                  <strong>Scalability with User History:</strong> TRIPLE
-                  demonstrates excellent scalability—performance improves
-                  steadily as more user history (k) becomes available,
-                  particularly on generation tasks. In contrast, baseline
-                  methods plateau beyond k=4, suggesting limited ability to
-                  extract deeper insights from larger behavioral windows.
-                </li>
-              </ul>
+        <figure class="figure" aria-labelledby="fig4-cap">
+          <p class="fig-label">FIG. 04</p>
+          <p class="fig-title">Behavioral rationale generated by TRIPLE, LaMP-5</p>
+          <blockquote class="quote">
+            <p>
+              "The researcher chose the title 'On Predicting Geolocation of
+              Tweets using Convolutional Neural Networks' due to a combination of
+              habitual and deliberate cognitive processes. Their habitual writing
+              patterns influenced the use of action verbs, but the TPB
+              factors—particularly the subjective norm and perceived behavioral
+              control—led to a more concise and formal title that prioritizes
+              clarity and accuracy. <strong>The TPB factors overrode the habitual
+              response</strong> to create a title that meets established academic
+              standards and expectations. The final title reflects a balance
+              between creativity and informativeness, aligning with the
+              researcher's values and goals."
+            </p>
+          </blockquote>
+          <figcaption id="fig4-cap">
+            The rationale names a conflict between habit and intention and says
+            how it was resolved: the perceived pressure to follow academic
+            conventions outweighed the automatic habit. From Figure 4 of the
+            paper; the supplementary material has this user's history and more
+            examples.
+          </figcaption>
+        </figure>
+
+        <aside class="further column" aria-label="Further question">
+          <p class="eyebrow">Further question</p>
+          <p class="further-q">
+            Dual-process theory is one model of behavior among many. Which other
+            validated theories could serve as the scaffold for a user profile in
+            the same way?
+          </p>
+        </aside>
+
+        <section id="publication" class="column section">
+          <h2><span class="num">05 /</span> Publication</h2>
+          <dl class="pub">
+            <dt>Title</dt>
+            <dd>
+              TRIPLE: Theory-Driven Integration of Planned and Habitual Behaviors
+              for LLM-based Personalization
+            </dd>
+            <dt>Authors</dt>
+            <dd>
+              <strong>Taehyung Noh</strong>, Seungwan Jin, Haein Yeo, Kyungsik Han
+            </dd>
+            <dt>Venue</dt>
+            <dd>
+              Proceedings of the 40th AAAI Conference on Artificial Intelligence
+              (AAAI-26), oral
+            </dd>
+            <dt>Paper</dt>
+            <dd><a href="./static/files/aaai_paper.pdf">PDF</a></dd>
+            <dt>Supplementary</dt>
+            <dd><a href="./static/files/aaai_paper_supp.pdf">PDF</a></dd>
+            <dt>Video</dt>
+            <dd>
+              <a href="https://youtu.be/96bo422tDp4" target="_blank" rel="noopener noreferrer">YouTube</a>
+            </dd>
+          </dl>
+          <div class="cite">
+            <div class="cite-head">
+              <span>Citation</span>
+              <button type="button" class="copy-btn" data-copy-target="bibtex">Copy</button>
             </div>
-          </div>
-        </div>
-
-        <!-- Profile Example -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">Profile Example</h2>
-            <div class="content has-text-justified">
-              <p>
-                Below is an example from LaMP-5 (scholarly title generation)
-                showing how TRIPLE models a user's habitual writing patterns,
-                intentional factors (TPB), and how these processes interact when
-                generating a title. This example demonstrates TRIPLE's ability
-                to explain behavioral conflicts—where habitual tendencies
-                (starting with action verbs) are overridden by intentional goals
-                (conforming to academic conventions).
-              </p>
-
-              <div
-                class="box accent-box"
-              >
-                <h4 class="title is-5">Example Behavioral Rationale</h4>
-                <p style="font-style: italic; line-height: 1.7">
-                  "The researcher chose the title 'On Predicting Geolocation of
-                  Tweets using Convolutional Neural Networks' due to a
-                  combination of habitual and deliberate cognitive processes.
-                  Their habitual writing patterns influenced the use of action
-                  verbs, but the <strong>TPB factors</strong>—particularly the
-                  subjective norm and perceived behavioral control—led to a more
-                  concise and formal title that prioritizes clarity and
-                  accuracy.
-                  <strong
-                    >The TPB factors overrode the habitual response</strong
-                  >
-                  to create a title that meets established academic standards
-                  and expectations. The final title reflects a balance between
-                  creativity and informativeness, aligning with the researcher's
-                  values and goals."
-                </p>
-              </div>
-
-              <p style="margin-top: 1.5rem">
-                This interpretable, psychologically-grounded explanation
-                demonstrates TRIPLE's unique capability to reveal the cognitive
-                mechanisms underlying user decisions—going beyond simple pattern
-                matching to explain <em>why</em> users behave the way they do.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="BibTeX">
-      <div class="container is-max-desktop content">
-        <h2 class="title">BibTeX</h2>
-        <pre><code>@inproceedings{noh2026triple,
+            <pre id="bibtex"><code>@inproceedings{noh2026triple,
   author    = {Noh, Taehyung and Jin, Seungwan and Yeo, Haein and Han, Kyungsik},
   title     = {TRIPLE: Theory-Driven Integration of Planned and Habitual Behaviors for LLM-based Personalization},
   booktitle = {Proceedings of the 40th AAAI Conference on Artificial Intelligence (AAAI-26)},
   year      = {2026},
   publisher = {AAAI Press}
 }</code></pre>
-      </div>
-    </section>
+          </div>
+        </section>
+      </article>
+    </main>
 
     <footer class="footer">
-      <div class="container">
-        <div class="content has-text-centered">
-          <div class="is-flex is-justify-content-center is-align-items-center" style="gap: 1.5rem;">
-            <p style="margin: 0; max-width: 400px;">
-              This website is adapted from
-              <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and
-              <a href="https://mathvista.github.io/">MathVista</a>, licensed under a
-              <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-            </p>
-          </div>
-        </div>
+      <div class="footer-inner">
+        <span>© 2026 Taehyung Noh</span>
+        <nav aria-label="Footer">
+          <a href="/">Home</a>
+          <a href="/projects">Projects</a>
+          <a href="/CV_Taehyung/main.pdf">CV</a>
+        </nav>
       </div>
     </footer>
   </body>

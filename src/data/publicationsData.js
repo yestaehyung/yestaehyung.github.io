@@ -242,7 +242,7 @@ const publicationsData = [
     authors: [
       { name: "Taehyung Noh", isAuthor: true },
       { name: "Haein Yeo", isAuthor: false },
-      { name: "Myungin Kim", isAuthor: false },
+      { name: "Myungjin Kim", isAuthor: false },
       { name: "Kyungsik Han", isAuthor: false },
     ],
     venue: "ACM CHI LBW 2023",

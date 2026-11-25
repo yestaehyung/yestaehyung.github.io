@@ -1,4 +1,4 @@
-// DyCon project page: copy-citation button and TOC scroll-spy.
+// Shared script for paper project pages: copy-citation button and TOC scroll-spy.
 (function () {
   "use strict";
 

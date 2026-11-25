@@ -1,625 +1,325 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRIPLE · CIKM 2025</title>
     <meta
       name="description"
-      content="Project page for TRIPLE: Externalizing Social-Cognitive Structures for User Modeling: Toward Theory-Driven Profiling with LLMs."
+      content="TRIPLE builds LLM user profiles from the Theory of Planned Behavior and refines them against users' actual behavior, without additional training. CIKM 2025."
     />
     <meta
-      name="keywords"
-      content="User Modeling, Personalization, LLM, Theory of Planned Behavior, TRIPLE"
+      property="og:title"
+      content="Externalizing Social-Cognitive Structures for User Modeling: Toward Theory-Driven Profiling with LLMs (CIKM 2025)"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      Externalizing Social-Cognitive Structures for User Modeling: Toward
-      Theory-Driven Profiling with LLMs
-    </title>
+    <meta
+      property="og:description"
+      content="User profiles built from the Theory of Planned Behavior and refined against real behavior improve LLM personalization."
+    />
+    <meta property="og:url" content="https://taehyungnoh.com/cikm25-triple/" />
+    <meta property="og:type" content="article" />
+    <link rel="canonical" href="https://taehyungnoh.com/cikm25-triple/" />
+    <link rel="icon" href="/favicon.ico" />
 
-    <!-- Remove Analytics if not needed -->
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,100..1000&display=swap"
       rel="stylesheet"
     />
-
-    <link rel="stylesheet" href="./static/css/bulma.min.css" />
-    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
-    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
     <link
+      href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
     />
-    <link rel="stylesheet" href="./static/css/index.css" />
-    <link rel="icon" href="./static/images/favicon.svg" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src="./static/js/fontawesome.all.min.js"></script>
-    <script src="./static/js/bulma-carousel.min.js"></script>
-    <script src="./static/js/bulma-slider.min.js"></script>
-    <script src="./static/js/index.js"></script>
+    <link rel="stylesheet" href="/paper-kit/paper.css" />
+    <script defer src="/paper-kit/paper.js"></script>
+    <style>
+      /* Page-local: related-paper note, case-study steps, collapsible prompts. */
+      .related {
+        font-size: 15px;
+        margin: 0 0 20px;
+      }
+      .steps {
+        list-style: none;
+        margin: 0;
+        padding: 20px 24px;
+        background: var(--surface);
+        border-radius: 14px;
+      }
+      .steps li + li {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+      }
+      .steps .step-label {
+        display: block;
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .steps p {
+        margin: 0 0 8px;
+      }
+      .steps p:last-child {
+        margin-bottom: 0;
+      }
+      .prompt + .prompt {
+        margin-top: 12px;
+      }
+      .prompt summary {
+        cursor: pointer;
+        padding: 10px 14px;
+        font-size: 15px;
+      }
+      .prompt[open] summary {
+        border-bottom: 1px solid var(--line);
+      }
+      .prompt pre {
+        white-space: pre-wrap;
+      }
+    </style>
   </head>
   <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" style="background-color: #fff;">
-      <div class="container is-flex is-justify-content-center">
-        <div class="navbar-item">
-          <a href="https://taehyungnoh.com/" title="Home" style="color: #363636;">
-            <span class="icon is-medium">
-              <i class="fas fa-home fa-lg"></i>
-            </span>
-          </a>
-        </div>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            More Research
-          </a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="https://taehyungnoh.com/aaai26-triple/">
-              TRIPLE (AAAI)
-            </a>
-            <a class="navbar-item" href="https://taehyungnoh.com/coling25-pado/">
-              PADO
-            </a>
-            <a class="navbar-item" href="https://taehyungnoh.com/chi26-deception/">
-              Deception (CHI)
-            </a>
-            <a class="navbar-item" href="https://taehyungnoh.com/chi23-mos/">
-              MOS
-            </a>
-          </div>
-        </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="site-name" href="/">Taehyung Noh</a>
+        <nav aria-label="Site">
+          <a href="/projects">Projects</a>
+          <a href="/CV_Taehyung/main.pdf">CV</a>
+        </nav>
       </div>
-    </nav>
+    </header>
 
-    <section class="hero" style="padding-top: 52px;">
-      <div class="hero-body">
-        <div class="container is-max-desktop">
-          <div class="columns is-centered">
-            <div class="column has-text-centered">
-              <h1 class="title is-1 publication-title">
-                Externalizing Social-Cognitive Structures for User Modeling:
-                Toward Theory-Driven Profiling with LLMs
-              </h1>
-              <div class="is-size-5 publication-authors">
-                <span class="author-block">
-                  Taehyung Noh<sup>1</sup>,</span
-                >
-                <span class="author-block">
-                  <a href="">Seungwan Jin</a><sup>1</sup>,</span
-                >
-                <span class="author-block">
-                  <a href="">Haein Yeo</a><sup>1</sup>,
-                </span>
-                <span class="author-block">
-                  <a href="">Kyungsik Han</a><sup>1,*</sup>
-                </span>
-              </div>
+    <main id="main">
+      <article>
+        <header class="hero column">
+          <a class="back-link" href="/projects?folder=um&amp;project=triple-cikm">← All projects</a>
+          <p class="eyebrow">CIKM 2025 · Short paper</p>
+          <h1>
+            Grounding LLM user profiles in the Theory of Planned Behavior
+            improves personalization
+          </h1>
+          <p class="authors">
+            <strong>Taehyung Noh</strong>, Seungwan Jin, Haein Yeo, Kyungsik
+            Han<sup>*</sup>
+          </p>
+          <p class="affiliations">
+            Hanyang University &nbsp;·&nbsp; <sup>*</sup>Corresponding author
+          </p>
+          <p class="deck">
+            LLM-generated user profiles tend to list surface preferences. TRIPLE
+            instead describes each user through the three drivers of intention in
+            the Theory of Planned Behavior: attitude, subjective norm, and
+            perceived behavioral control. It then refines that profile by
+            checking its predictions against what the user actually did, with no
+            additional training.
+          </p>
+          <p class="related muted">
+            Related: our <a href="/aaai26-triple/">AAAI 2026 paper</a>, which
+            models users' habits alongside their intentions.
+          </p>
+          <ul class="links" aria-label="Resources">
+            <li>
+              <a href="https://dl.acm.org/doi/10.1145/3746252.3760965" target="_blank" rel="noopener noreferrer">Paper</a>
+            </li>
+            <li>
+              <a href="https://youtu.be/QW6qo4MOeL0" target="_blank" rel="noopener noreferrer">Video</a>
+            </li>
+          </ul>
+          <ul class="chips" aria-label="Tags">
+            <li>First author</li>
+            <li>User modeling</li>
+            <li>Personalization</li>
+          </ul>
+        </header>
 
-              <div class="is-size-5 publication-authors">
-                <span class="author-block"><sup>1</sup>Hanyang University</span>
-                <span class="author-block"
-                  ><sup>*</sup>Corresponding Author</span
-                >
-              </div>
+        <nav class="toc column" aria-label="In this paper">
+          <p class="toc-title">In this paper</p>
+          <ol>
+            <li><a href="#problem"><span class="num">01</span>The problem</a></li>
+            <li><a href="#method"><span class="num">02</span>How TRIPLE works</a></li>
+            <li><a href="#findings"><span class="num">03</span>What we found</a></li>
+            <li><a href="#case"><span class="num">04</span>One user's profile over time</a></li>
+            <li><a href="#publication"><span class="num">05</span>Publication</a></li>
+          </ol>
+        </nav>
 
-              <div class="column has-text-centered">
-                <div class="publication-links">
-                  <!-- Paper Link -->
-                  <span class="link-block">
-                    <a
-                      href="https://dl.acm.org/doi/10.1145/3746252.3760965"
-                      class="external-link button is-normal is-rounded is-dark"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Paper</span>
-                    </a>
-                  </span>
-                  <!-- Video Link -->
-                  <span class="link-block">
-                    <a
-                      href="https://youtu.be/QW6qo4MOeL0"
-                      class="external-link button is-normal is-rounded is-dark"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span class="icon">
-                        <i class="fab fa-youtube"></i>
-                      </span>
-                      <span>Video</span>
-                    </a>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Teaser section -->
-    <section class="hero teaser">
-      <div class="container is-max-desktop">
-        <div class="hero-body">
-          <div class="has-text-centered">
+        <figure class="figure wide" aria-labelledby="fig1-cap">
+          <p class="fig-label">FIG. 01</p>
+          <p class="fig-title">The TRIPLE framework</p>
+          <div class="fig-image">
             <img
               src="./static/images/overall.jpeg"
-              alt="TRIPLE Framework Architecture"
-              style="max-width: 100%; height: auto; border-radius: 10px"
+              alt="TRIPLE framework: (a) a user profile is generated from user data, used to predict behavior, compared with ground truth and refined up to N times; (b) the best refined profile becomes the starting point when new user data arrives"
+              loading="lazy"
             />
           </div>
-          <h2 class="subtitle has-text-centered" style="margin-top: 1rem">
-            <b>TRIPLE</b>: A novel framework that integrates the
-            <b>Theory of Planned Behavior (TPB)</b> with Large Language Models
-            to create dynamic, theory-driven user profiles for enhanced
-            personalization. The prediction-evaluation-refinement cycle plays a
-            crucial role in capturing evolving user states.
-          </h2>
-        </div>
-      </div>
-    </section>
+          <figcaption id="fig1-cap">
+            (a) A TPB profile is generated from the user's data, used to predict
+            their behavior, and refined against the true behavior up to
+            <em>N</em> times; the best-performing version is kept. (b) When new
+            data arrives, that profile is the starting point for the next round
+            of refinement.
+          </figcaption>
+        </figure>
 
-    <section class="section">
-      <div class="container is-max-desktop">
-        <!-- Abstract -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">Abstract</h2>
-            <div class="content has-text-justified">
-              <p>
-                In this paper, we propose TRIPLE, (TPB-dRIven Profiling with LLM
-                rEfinement), a dynamic profiling framework that incorporates the
-                Theory of Planned Behavior (TPB) into user profile modeling. Our
-                method (1) extracts TPB components from historical text data to
-                construct an initial user profile, (2) iteratively refines this
-                profile by analyzing discrepancies between predicted and actual
-                behaviors, and (3) continuously updates the user’s state by
-                incorporating newly arriving text. We evaluate TRIPLE on the
-                LaMP datasets, focusing on rating prediction and personalized
-                tweet paraphrasing tasks, using multiple open-source large
-                language models. Experimental results demonstrate that TRIPLE
-                consistently outperforms existing profiling methods across all
-                evaluation settings. Qualitative analysis confirms that TRIPLE
-                captures the psychological and social mechanisms underlying
-                users' product evaluation and description. These findings
-                provide empirical evidence that theory-driven user profiling can
-                significantly improve personalization performance in recommender
-                systems and related applications.
-              </p>
-            </div>
-          </div>
-        </div>
+        <section id="problem" class="column section">
+          <h2><span class="num">01 /</span> The problem</h2>
+          <p>
+            Accurate user profiling is still a central challenge for
+            personalized services. LLMs make it possible to describe users in
+            natural language, and recent methods build such profiles from a
+            user's past text.
+          </p>
+          <p>
+            <strong>Surface features, not drivers.</strong> These profiles mostly
+            capture favored keywords, styles, or stated preferences. They do not
+            model the latent factors that shape a decision, and they are often
+            static or updated naively.
+          </p>
+          <p>
+            <strong>A theory of why people act.</strong> In social psychology,
+            the Theory of Planned Behavior (TPB) holds that behavioral intentions
+            are shaped by a person's <em>attitude</em> toward the behavior, the
+            <em>subjective norms</em> they perceive, and their <em>perceived
+            behavioral control</em>. These are exactly the latent variables that
+            surface-level profiles leave out.
+          </p>
+        </section>
 
-        <!-- Introduction Section -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">📖 Introduction</h2>
-            <div class="content has-text-justified">
-              <p>
-                Accurate user profiling remains a central challenge in
-                personalized services. While behavioral intentions are shaped by
-                personal attitudes, subjective norms, and perceived behavioral
-                control, existing LLM-based profiling approaches often extract
-                only surface-level preferences without systematically modeling
-                the core latent variables that drive user behavior.
-              </p>
-              <p>
-                To address these limitations, we propose
-                <strong>TRIPLE</strong> (TPB-dRIven Profiling with LLM
-                rEfinement), a dynamic profiling framework that incorporates the
-                Theory of Planned Behavior (TPB) into user modeling. TRIPLE
-                leverages LLM reasoning to extract key TPB components—attitude,
-                subjective norms, and perceived behavioral control—from input
-                data and represent them in natural language. These latent
-                variables are then continuously updated through a
-                prediction-evaluation-refinement cycle to better reflect
-                evolving user states.
-              </p>
-              <p>
-                This work presents the first systematic integration of
-                social-psychological theory into LLM-based profiling, offering
-                broad applicability across various LLMs without the need for
-                additional training. TRIPLE demonstrates strong potential for
-                application across diverse domains, offering insights to guide
-                future research.
-              </p>
-            </div>
-          </div>
-        </div>
+        <section id="method" class="column section">
+          <h2><span class="num">02 /</span> How TRIPLE works</h2>
+          <p>
+            TRIPLE (TPB-dRIven Profiling with LLM rEfinement) uses an LLM to
+            write each of the three TPB components in natural language and keeps
+            them up to date in a cycle of prediction, evaluation, and refinement
+            (FIG. 01). It works with different LLMs and needs no additional
+            training.
+          </p>
+          <p>
+            <strong>Build an initial profile.</strong> The LLM reads a user's
+            past text, such as their reviews, and writes their attitude,
+            subjective norm, and perceived behavioral control, stored as
+            structured JSON.
+          </p>
+          <p>
+            <strong>Refine against real behavior.</strong> The profile is used to
+            predict the user's behavior. The prediction is compared with what the
+            user actually did, and the error is passed back to the LLM with
+            instructions to adjust the profile. This repeats <em>N</em> times
+            (<em>N</em> = 5 in our experiments), and the best-performing profile
+            is kept.
+          </p>
+          <p>
+            <strong>Update over time.</strong> When new data arrives, refinement
+            starts from the previous step's best profile rather than from
+            scratch, so the profile adapts gradually as the user's preferences
+            change.
+          </p>
+        </section>
 
-        <!-- Dataset Statistics Section -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">📊 Datasets</h2>
-            <div class="content has-text-justified">
-              <p>
-                We evaluate TRIPLE on the
-                <a href="https://lamp-benchmark.github.io/">LaMP</a>
-                benchmark, focusing on two representative tasks:
-              </p>
-              <ul>
-                <li>
-                  <strong>LaMP-3 (Product Rating Prediction):</strong> This task
-                  involves predicting product ratings on a 1-5 scale for Amazon
-                  items based on users' review histories. The dataset contains
-                  2,500 test samples, and performance is evaluated using Mean
-                  Absolute Error (MAE) and Root Mean Square Error (RMSE).
-                </li>
-                <li>
-                  <strong>LaMP-4 (News Headline Generation):</strong> This task
-                  involves generating personalized news headlines that match a
-                  user's writing style. It includes 1,800 test samples, with
-                  performance evaluated using ROUGE-1 and ROUGE-L scores.
-                </li>
-              </ul>
-              <p>
-                To preserve the temporal structure of user behavior, we use a
-                time-based separation approach for evaluation on the test set.
-              </p>
-            </div>
-          </div>
-        </div>
+        <section id="findings" class="column section">
+          <h2><span class="num">03 /</span> What we found</h2>
+          <p>
+            We evaluated TRIPLE on two tasks from the LaMP benchmark. In
+            <strong>LaMP-3</strong>, the model predicts the 1–5 rating a user
+            gives an Amazon product from their review history (2,500 test
+            samples; MAE and RMSE). In <strong>LaMP-4</strong>, it generates news
+            headlines in a user's style (1,800 test samples; ROUGE-1 and
+            ROUGE-L). Test data is split by time to keep the order of each user's
+            behavior.
+          </p>
+          <p>
+            <strong>Better than existing profiling methods.</strong> Across the
+            open-source LLMs we tested, TRIPLE outperformed existing profiling
+            methods in every evaluation setting.
+          </p>
+          <p>
+            <strong>Setup.</strong> Experiments ran on 4 NVIDIA A100 GPUs with
+            temperature 0, a maximum of 1,000 tokens to leave room for full TPB
+            descriptions, and up to 5 refinement iterations. All baselines were
+            re-implemented from the prompts in their original papers or official
+            repositories.
+          </p>
+        </section>
 
-        <!-- Results Section -->
-        <!-- <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">📈 Experiment Results</h2>
-            <div class="content">
-              <h3 class="title is-4">Main Performance Comparison</h3>
+        <section id="case" class="column section">
+          <h2><span class="num">04 /</span> One user's profile over time</h2>
+          <p>
+            Because the profile is plain text, you can watch it change. Below,
+            user #9157's TPB profile is updated after each new product review.
+            The user's view of comfort stays positive throughout, while their
+            sense of control over a good purchase drops as sizing and quality
+            problems appear (FIG. 02).
+          </p>
+        </section>
+
+        <figure class="figure" aria-labelledby="fig2-cap">
+          <p class="fig-label">FIG. 02</p>
+          <p class="fig-title">Case study: user #9157 on LaMP-3</p>
+          <ol class="steps">
+            <li>
+              <span class="step-label">Initial profile (Step 0)</span>
               <p>
-                TRIPLE consistently achieves the highest or second-highest
-                performance across all evaluation models and tasks, even without
-                the refinement cycle. The results underscore our hypothesis that
-                modeling core latent variables yields more accurate behavioral
-                predictions than capturing surface-level preferences.
-              </p>
-              <img
-                src="./static/images/table1.png"
-                alt="Main experiment results table"
-                style="max-width: 100%; height: auto; margin-bottom: 2rem"
-              />
-
-              <h3 class="title is-4">Role of Profile Refinement</h3>
-              <p>
-                The iterative refinement process progressively enhances the
-                model's ability to capture users' core latent variables. As
-                shown below, performance consistently improves with more
-                refinement iterations (R0 to R5), validating that the errors
-                identified during evaluation successfully guide adjustments to
-                the TPB representations.
-              </p>
-              <img
-                src="./static/images/FIG_Refinement_2.jpeg"
-                alt="Impact of profile refinement iterations"
-                style="max-width: 100%; height: auto; margin-bottom: 2rem"
-              />
-
-              <h3 class="title is-4">Role of Profile Update</h3>
-              <p>
-                Our dynamic update method (blue line) achieves the highest
-                performance and shows progressive improvements over time. In
-                contrast, fully regenerating the profile from scratch (orange
-                line) or using a simple sliding window (purple line) fails to
-                effectively capture the evolving nature of users' long-term
-                latent variables.
-              </p>
-              <img
-                src="./static/images/FIG_update_2.jpeg"
-                alt="Impact of profile update strategies"
-                style="max-width: 100%; height: auto"
-              />
-            </div>
-          </div>
-        </div> -->
-
-        <!-- Error Analysis Section -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">🔍 Profile Refinement Process</h2>
-            <div class="content has-text-justified">
-              <p>
-                TRIPLE's refinement cycle continuously adapts user profiles
-                through behavioral feedback. When behavior predictions deviate
-                from actual outcomes, the framework analyzes the error and
-                updates the TPB components to better capture the user's
-                psychological state.
-              </p>
-
-              <h3 class="title is-4">User #9157 Case Study</h3>
-              <p>
-                Below is a real example showing how a user's TPB profile evolves
-                through the refinement process across multiple product reviews.
-                Each refinement iteration updates the profile based on
-                behavioral discrepancies to capture evolving user preferences.
-              </p>
-
-              <!-- Initial Profile -->
-              <div
-                class="box accent-box"
-              >
-                <h4 class="title is-5">Initial Profile (Step 0)</h4>
-                <p>
-                  <strong>Review:</strong> "Very comfortable, and warm.
-                  Excellent sale, and a fast shipment and receipt."
-                </p>
-                <ul>
-                  <li>
-                    <strong>Attitude:</strong> "This user clearly holds a
-                    positive attitude towards purchasing this type of product,
-                    expressing satisfaction with its comfort and warmth. The
-                    phrasing 'Excellent sale' indicates a favorable evaluation
-                    of the purchase experience itself."
-                  </li>
-                  <li>
-                    <strong>Subjective Norm:</strong> "The review doesn't
-                    explicitly mention social influence, but the positive
-                    experience suggests the user might perceive others would
-                    approve of this purchase. There's no indication of
-                    conflicting social pressures."
-                  </li>
-                  <li>
-                    <strong>Perceived Behavioral Control:</strong> "The user
-                    demonstrates a high degree of perceived behavioral control,
-                    as evidenced by their description of a 'fast shipment and
-                    receipt'. This suggests they believe acquiring this product
-                    is easy and straightforward."
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Refined Profile After Step 1 -->
-              <div
-                class="box accent-box"
-              >
-                <h4 class="title is-5">
-                  Updated Profile After Sizing Issue (Step 1)
-                </h4>
-                <p>
-                  <strong>New Review:</strong> "Had to return two pair, because
-                  the manufactures shoe last is 1 to 1/2 size smaller than any
-                  other foot wear I have, Of the same size."
-                </p>
-                <ul>
-                  <li>
-                    <strong>Attitude:</strong> "The user's initial attitude
-                    appears cautiously optimistic, noting a good sale, but is
-                    significantly impacted by a major fit issue. While they
-                    likely sought a comfortable and warm product, the need for
-                    multiple returns suggests a considerable degree of
-                    dissatisfaction with the product's core functionality."
-                  </li>
-                  <li>
-                    <strong>Subjective Norm:</strong> "The review provides no
-                    direct evidence of social influence, but the user's
-                    willingness to purchase again (if the sizing were correct)
-                    hints at a belief that others might also find the product
-                    appealing if it fit properly."
-                  </li>
-                  <li>
-                    <strong>Perceived Behavioral Control:</strong> "Although the
-                    initial shipment was fast, the necessity of returning two
-                    pairs significantly diminishes the user's sense of control
-                    over a successful purchase. The experience demonstrates that
-                    acquiring a satisfactory product is not straightforward,
-                    despite ease of initial delivery."
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Final Profile After Multiple Steps -->
-              <div
-                class="box accent-box"
-              >
-                <h4 class="title is-5">Final Updated Profile (Step 3)</h4>
-                <p>
-                  <strong>Latest Review:</strong> "The sale was easy, and
-                  shipping was fine. These are a very comfortable boot, with
-                  apparent strong materials and sewing. While the above is
-                  true...so is the fact the Boot sold as water proof LEAKS
-                  HORRIBLY Leaving feet soaked from wet grass!"
-                </p>
-                <ul>
-                  <li>
-                    <strong>Attitude:</strong> "The user initially expresses a
-                    positive attitude towards the boot's comfort and
-                    construction quality, appreciating the strong materials and
-                    sewing. However, the significant failure of the
-                    waterproofing feature introduces a substantial negative
-                    element, creating a mixed emotional response rather than
-                    complete disappointment."
-                  </li>
-                  <li>
-                    <strong>Subjective Norm:</strong> "The user feels a
-                    responsibility to share their experience, particularly
-                    regarding the waterproofing issue, suggesting a belief in
-                    the importance of accurate product information for others.
-                    This indicates a moderate awareness of social
-                    responsibility, driven by a desire to help fellow consumers
-                    make informed decisions."
-                  </li>
-                  <li>
-                    <strong>Perceived Behavioral Control:</strong> "The smooth
-                    purchase and shipping process provided a degree of initial
-                    confidence, but the boot's failure to perform its primary
-                    function – waterproofing – significantly impacts the user's
-                    overall sense of control. While the transaction itself was
-                    positive, the product's core functionality issue diminishes
-                    the user's feeling of having made a fully satisfactory
-                    purchase."
-                  </li>
-                </ul>
-              </div>
-
-              <p>
-                This example demonstrates how TRIPLE captures the evolution of
-                user attitudes and behavioral patterns over time. The framework
-                adapts to new experiences (sizing issues, quality problems)
-                while maintaining core user preferences (comfort, reliability),
-                enabling more accurate personalization as more behavioral data
-                becomes available.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Generated Profile Examples Section -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">📝 Generated Profile Examples</h2>
-            <div class="content has-text-justified">
-              <p>
-                Below are examples of user profiles generated by TRIPLE, showing
-                how the framework extracts and structures the three key
-                components of the Theory of Planned Behavior from user
-                behavioral data.
-              </p>
-
-              <h3 class="title is-4">Example: Product Rating Task</h3>
-              <div
-                class="box accent-box"
-                style="text-align: left"
-              >
-                <p>
-                  <strong>User Context:</strong> A user who frequently purchases
-                  and reviews electronics products
-                </p>
-                <br />
-                <p><strong>Generated TPB Profile:</strong></p>
-                <ul>
-                  <li>
-                    <strong>Attitude:</strong> "Values high-quality build and
-                    innovative features in electronics. Prioritizes durability
-                    and performance over price. Shows preference for established
-                    brands with good customer service."
-                  </li>
-                  <li>
-                    <strong>Subjective Norm:</strong> "Influenced by tech
-                    enthusiast communities and online reviews. Considers
-                    recommendations from friends and family important for major
-                    purchases. Trusts expert reviews from technology websites."
-                  </li>
-                  <li>
-                    <strong>Perceived Behavioral Control:</strong> "Has
-                    sufficient budget for premium electronics. Comfortable with
-                    technical specifications and product comparisons. Confident
-                    in making informed purchasing decisions based on research."
-                  </li>
-                </ul>
-              </div>
-
-              <p>
-                This example demonstrates how TRIPLE captures not just
-                surface-level preferences, but the underlying psychological and
-                social factors that drive user behavior, enabling more accurate
-                and interpretable personalization.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container is-max-desktop">
-        <!-- Methodology Section -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">⚙️ Methodology</h2>
-            <div class="content has-text-justified">
-              <p>
-                The TRIPLE framework consists of four main stages: (1)
-                generating an initial profile by extracting TPB components using
-                an LLM, (2) performing a personalization task using the
-                generated profile, (3) refining the profile based on behavior
-                prediction results, and (4) dynamically updating the user
-                profile over time. The overall architecture is illustrated in
-                the figure at the top of the page.
+                <em>Review:</em> "Very comfortable, and warm. Excellent sale, and
+                a fast shipment and receipt."
               </p>
               <p>
-                <strong>1. TPB-based Initial Profile Construction:</strong> We
-                analyze a user's textual data using an LLM to extract the three
-                key components of the Theory of Planned Behavior (TPB):
-                <em>attitude</em>, <em>subjective norm</em>, and
-                <em>perceived behavioral control</em>. These are stored in a
-                structured JSON format.
+                Attitude is clearly positive about comfort, warmth, and the
+                purchase itself. Perceived behavioral control is high: the fast
+                shipment suggests the user finds buying this product easy.
+              </p>
+            </li>
+            <li>
+              <span class="step-label">Updated after a sizing issue (Step 1)</span>
+              <p>
+                <em>Review:</em> "Had to return two pair, because the
+                manufactures shoe last is 1 to 1/2 size smaller than any other
+                foot wear I have, Of the same size."
               </p>
               <p>
-                <strong>2. Profile Refinement:</strong> We adopt an iterative
-                cycle of prediction, evaluation, and refinement. Given a
-                profile, the model predicts user behavior. The prediction is
-                compared with the ground truth, and the resulting error is used
-                to prompt the LLM to refine the profile. This is repeated N
-                times (N=5 in our experiments) to select the best-performing
-                profile.
+                Attitude becomes cautiously optimistic but marked by real
+                dissatisfaction with fit. Perceived control falls: two returns
+                show that getting a satisfactory product is not straightforward,
+                despite fast delivery.
+              </p>
+            </li>
+            <li>
+              <span class="step-label">Final updated profile (Step 3)</span>
+              <p>
+                <em>Review:</em> "The sale was easy, and shipping was fine. These
+                are a very comfortable boot, with apparent strong materials and
+                sewing. While the above is true...so is the fact the Boot sold
+                as water proof LEAKS HORRIBLY Leaving feet soaked from wet
+                grass!"
               </p>
               <p>
-                <strong>3. Profile Update:</strong> To capture temporal changes,
-                the optimal profile from the previous time step is used as the
-                starting point for refinement with new user data. This allows
-                the model to progressively adapt to the user's evolving
-                preferences and behavioral patterns over time.
+                Attitude is mixed rather than wholly negative: comfort and build
+                are appreciated, but the waterproofing failure weighs heavily.
+                Subjective norm now reflects a felt responsibility to warn other
+                buyers. Perceived control is reduced because the product failed
+                at its main function, even though the transaction went smoothly.
               </p>
-            </div>
-          </div>
-        </div>
+            </li>
+          </ol>
+          <figcaption id="fig2-cap">
+            Profile text summarized from TRIPLE's generated attitude, subjective
+            norm, and perceived behavioral control at each step; reviews are
+            quoted as written. The profile absorbs new experiences while keeping
+            stable preferences such as comfort.
+          </figcaption>
+        </figure>
 
-        <!-- Related Work Section -->
-        <!-- <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">🔗 Related Work</h2>
-            <div class="content has-text-justified">
-              <p>
-                While traditional methods like collaborative filtering often
-                lack interpretability, the advent of LLMs has opened new avenues
-                for personalized recommendation. Recent studies have explored
-                summarizing user interactions or constructing intermediate user
-                profiles from text. For example, GPG extracts writing styles and
-                preferences, while PURE incrementally updates profiles based on
-                user likes and dislikes.
-              </p>
-              <p>
-                Despite these advances, most existing LLM-based methods focus on
-                identifying surface-level features like favored keywords or
-                writing styles, without modeling the deeper psychosocial
-                mechanisms that drive decisions. User profiles are often treated
-                as static or updated naively. To overcome these limitations, we
-                propose incorporating the Theory of Planned Behavior (TPB), a
-                foundational framework in social psychology, into LLM-based user
-                profiling. To the best of our knowledge, this is the first study
-                to successfully incorporate a theory-driven approach into
-                LLM-based personalization.
-              </p>
-            </div>
-          </div>
-        </div> -->
-
-        <!-- Prompts Used Section -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">💬 Prompts Used</h2>
-            <div class="content has-text-justified">
-              <p>
-                To ensure reproducibility and transparency, we provide the key
-                prompts used in our TRIPLE framework. These prompts guide the
-                LLM through the TPB-based profiling process.
-              </p>
-
-              <h3 class="title is-4">1. Initial Profile Generation Prompt</h3>
-              <div
-                class="box accent-box"
-                style="text-align: left"
-              >
-                <pre
-                  style="
-                    white-space: pre-wrap;
-                    font-size: 0.9em;
-                    line-height: 1.4;
-                  "
-                ><code>You are highly skilled at role-playing. Imagine that you are a top-tier user-profiling expert.
+        <section id="prompts" class="column section section-continued">
+          <p>
+            <strong>Prompts.</strong> For reproducibility, here are the three
+            prompts TRIPLE uses on the rating task.
+          </p>
+          <details class="cite prompt">
+            <summary>1. Initial profile generation</summary>
+            <pre><code>You are highly skilled at role-playing. Imagine that you are a top-tier user-profiling expert.
 Your goal is to:
 - generate a Theory of Planned Behavior (TPB)–based profile of the user.
 
@@ -658,21 +358,11 @@ Respond in the following JSON format:
 }}
 
 Start the profiling
-Begin the profiling task now! Strictly follow [Task Instructions] and output your response in JSON format. </code></pre>
-              </div>
-
-              <h3 class="title is-4">2. Behavior Prediction Prompt</h3>
-              <div
-                class="box accent-box"
-                style="text-align: left"
-              >
-                <pre
-                  style="
-                    white-space: pre-wrap;
-                    font-size: 0.9em;
-                    line-height: 1.4;
-                  "
-                ><code>You are highly skilled at role-playing. Imagine you are an expert rating predictor.  
+Begin the profiling task now! Strictly follow [Task Instructions] and output your response in JSON format.</code></pre>
+          </details>
+          <details class="cite prompt">
+            <summary>2. Behavior prediction</summary>
+            <pre><code>You are highly skilled at role-playing. Imagine you are an expert rating predictor.  
 Your goal:  
 - Predict a rating between 1.0 – 5.0 based on the user profile and review content.
 
@@ -700,20 +390,10 @@ Respond in the following JSON format:
 
 # Start the Prediction
 Begin the rating prediction task now! Strictly follow the [Task Instructions] and respond in the specified JSON format.</code></pre>
-              </div>
-
-              <h3 class="title is-4">3. Profile Refinement Prompt</h3>
-              <div
-                class="box accent-box"
-                style="text-align: left"
-              >
-                <pre
-                  style="
-                    white-space: pre-wrap;
-                    font-size: 0.9em;
-                    line-height: 1.4;
-                  "
-                ><code>You are highly skilled at role-playing. Imagine that you are a top-tier refinement expert.  
+          </details>
+          <details class="cite prompt">
+            <summary>3. Profile refinement</summary>
+            <pre><code>You are highly skilled at role-playing. Imagine that you are a top-tier refinement expert.  
 Your goal is to:  
 - Refinement the user's TPB-based profile.
 
@@ -733,10 +413,10 @@ First, you must develop your thinking as specified in [Refiner Thought]. Follow 
 1. Understand how the prediction deviated from the ground truth by comparing [prediction] and [ground truth].  
 2. Identify which aspects of the [profile] might have contributed to this discrepancy based on [explanation].  
 3. Decide on the direction of refinement.  
-   - [prediction] > [ground truth]:  
+   - [prediction] &gt; [ground truth]:  
      - The user's attitude may have been overestimated, so soften positive expressions or incorporate more negative/neutral cues.  
      - Check whether social pressure (Subjective Norm) or perceived behavioral control (PBC) has been described higher than in reality, and modestly adjust them if necessary.  
-   - [prediction] < [ground truth]:  
+   - [prediction] &lt; [ground truth]:  
      - The user's attitude may have been underestimated, so emphasize positive experiences and satisfaction factors.  
      - Strengthen the surrounding positive influence (Subjective Norm) or the perceived control (PBC) derived from successful experiences, adding grounds for the user to give a higher rating.  
 4. Do not include exact numeric values ([ground truth]) in the refined [profile].  
@@ -751,64 +431,63 @@ Respond in the following JSON format:
 }}
 
 # Start the Refinement
-Now begin your Refinement task! You should format your response strictly following the [Task Instructions]. Output the result in JSON format. </code></pre>
-              </div>
+Now begin your Refinement task! You should format your response strictly following the [Task Instructions]. Output the result in JSON format.</code></pre>
+          </details>
+        </section>
 
-              <p>
-                These prompts are designed to systematically guide the LLM
-                through each stage of the TRIPLE framework, ensuring consistent
-                extraction and refinement of TPB-based user profiles across
-                different tasks and domains.
-              </p>
+        <section id="publication" class="column section">
+          <h2><span class="num">05 /</span> Publication</h2>
+          <dl class="pub">
+            <dt>Title</dt>
+            <dd>
+              Externalizing Social-Cognitive Structures for User Modeling: Toward
+              Theory-Driven Profiling with LLMs
+            </dd>
+            <dt>Authors</dt>
+            <dd>
+              <strong>Taehyung Noh</strong>, Seungwan Jin, Haein Yeo, Kyungsik Han
+            </dd>
+            <dt>Venue</dt>
+            <dd>
+              Proceedings of the 34th ACM International Conference on
+              Information and Knowledge Management (CIKM '25), short paper
+            </dd>
+            <dt>Paper</dt>
+            <dd>
+              <a href="https://dl.acm.org/doi/10.1145/3746252.3760965" target="_blank" rel="noopener noreferrer">ACM Digital Library</a>
+            </dd>
+            <dt>Video</dt>
+            <dd>
+              <a href="https://youtu.be/QW6qo4MOeL0" target="_blank" rel="noopener noreferrer">YouTube</a>
+            </dd>
+          </dl>
+          <div class="cite">
+            <div class="cite-head">
+              <span>Citation</span>
+              <button type="button" class="copy-btn" data-copy-target="bibtex">Copy</button>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container is-max-desktop">
-        <!-- Implementation Details Section -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">⚙️ Implementation Details</h2>
-            <div class="content has-text-justified">
-              <p>
-                We employed 4 NVIDIA A100 GPUs for testing. The temperature was set to 0 for both tasks. The maximum token length was set to 1000 to accommodate comprehensive TPB component descriptions while maintaining computational efficiency. We performed up to 5 refinement iterations. All baselines were re-implemented using prompts provided in their original papers or official GitHub repositories. The entire experimental pipeline was implemented in Python and will be released upon publication.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="BibTeX">
-      <div class="container is-max-desktop content">
-        <h2 class="title">BibTeX</h2>
-        <pre><code>@inproceedings{noh2025triple,
+            <pre id="bibtex"><code>@inproceedings{noh2025triple,
   author    = {Noh, Taehyung and Jin, Seungwan and Yeo, Haein and Han, Kyungsik},
   title     = {Externalizing Social-Cognitive Structures for User Modeling: Toward Theory-Driven Profiling with LLMs},
   booktitle = {Proceedings of the 34th ACM International Conference on Information and Knowledge Management (CIKM '25)},
   year      = {2025},
   month     = {November},
   publisher = {ACM},
-  doi       = {10.1145/XXXXXX.XXXXXX},
+  doi       = {10.1145/3746252.3760965},
 }</code></pre>
-      </div>
-    </section>
+          </div>
+        </section>
+      </article>
+    </main>
 
     <footer class="footer">
-      <div class="container">
-        <div class="content has-text-centered">
-          <div class="is-flex is-justify-content-center is-align-items-center" style="gap: 1.5rem;">
-            <p style="margin: 0;">
-              This website is adapted from
-              <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and
-              <a href="https://mathvista.github.io/">MathVista</a>, licensed under a
-              <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-            </p>
-          </div>
-        </div>
+      <div class="footer-inner">
+        <span>© 2026 Taehyung Noh</span>
+        <nav aria-label="Footer">
+          <a href="/">Home</a>
+          <a href="/projects">Projects</a>
+          <a href="/CV_Taehyung/main.pdf">CV</a>
+        </nav>
       </div>
     </footer>
   </body>
