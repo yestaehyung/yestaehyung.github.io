@@ -795,3 +795,8 @@ figcaption {
 .results tbody tr:last-child td {
   border-bottom: 0;
 }
+
+/* Keep the tag row and the link row apart whichever comes first. */
+.links + .chips {
+  margin-top: 20px;
+}
