@@ -8,7 +8,7 @@
 const publicationsData = [
   {
     id: 10,
-    name: "Dycon",
+    name: "DyCon",
     short: "NeurIPS ’26",
     topics: ["um"],
     title:
@@ -23,7 +23,12 @@ const publicationsData = [
     venue: "NeurIPS 2026",
     type: "conference",
     image: null,
-    links: [],
+    links: [
+      {
+        url: "https://taehyungnoh.com/neurips26-dycon/",
+        text: "Project Page",
+      },
+    ],
   },
   {
     id: 9,

@@ -6,6 +6,23 @@
  */
 const projectsData = [
   {
+    id: 10,
+    name: "DyCon",
+    publicationId: 10,
+    title: "DyCon: Dynamic Context Modeling (NeurIPS 2026)",
+    description:
+      "DyCon is a dual-loop framework for longitudinal mental health monitoring that personalizes by building and evolving a natural-language personal context for each user, without updating any model parameters. A momentary refinement loop restructures the context within each session using sparse EMA self-reports to handle inter-subject heterogeneity, and a longitudinal update loop carries refined context across sessions to track intra-subject behavioral drift. Offline experiments on GLOBEM, PMData, StudentLife, and LifeSnaps show its largest benefits when users' self-reported states change substantially.",
+    role: "Second Author",
+    keywords: ["LLM", "Mental Health", "User Modeling", "Mobile Sensing"],
+    status: "completed",
+    links: [
+      {
+        url: "https://taehyungnoh.com/neurips26-dycon/",
+        text: "Project Page",
+      },
+    ],
+  },
+  {
     id: 9,
     name: "PALETTE",
     publicationId: 9,

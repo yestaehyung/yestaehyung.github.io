@@ -46,7 +46,7 @@ const Introduction = () => {
           Concretely, I work on (1) <strong>theory-driven user modeling</strong>{" "}
           that brings established frameworks—such as the Theory of Planned
           Behavior—into LLM-based personalization (TRIPLE, AAAI 2026), and
-          models how users' context shifts over time (Dycon, NeurIPS 2026); (2){" "}
+          models how users' context shifts over time (DyCon, NeurIPS 2026); (2){" "}
           <strong>value-based user understanding</strong>—whether LLMs can infer
           the deeper human values behind people's choices rather than merely
           matching surface preferences, and whether that understanding

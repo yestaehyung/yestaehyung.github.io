@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DyCon · NeurIPS 2026</title>
+    <meta
+      name="description"
+      content="DyCon personalizes longitudinal mental health prediction by evolving a natural-language personal context for each user, without updating model parameters. NeurIPS 2026."
+    />
+    <meta property="og:title" content="DyCon: Dynamic Context Modeling (NeurIPS 2026)" />
+    <meta
+      property="og:description"
+      content="Personalizing mental health prediction as people change — without retraining the model."
+    />
+    <meta property="og:url" content="https://taehyungnoh.com/neurips26-dycon/" />
+    <meta property="og:type" content="article" />
+    <link rel="canonical" href="https://taehyungnoh.com/neurips26-dycon/" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <script defer src="./static/js/page.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="site-name" href="/">Taehyung Noh</a>
+        <nav aria-label="Site">
+          <a href="/projects">Projects</a>
+          <a href="/CV_Taehyung/main.pdf">CV</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <article>
+        <header class="hero column">
+          <a class="back-link" href="/projects?folder=um&amp;project=dycon">← All projects</a>
+          <p class="eyebrow">NeurIPS 2026 · Main Track</p>
+          <h1>
+            Personalizing mental health prediction as people change — without
+            retraining the model
+          </h1>
+          <p class="authors">
+            Seungwan Jin<sup>1</sup>, <strong>Taehyung Noh</strong><sup>2</sup>,
+            Junghyun Kim<sup>2</sup>, Uichin Lee<sup>1</sup>, Kyungsik Han<sup>2</sup>
+          </p>
+          <p class="affiliations"><sup>1</sup>KAIST &nbsp;·&nbsp; <sup>2</sup>Hanyang University</p>
+          <p class="deck">
+            Phone and wearable sensors can track behavior for months, but what a
+            pattern means differs from person to person and drifts over time.
+            DyCon keeps a natural-language personal context for each user and
+            evolves it with sparse self-reports, so predictions adapt to the
+            individual without updating any model parameters.
+          </p>
+          <ul class="chips" aria-label="Tags">
+            <li>Second author</li>
+            <li>Mental health</li>
+            <li>User modeling</li>
+          </ul>
+        </header>
+
+        <nav class="toc column" aria-label="In this paper">
+          <p class="toc-title">In this paper</p>
+          <ol>
+            <li><a href="#problem"><span class="num">01</span>The problem</a></li>
+            <li><a href="#method"><span class="num">02</span>How DyCon works</a></li>
+            <li><a href="#findings"><span class="num">03</span>What we found</a></li>
+            <li><a href="#limitations"><span class="num">04</span>Limitations</a></li>
+            <li><a href="#publication"><span class="num">05</span>Publication</a></li>
+          </ol>
+        </nav>
+
+        <figure class="figure wide" aria-labelledby="fig1-cap">
+          <p class="fig-label">FIG. 01</p>
+          <p class="fig-title">
+            Balanced accuracy when a user's anxiety score jumps by 3 or more
+            points between sessions
+          </p>
+          <div class="bars" role="img" aria-label="Lag-1 0.071, Label-only Memory 0.116, Per-user Recent 3-shot 0.274, DyCon 0.407">
+            <div class="bar-row">
+              <span class="bar-name">Lag-1 (carry last score forward)</span>
+              <span class="bar-track"><span class="bar" style="--v: 0.071"></span></span>
+              <span class="bar-value">0.071</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Label-only Memory</span>
+              <span class="bar-track"><span class="bar" style="--v: 0.116"></span></span>
+              <span class="bar-value">0.116</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Per-user Recent 3-shot</span>
+              <span class="bar-track"><span class="bar" style="--v: 0.274"></span></span>
+              <span class="bar-value">0.274</span>
+            </div>
+            <div class="bar-row is-ours">
+              <span class="bar-name">DyCon</span>
+              <span class="bar-track"><span class="bar" style="--v: 0.407"></span></span>
+              <span class="bar-value">0.407</span>
+            </div>
+          </div>
+          <figcaption id="fig1-cap">
+            Methods that lean on a user's past answers do well while nothing
+            changes, and fail when something does. DyCon holds up better under
+            large changes. GLOBEM, sessions 2–10, n = 219 transitions; difference
+            from every baseline p &lt; 0.001 (paired bootstrap).
+          </figcaption>
+        </figure>
+
+        <section id="problem" class="column section">
+          <h2><span class="num">01 /</span> The problem</h2>
+          <p>
+            Mobile and wearable sensing offers a scalable way to follow mental
+            health over weeks and months. Accurate prediction is still hard,
+            because human behavior shifts in two ways at once.
+          </p>
+          <p>
+            <strong>Across people.</strong> The same sensor pattern can mean
+            different things. Reduced mobility may be rest for one user and
+            depressive withdrawal for another. The paper calls this
+            <em>inter-subject heterogeneity</em>.
+          </p>
+          <p>
+            <strong>Within a person.</strong> A single user's behavioral
+            baseline moves over time as their environment and habits change,
+            which the paper calls <em>intra-subject behavioral drift</em>.
+          </p>
+          <p>
+            The usual fix is to personalize a model's parameters for each user.
+            But labels in this field come from Ecological Momentary Assessment
+            (EMA), short self-reports collected in daily life. They are
+            burdensome to collect and therefore sparse, which makes per-user
+            fine-tuning impractical.
+          </p>
+        </section>
+
+        <section id="method" class="column section">
+          <h2><span class="num">02 /</span> How DyCon works</h2>
+          <p>
+            DyCon (Dynamic Context Modeling) personalizes through text instead
+            of weights. For each user it builds and evolves a natural-language
+            personal context with an LLM, using two loops.
+          </p>
+        </section>
+
+        <figure class="figure wide" aria-labelledby="fig2-cap">
+          <p class="fig-label">FIG. 02</p>
+          <div class="fig-scroll">
+            <svg class="diagram" viewBox="0 0 900 300" role="img" aria-labelledby="fig2-title">
+              <title id="fig2-title">DyCon's dual loop: generate, predict, refine within a session, then update the longitudinal context for the next session</title>
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M0,0 L10,5 L0,10 z" class="arrow-head" />
+                </marker>
+              </defs>
+
+              <!-- outer loop: longitudinal update -> next session -->
+              <path class="edge edge-outer" d="M815,110 V44 H450 V108" marker-end="url(#arrow)" />
+              <text class="edge-label accent" x="632" y="34" text-anchor="middle">longitudinal context → next session</text>
+
+              <!-- inner loop: refine -> predict again -->
+              <path class="edge" d="M630,176 V250 H582" marker-end="url(#arrow)" />
+              <path class="edge" d="M478,250 H450 V178" marker-end="url(#arrow)" />
+              <text class="edge-label" x="640" y="214">error &gt; ε</text>
+              <text class="edge-label" x="530" y="290" text-anchor="middle">up to N<tspan baseline-shift="sub" font-size="10">r</tspan> times</text>
+
+              <!-- main flow -->
+              <path class="edge" d="M160,142 H196" marker-end="url(#arrow)" />
+              <path class="edge" d="M340,142 H376" marker-end="url(#arrow)" />
+              <path class="edge" d="M520,142 H556" marker-end="url(#arrow)" />
+              <path class="edge" d="M700,142 H736" marker-end="url(#arrow)" />
+              <text class="edge-label" x="718" y="132" text-anchor="middle">≤ ε</text>
+
+              <g class="node">
+                <rect x="10" y="110" width="150" height="64" rx="10" />
+                <text x="85" y="137" text-anchor="middle" class="node-title">Sensor data</text>
+                <text x="85" y="157" text-anchor="middle" class="node-sub">+ correlation matrix</text>
+              </g>
+              <g class="node">
+                <rect x="200" y="110" width="140" height="64" rx="10" />
+                <text x="270" y="137" text-anchor="middle" class="node-title">𝒢 Generate</text>
+                <text x="270" y="157" text-anchor="middle" class="node-sub">momentary context</text>
+              </g>
+              <g class="node">
+                <rect x="380" y="110" width="140" height="64" rx="10" />
+                <text x="450" y="137" text-anchor="middle" class="node-title">𝒜 Predict</text>
+                <text x="450" y="157" text-anchor="middle" class="node-sub">state + rationale</text>
+              </g>
+              <g class="node node-ema">
+                <rect x="560" y="110" width="140" height="64" rx="10" />
+                <text x="630" y="137" text-anchor="middle" class="node-title">Compare</text>
+                <text x="630" y="157" text-anchor="middle" class="node-sub">with EMA report</text>
+              </g>
+              <g class="node node-accent">
+                <rect x="740" y="110" width="150" height="64" rx="10" />
+                <text x="815" y="137" text-anchor="middle" class="node-title">𝒰 Update</text>
+                <text x="815" y="157" text-anchor="middle" class="node-sub">longitudinal context</text>
+              </g>
+              <g class="node">
+                <rect x="482" y="222" width="100" height="56" rx="10" />
+                <text x="532" y="246" text-anchor="middle" class="node-title">ℛ Refine</text>
+                <text x="532" y="264" text-anchor="middle" class="node-sub">context</text>
+              </g>
+            </svg>
+          </div>
+          <figcaption id="fig2-cap">
+            Within a session, the momentary context is refined against the
+            user's EMA report until the prediction error falls within ε. Only
+            then is it merged into the longitudinal context that seeds the
+            next session's prediction. Redrawn from Figure 1 of the paper.
+          </figcaption>
+        </figure>
+
+        <section class="column section section-continued">
+          <p>
+            <strong>Generate.</strong> From a session's sensor data, DyCon
+            computes a correlation matrix across features and asks the LLM to
+            write an initial <em>momentary context</em>: a short account of
+            what this user's signals suggest, grounded in DSM-5.
+          </p>
+          <p>
+            <strong>Predict.</strong> The predictor estimates the user's state
+            from the sensor data, the momentary context, and the
+            <em>longitudinal context</em> carried over from earlier sessions.
+            This first prediction is made before the current EMA answer is
+            seen.
+          </p>
+          <p>
+            <strong>Refine (momentary loop).</strong> Once the EMA answer
+            arrives, the prediction is compared with it. If the error is larger
+            than a threshold ε, the refiner rewrites the momentary context,
+            revisiting the correlation matrix for cues it missed, and the
+            predictor tries again, up to N<sub>r</sub> times. This loop
+            addresses differences between people.
+          </p>
+          <p>
+            <strong>Update (longitudinal loop).</strong> When a refined context
+            brings the error within ε, the updater merges it into the
+            longitudinal context and records which traits it added, kept, or
+            dropped, and why. That context is what the next session starts
+            from, which lets DyCon follow a person's drift over time.
+          </p>
+          <p>
+            No model weights change at any point. The same LLM runs all four
+            steps; the paper's main results use DeepSeek-V3.
+          </p>
+        </section>
+
+        <section id="findings" class="column section">
+          <h2><span class="num">03 /</span> What we found</h2>
+          <p>
+            We evaluated DyCon offline on four public benchmarks: GLOBEM (547
+            participant-years, 10 weekly sessions), PMData, StudentLife, and
+            LifeSnaps.
+          </p>
+          <p>
+            <strong>Bigger changes, bigger gap.</strong> Self-reported states
+            are sticky: anxiety and depression scores stay the same in 48.9%
+            and 53.2% of consecutive sessions. Simple baselines that reuse past
+            answers are therefore competitive session by session. DyCon's
+            advantage shows when a state changes sharply (FIG. 01). It also
+            caught more users moving from a negative to a positive screen:
+            43.8% vs 28.9% for anxiety and 31.4% vs 21.2% for depression,
+            compared with the strongest baseline.
+          </p>
+          <p>
+            <strong>Across study years.</strong> In GLOBEM's cross-dataset
+            setting, where a model meets the same users in a later year, DyCon
+            reached balanced accuracy of 0.547 for anxiety and 0.582 for
+            depression, above every compared method, including
+            domain-generalization algorithms and other LLM approaches.
+          </p>
+          <p>
+            <strong>Refinement is the piece that matters.</strong> Without the
+            refine step, DyCon stays near chance in every session, even when
+            the unrefined context is carried forward. With it, accuracy climbs
+            after the first session (FIG. 03).
+          </p>
+        </section>
+
+        <figure class="figure" aria-labelledby="fig3-cap">
+          <p class="fig-label">FIG. 03</p>
+          <p class="fig-title">Ablation on GLOBEM, anxiety, balanced accuracy by session</p>
+          <div class="fig-scroll">
+            <svg class="chart" viewBox="0 0 600 252" role="img" aria-labelledby="fig3-title">
+              <title id="fig3-title">Full DyCon rises from 0.50 to about 0.80 across sessions 1 to 10, while the baseline and the variant without refinement stay near 0.50</title>
+              <g class="grid">
+                <line x1="48" x2="584" y1="216" y2="216" />
+                <line x1="48" x2="584" y1="171.6" y2="171.6" class="chance" />
+                <line x1="48" x2="584" y1="127.1" y2="127.1" />
+                <line x1="48" x2="584" y1="82.7" y2="82.7" />
+                <line x1="48" x2="584" y1="38.2" y2="38.2" />
+              </g>
+              <g class="axis-label" text-anchor="end">
+                <text x="40" y="220">0.4</text>
+                <text x="40" y="175.6">0.5</text>
+                <text x="40" y="131.1">0.6</text>
+                <text x="40" y="86.7">0.7</text>
+                <text x="40" y="42.2">0.8</text>
+              </g>
+              <g class="axis-label" text-anchor="middle">
+                <text x="48" y="240">S1</text>
+                <text x="107.6" y="240">S2</text>
+                <text x="167.1" y="240">S3</text>
+                <text x="226.7" y="240">S4</text>
+                <text x="286.2" y="240">S5</text>
+                <text x="345.8" y="240">S6</text>
+                <text x="405.3" y="240">S7</text>
+                <text x="464.9" y="240">S8</text>
+                <text x="524.4" y="240">S9</text>
+                <text x="584" y="240">S10</text>
+              </g>
+              <polyline class="series series-muted" points="48.0,182.7 107.6,186.2 167.1,166.7 226.7,154.7 286.2,164.4 345.8,171.1 405.3,174.7 464.9,177.8 524.4,168.0 584.0,161.8" />
+              <polyline class="series series-muted dashed" points="48.0,187.6 107.6,171.6 167.1,168.9 226.7,171.6 286.2,169.8 345.8,166.7 405.3,170.2 464.9,171.1 524.4,168.0 584.0,171.6" />
+              <polyline class="series series-ours" points="48.0,171.6 107.6,96.0 167.1,55.6 226.7,54.2 286.2,41.8 345.8,46.7 405.3,48.9 464.9,64.4 524.4,55.6 584.0,38.7" />
+              <circle class="dot-ours" cx="584" cy="38.7" r="4" />
+            </svg>
+          </div>
+          <ul class="legend">
+            <li><span class="swatch swatch-ours"></span>DyCon (generate + refine + update)</li>
+            <li><span class="swatch swatch-dashed"></span>Without refine (generate + update)</li>
+            <li><span class="swatch swatch-muted"></span>Baseline LLM, no context</li>
+          </ul>
+          <figcaption id="fig3-cap">
+            Carrying context forward only helps once it has been refined
+            against the user's own reports. Data from Table 5 of the paper;
+            depression shows the same pattern.
+          </figcaption>
+        </figure>
+
+        <section class="column section section-continued">
+          <p>
+            <strong>Beyond GLOBEM.</strong> On PMData, StudentLife, and
+            LifeSnaps, DyCon's first-pass predictions had lower mean absolute
+            error than the compared LLM methods in every session from 2 to 7,
+            with no dataset-specific tuning. These datasets are smaller and
+            shorter, so we read this as supporting evidence of generality, not
+            proof of long-horizon scalability.
+          </p>
+          <p>
+            <strong>Backbone and threshold.</strong> Results varied by LLM
+            backbone, with DeepSeek-V3 generally best among the three tested,
+            and moderate thresholds (ε = 0.3, 0.5) beat strict ones:
+            demanding near-perfect agreement before updating does not help the
+            next session.
+          </p>
+        </section>
+
+        <section id="limitations" class="column section">
+          <h2><span class="num">04 /</span> Limitations</h2>
+          <ul class="plain-list">
+            <li>
+              <strong>Noisy labels.</strong> EMA answers carry recall and
+              social-desirability bias, which can flow into the contexts DyCon
+              writes.
+            </li>
+            <li>
+              <strong>Privacy.</strong> Storing a running personal context
+              raises privacy and ethical concerns; deployment needs
+              privacy-preserving infrastructure even though no weights are
+              updated.
+            </li>
+            <li>
+              <strong>Not clinically validated.</strong> The contexts are
+              model-generated hypotheses. Agreeing with EMA answers does not
+              make them clinically valid, and they need human review.
+            </li>
+            <li>
+              <strong>Selective updates.</strong> Sessions with large changes
+              or positive screens are updated less often, so the retained
+              context may under-represent them.
+            </li>
+            <li>
+              <strong>Offline only.</strong> All results are retrospective.
+              DyCon is meant to support monitoring, not diagnosis; prospective
+              studies with patients and clinicians are future work.
+            </li>
+          </ul>
+        </section>
+
+        <aside class="further column" aria-label="Further question">
+          <p class="eyebrow">Further question</p>
+          <p class="further-q">
+            If the context a model keeps about a person is plain text, could
+            that person, and the clinicians they trust, read it and correct
+            it?
+          </p>
+        </aside>
+
+        <section id="publication" class="column section">
+          <h2><span class="num">05 /</span> Publication</h2>
+          <dl class="pub">
+            <dt>Title</dt>
+            <dd>
+              Dynamic Context Modeling for Longitudinal Mental Health Monitoring
+              under Distribution Shift
+            </dd>
+            <dt>Authors</dt>
+            <dd>
+              Seungwan Jin, <strong>Taehyung Noh</strong>, Junghyun Kim, Uichin
+              Lee, Kyungsik Han
+            </dd>
+            <dt>Venue</dt>
+            <dd>Advances in Neural Information Processing Systems (NeurIPS 2026)</dd>
+            <dt>Paper</dt>
+            <dd class="muted">Coming soon</dd>
+          </dl>
+          <div class="cite">
+            <div class="cite-head">
+              <span>Citation</span>
+              <button type="button" class="copy-btn" data-copy-target="bibtex">Copy</button>
+            </div>
+            <pre id="bibtex"><code>@inproceedings{jin2026dycon,
+  title     = {Dynamic Context Modeling for Longitudinal Mental Health
+               Monitoring under Distribution Shift},
+  author    = {Jin, Seungwan and Noh, Taehyung and Kim, Junghyun
+               and Lee, Uichin and Han, Kyungsik},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2026}
+}</code></pre>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>© 2026 Taehyung Noh</span>
+        <nav aria-label="Footer">
+          <a href="/">Home</a>
+          <a href="/projects">Projects</a>
+          <a href="/CV_Taehyung/main.pdf">CV</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
