@@ -129,9 +129,7 @@ const ProjectsList = () => {
       <header className="pl-intro">
         <h1 id="projects-title">Projects</h1>
         <p className="pl-deck">
-          Papers and projects on user modeling, personalization and
-          human–AI interaction. A project with its own page opens to a
-          summary of what we found.
+          Papers and projects I've worked on, newest first.
         </p>
       </header>
       <div className="pl-filters" role="group" aria-label="Filter by topic">
