@@ -2,7 +2,7 @@
  * Topic nodes for the ResearchGraph. Publications reference these by `id` in
  * their `topics` array (src/data/publicationsData.js). A topic no publication
  * uses is simply not drawn, so project-only topics (e.g. AI Platforms, used
- * by the Projects desktop) do not appear on the graph.
+ * by the /projects list) do not appear on the graph.
  *
  * Order matters: topics are laid out clockwise around the centre in this
  * order, so topics that share papers should sit next to each other.

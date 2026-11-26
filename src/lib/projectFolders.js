@@ -1,9 +1,9 @@
 /*
- * Groups projects into topic folders for the Projects desktop.
+ * Topic helpers for the /projects research list.
  *
  * A project linked to a publication (`publicationId`) inherits that paper's
- * topics, so the folders, the ResearchGraph and the topic chips can never
- * disagree. Projects without a paper carry their own `topics`. Pure: returns
+ * topics, so the topic filters, the ResearchGraph and the topic chips can
+ * never disagree. Projects without a paper carry their own `topics`. Pure: returns
  * new arrays and never touches its input.
  */
 
@@ -51,14 +51,7 @@ export const projectSlug = (project) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
-// Link that opens a project on the Projects desktop, inside the first of its
-// topic folders (in topic order, matching the folder layout).
-export function projectPath(project, publications, topics) {
-  const ids = projectTopics(project, publications);
-  const folder = topics.find((t) => ids.includes(t.id));
-  const params = new URLSearchParams({
-    ...(folder ? { folder: folder.id } : {}),
-    project: projectSlug(project),
-  });
-  return `/projects?${params}`;
-}
+// Link to a project's card on /projects. Older links also carried
+// `folder=<topic>` from the former desktop; the list ignores it.
+export const projectPath = (project) =>
+  `/projects?${new URLSearchParams({ project: projectSlug(project) })}`;

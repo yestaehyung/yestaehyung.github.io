@@ -32,13 +32,13 @@ describe("Publications focus from the research graph", () => {
   });
 });
 
-describe("Publications links into the Projects desktop", () => {
-  it("links a paper that has a project to its Projects window", () => {
+describe("Publications links into the Projects list", () => {
+  it("links a paper that has a project to its card", () => {
     const { container } = render(inRouter(<Publications />));
     const pado = container.querySelector(`#${publicationAnchorId(5)}`);
     const link = [...pado.querySelectorAll("a")].find(
       (a) => a.textContent === "Details",
     );
-    expect(link).toHaveAttribute("href", "/projects?folder=um&project=pado");
+    expect(link).toHaveAttribute("href", "/projects?project=pado");
   });
 });

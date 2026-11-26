@@ -1,13 +1,19 @@
 /*
- * Projects shown as files in the Projects desktop's topic folders.
- * `name` is the file label. A project backed by a paper sets `publicationId`
- * (an id in publicationsData.js) and inherits that paper's topics; one with
- * no paper sets its own `topics` (ids from researchTopics.js).
+ * Projects listed on the /projects research page, newest first.
+ * `name` is the short label (and, slugified, the card's URL id). A project
+ * backed by a paper sets `publicationId` (an id in publicationsData.js) and
+ * inherits that paper's topics; one with no paper sets its own `topics` (ids
+ * from researchTopics.js). `page` is the path of its static page under
+ * public/, and `headline` copies that page's <h1>; without them the card
+ * shows `title` and its `links` only.
  */
 const projectsData = [
   {
     id: 10,
     name: "DyCon",
+    page: "/neurips26-dycon/",
+    headline:
+      "Personalizing mental health prediction as people change — without retraining the model",
     publicationId: 10,
     title: "DyCon: Dynamic Context Modeling (NeurIPS 2026)",
     description:
@@ -25,6 +31,9 @@ const projectsData = [
   {
     id: 9,
     name: "PALETTE",
+    page: "/cikm26-palette/",
+    headline:
+      "Language models can match a user's preferences without understanding the values behind them",
     publicationId: 9,
     title: "PALETTE: Value-Based User Understanding (CIKM 2026)",
     description:
@@ -42,6 +51,9 @@ const projectsData = [
   {
     id: 8,
     name: "LLM Deception",
+    page: "/chi26-deception/",
+    headline:
+      "How deceptive arguments written by LLMs change people's minds",
     publicationId: 8,
     title: "LLM Deceptive Persuasion (CHI 2026)",
     description:
@@ -82,6 +94,9 @@ const projectsData = [
   {
     id: 2,
     name: "TRIPLE (AAAI)",
+    page: "/aaai26-triple/",
+    headline:
+      "Modeling users' habits and intentions separately makes LLM personalization more accurate and easier to explain",
     publicationId: 1,
     title: "TRIPLE (AAAI)",
     description:
@@ -104,6 +119,9 @@ const projectsData = [
   {
     id: 3,
     name: "TRIPLE (CIKM)",
+    page: "/cikm25-triple/",
+    headline:
+      "Grounding LLM user profiles in the Theory of Planned Behavior improves personalization",
     publicationId: 2,
     title: "TRIPLE (CIKM)",
     description:
@@ -144,6 +162,9 @@ const projectsData = [
   {
     id: 5,
     name: "PADO",
+    page: "/coling25-pado/",
+    headline:
+      "Detecting personality traits in text by comparing two opposing AI agents",
     publicationId: 5,
     title: "Multi-Agent Personality Detection System (PADO 🌊)",
     description:
@@ -184,6 +205,9 @@ const projectsData = [
   {
     id: 7,
     name: "MOS",
+    page: "/chi23-mos/",
+    headline:
+      "Fashion experts and non-experts want different recommendations",
     publicationId: 7,
     title: "My Own Style (MOS)",
     description:

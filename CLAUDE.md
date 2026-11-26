@@ -22,12 +22,12 @@ Single-page React app (Create React App, React 19) — academic personal website
 ### Routing (`src/App.js`)
 Uses **BrowserRouter** with clean URLs. SPA fallback: `vercel.json` rewrites all paths to `/index.html` on Vercel; a `postbuild` script copies `index.html` to `404.html` for the legacy GitHub Pages snapshot. `public/index.html` contains a small script that redirects legacy `/#/path` hash URLs to `/path`.
 - `/` — `HomePage`: two-column top (`Profile` / `Introduction`), then full-width `ResearchGraph` and `Publications`
-- `/projects` — `ProjectsDesktop` (`src/components/projects/`): a macOS-style desktop with one folder per research topic; a folder opens a Finder window of projects, a project opens a detail window. The open folder/project is kept in the URL (`?folder=um&project=pado`) so windows are linkable and Back closes them; Publications entries link there via a "Details" badge. Windows drag by the title bar, maximize with the green light, and stack by last click; a Dock holds the main links
+- `/projects` — `ProjectsList` (`src/components/ProjectsList.js`): a research-article index styled like the paper pages (warm palette from `public/paper-kit/paper.css`). One card per project with a plain-language headline linking to its static page, filterable by topic (`?topic=um`). `?project=<slug>` scrolls to and flashes a card; older desktop links (`?folder=…&project=…`) still work because `folder` is ignored. Publications entries link there via a "Details" badge
 
 The blog was removed; `vercel.json` permanently redirects `/blog` and `/blog/*` to `/` so old links don't land on a blank SPA shell.
 
 ### Data sources
-- **Projects**: `src/data/projectsData.js`, grouped into folders by `src/lib/projectFolders.js`. A project with `publicationId` inherits that paper's `topics`; one without a paper sets its own `topics`. Adding a project = editing this file.
+- **Projects**: `src/data/projectsData.js`; topic helpers in `src/lib/projectFolders.js`. A project with `publicationId` inherits that paper's `topics`; one without a paper sets its own `topics`. `page` is its static page path and `headline` copies that page's `<h1>`. Adding a project = editing this file.
 - **Publications**: `src/data/publicationsData.js`, consumed by `Publications` and `ResearchGraph`. Each entry has `short` (graph node label) and `topics` (ids from `src/data/researchTopics.js`). Bold author = this author.
 
 ### Notable subsystems
@@ -38,7 +38,7 @@ The blog was removed; `vercel.json` permanently redirects `/blog` and `/blog/*` 
 - **Motion**: page sections fade up on mount with a staggered delay (`src/App.css`); all motion is disabled under `prefers-reduced-motion: reduce`.
 
 ### Standalone project sub-sites
-`public/aaai26-triple/`, `public/cikm25-triple/`, `public/chi23-mos/` are self-contained Bulma-based paper landing pages served as static assets under their own paths (no React integration). When a project page is "imported", it's dropped into `public/` rather than rebuilt as a React route.
+Each paper page lives in `public/<venue><yy>-<name>/index.html` (e.g. `public/neurips26-dycon/`) as a static research-article page with no React integration. They share `public/paper-kit/paper.css` and `paper.js` (copy-BibTeX button, TOC scroll-spy). Keep the `<h1>` plain and declarative, and keep `projectsData.js` `headline` in sync with it. Each page's back link points to `/projects?folder=<topic>&project=<slug>`.
 
 ### Static assets
 Profile image at `public/images/profile.jpg`, project images at `public/images/projects/`, CV PDF at `public/CV_Taehyung/main.pdf`. Reference via `process.env.PUBLIC_URL`. Each component has a matching CSS file in `src/styles/`.

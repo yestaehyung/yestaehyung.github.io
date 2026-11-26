@@ -14,12 +14,10 @@ const HIGHLIGHT_MS = 2200;
 const topicsOf = (publication) =>
   researchTopics.filter((t) => publication.topics.includes(t.id));
 
-// Papers with an entry on the Projects desktop link straight to its window.
+// Papers with an entry on /projects link straight to its card.
 const detailsPathOf = (publication) => {
   const project = projectsData.find((p) => p.publicationId === publication.id);
-  return project
-    ? projectPath(project, publicationsData, researchTopics)
-    : null;
+  return project ? projectPath(project) : null;
 };
 
 export const publicationAnchorId = (id) => `pub-${id}`;

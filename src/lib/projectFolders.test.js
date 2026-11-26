@@ -76,9 +76,7 @@ describe("projectSlug", () => {
 });
 
 describe("projectPath", () => {
-  it("opens the project inside its first topic folder, in topic order", () => {
-    expect(projectPath(projects[1], publications, topics)).toBe(
-      "/projects?folder=um&project=b",
-    );
+  it("points at the project's card on the list", () => {
+    expect(projectPath(projects[1])).toBe("/projects?project=b");
   });
 });

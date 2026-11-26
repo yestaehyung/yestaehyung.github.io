@@ -1,0 +1,261 @@
+/*
+ * /projects research list. Colours and type follow public/paper-kit/paper.css
+ * (light theme only, like the rest of the React site) so the list and the
+ * paper pages it opens read as one place.
+ */
+
+.projects-list {
+  --pl-bg: #faf9f5;
+  --pl-ink: #141413;
+  --pl-muted: #5e5d59;
+  --pl-line: #e8e6dc;
+  --pl-line-strong: #cfccc0;
+  --pl-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  max-width: 960px;
+  margin: 0 auto;
+  color: var(--pl-ink);
+}
+
+/* Warm page while the list is mounted (ProjectsList sets data-page). */
+body[data-page="projects"],
+body[data-page="projects"] .header {
+  background-color: #faf9f5;
+}
+
+.pl-intro {
+  padding: 24px 0 32px;
+}
+
+.pl-intro h1 {
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 16px;
+  color: var(--pl-ink);
+}
+
+.pl-deck {
+  max-width: 640px;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--pl-muted);
+  text-wrap: pretty;
+}
+
+/* ---------- topic filter ---------- */
+
+.pl-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--pl-ink);
+}
+
+.pl-filter {
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--pl-line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pl-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition-property: color, background-color, border-color;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+
+.pl-filter:hover {
+  color: var(--pl-ink);
+  border-color: var(--pl-ink);
+}
+
+.pl-filter.is-active {
+  background: var(--pl-ink);
+  border-color: var(--pl-ink);
+  color: var(--pl-bg);
+}
+
+.pl-filter:focus-visible,
+.pl-card a:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- cards ---------- */
+
+.pl-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pl-card {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 32px;
+  padding: 32px 0;
+  margin: 0;
+  border-bottom: 1px solid var(--pl-line);
+  /* Clear the sticky site header when a deep link scrolls here. */
+  scroll-margin-top: 96px;
+}
+
+.pl-card.is-highlighted {
+  animation: pl-flash 2.2s ease-out;
+}
+
+@keyframes pl-flash {
+  0%,
+  30% {
+    background-color: rgba(37, 99, 235, 0.08);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.pl-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  font-family: var(--pl-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--pl-muted);
+}
+
+.pl-venue {
+  color: var(--pl-ink);
+}
+
+.pl-topics {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding: 0;
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  color: var(--pl-muted);
+}
+
+.pl-topics li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.pl-topics li::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--topic-color);
+}
+
+/* Undo the site's global h2 rule (shadow, colour, spacing). */
+.projects-list .pl-headline {
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--pl-ink);
+  margin: 0 0 8px;
+  padding: 0;
+  box-shadow: none;
+}
+
+.pl-headline a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.pl-headline a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.pl-paper {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  color: var(--pl-muted);
+  font-style: italic;
+}
+
+.pl-desc {
+  margin: 0 0 16px;
+  max-width: 680px;
+  color: var(--pl-muted);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pl-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  font-size: 0.875rem;
+}
+
+.pl-role {
+  color: var(--pl-muted);
+}
+
+.pl-read {
+  color: var(--pl-ink);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.pl-read:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pl-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--pl-ink);
+  color: var(--pl-bg);
+  text-decoration: none;
+}
+
+.pl-link:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 720px) {
+  .pl-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 24px 0;
+  }
+
+  .pl-meta {
+    flex-direction: row;
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pl-card.is-highlighted {
+    animation: none;
+    background-color: rgba(37, 99, 235, 0.08);
+  }
+}
